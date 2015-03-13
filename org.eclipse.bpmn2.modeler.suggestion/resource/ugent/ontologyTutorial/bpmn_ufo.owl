@@ -1,0 +1,53 @@
+Prefix: : <http://www.w3.org/2002/07/owl#>
+Prefix: owl: <http://www.w3.org/2002/07/owl#>
+Prefix: rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Prefix: xml: <http://www.w3.org/XML/1998/namespace>
+Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
+Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+
+
+Ontology: <http://www.semanticweb.org/nalkhald/ontologies/BPMN_UFO>
+
+Import: <http://www.semanticweb.org/nalkhald/ontologies/UFO>
+Import: <http://www.semanticweb.org/nalkhald/ontologies/BPMN>
+
+Class: <http://www.semanticweb.org/nalkhald/ontologies/UFO#Event_Type>
+
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/UFO#Relator_Universal>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Data_Object>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Pool>
+
+    EquivalentTo: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Object_Type>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Data_Object>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Object_Type>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Event>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Event_Type>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/UFO#Object_Type>
+
+    EquivalentTo: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Pool>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Activity>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Event_Type>
+    
+    

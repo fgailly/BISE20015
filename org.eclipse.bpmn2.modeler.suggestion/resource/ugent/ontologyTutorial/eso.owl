@@ -1,0 +1,607 @@
+Prefix: : <http://www.owl-ontologies.com/travel.owl#>
+Prefix: dc: <http://purl.org/dc/elements/1.1/>
+Prefix: owl: <http://www.w3.org/2002/07/owl#>
+Prefix: rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Prefix: xml: <http://www.w3.org/XML/1998/namespace>
+Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
+Prefix: daml: <http://www.daml.org/2001/03/daml+oil#>
+Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+
+
+Ontology: <http://www.owl-ontologies.com/travel.owl>
+
+
+Annotations: 
+    rdfs:comment "An example ontology for tutorial purposes."^^xsd:string,
+    owl:versionInfo "1.0 by Holger Knublauch (holger@smi.stanford.edu)"^^xsd:string
+
+AnnotationProperty: owl:versionInfo
+
+    
+AnnotationProperty: rdfs:comment
+
+    
+Datatype: rdf:PlainLiteral
+
+    
+Datatype: xsd:int
+
+    
+Datatype: xsd:string
+
+    
+ObjectProperty: isOfferedAt
+
+    Domain: 
+        Activity
+    
+    Range: 
+        Destination
+    
+    InverseOf: 
+        hasActivity
+    
+    
+ObjectProperty: hasActivity
+
+    Domain: 
+        Destination
+    
+    Range: 
+        Activity
+    
+    InverseOf: 
+        isOfferedAt
+    
+    
+ObjectProperty: hasContact
+
+    Domain: 
+        Activity
+    
+    Range: 
+        Contact
+    
+    
+ObjectProperty: hasRating
+
+    Domain: 
+        Accommodation
+    
+    Range: 
+        AccommodationRating
+    
+    
+ObjectProperty: hasPart
+
+    Characteristics: 
+        Transitive
+    
+    Domain: 
+        Destination
+    
+    Range: 
+        Destination
+    
+    
+ObjectProperty: hasAccommodation
+
+    Domain: 
+        Destination
+    
+    Range: 
+        Accommodation
+    
+    
+DataProperty: hasCity
+
+    Characteristics: 
+        Functional
+    
+    Domain: 
+        Contact
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: hasZipCode
+
+    Characteristics: 
+        Functional
+    
+    Domain: 
+        Contact
+    
+    Range: 
+        xsd:int
+    
+    
+DataProperty: hasEMail
+
+    Characteristics: 
+        Functional
+    
+    Domain: 
+        Contact
+    
+    Range: 
+        xsd:string
+    
+    
+DataProperty: hasStreet
+
+    Characteristics: 
+        Functional
+    
+    Domain: 
+        Contact
+    
+    Range: 
+        xsd:string
+    
+    
+Class: owl:Thing
+
+    
+Class: Sunbathing
+
+    Annotations: 
+        rdfs:comment "Sit or lie in the sun, especially to tan the skin."@en
+    
+    SubClassOf: 
+        Relaxation
+    
+    
+Class: BudgetHotelDestination
+
+    Annotations: 
+        rdfs:comment "A destination with a hotel that is also a budget accommodation."^^xsd:string
+    
+    EquivalentTo: 
+        Destination
+         and (hasAccommodation some 
+            (BudgetAccommodation
+             and Hotel))
+    
+    
+Class: Adventure
+
+    Annotations: 
+        rdfs:comment "The traveller is willing to perform activities with adventurous nature"@en
+    
+    SubClassOf: 
+        Activity
+    
+    DisjointWith: 
+        Relaxation, Sports, Sightseeing
+    
+    
+Class: Town
+
+    Annotations: 
+        rdfs:comment "A built-up area with a name, defined boundaries, and local government, that is larger than a village and generally smaller than a city"@en
+    
+    SubClassOf: 
+        UrbanArea
+    
+    
+Class: Campground
+
+    Annotations: 
+        rdfs:comment "An area or a place which is used for camping"@en
+    
+    SubClassOf: 
+        Accommodation,
+        hasRating value OneStarRating
+    
+    DisjointWith: 
+        Hotel, BedAndBreakfast
+    
+    
+Class: RuralArea
+
+    Annotations: 
+        rdfs:comment "an area outside of cities and towns"@en
+    
+    SubClassOf: 
+        Destination
+    
+    DisjointWith: 
+        UrbanArea
+    
+    
+Class: City
+
+    Annotations: 
+        rdfs:comment "Relatively large and permanent human settlement"@en
+    
+    SubClassOf: 
+        hasAccommodation some LuxuryHotel,
+        UrbanArea
+    
+    
+Class: Farmland
+
+    Annotations: 
+        rdfs:comment "Land which is used or suitable for farming"@en
+    
+    SubClassOf: 
+        RuralArea
+    
+    
+Class: Contact
+
+    Annotations: 
+        rdfs:comment "A person to be contacted when the traveller wants to perform a specific activity"@en
+    
+    
+Class: Safari
+
+    Annotations: 
+        rdfs:comment "An expedition to observe or hunt animals in their natural habitat, especially in East Africa"@en
+    
+    SubClassOf: 
+        Adventure,
+        Sightseeing
+    
+    
+Class: AccommodationRating
+
+    Annotations: 
+        rdfs:comment "Hotel classification by a star system"^^xsd:string
+    
+    EquivalentTo: 
+        {OneStarRating , ThreeStarRating , TwoStarRating}
+    
+    
+Class: Accommodation
+
+    Annotations: 
+        rdfs:comment "A place to stay for tourists."^^xsd:string
+    
+    
+Class: Destination
+
+    Annotations: 
+        rdfs:comment "The place where the traveller is going"@en
+    
+    
+Class: RetireeDestination
+
+    Annotations: 
+        rdfs:comment "A destination with at least one three star accommodation and sightseeing opportunities."^^xsd:string
+    
+    EquivalentTo: 
+        Destination
+         and (hasAccommodation some (hasRating value ThreeStarRating))
+         and (hasActivity some Sightseeing)
+    
+    
+Class: Relaxation
+
+    Annotations: 
+        rdfs:comment "The traveller is willing to perform relaxing activities"@en
+    
+    SubClassOf: 
+        Activity
+    
+    DisjointWith: 
+        Adventure, Sports, Sightseeing
+    
+    
+Class: Travel_agency
+
+    Annotations: 
+        rdfs:comment "A retailer that provides travel and tourism related services to the public  "
+    
+    
+Class: LuxuryHotel
+
+    SubClassOf: 
+        Hotel,
+        hasRating value ThreeStarRating
+    
+    
+Class: Sports
+
+    Annotations: 
+        rdfs:comment "The traveller is willing to perform sport-related activities"@en
+    
+    SubClassOf: 
+        Activity
+    
+    DisjointWith: 
+        Adventure, Relaxation, Sightseeing
+    
+    
+Class: UrbanArea
+
+    Annotations: 
+        rdfs:comment "A geographical area constituting a city or town"@en
+    
+    SubClassOf: 
+        Destination
+    
+    DisjointWith: 
+        RuralArea
+    
+    
+Class: BudgetAccommodation
+
+    Annotations: 
+        rdfs:comment "Accommodation that has either one or two star rating."^^xsd:string
+    
+    EquivalentTo: 
+        Accommodation
+         and (hasRating some ({OneStarRating , TwoStarRating}))
+    
+    
+Class: Hotel
+
+    SubClassOf: 
+        Accommodation
+    
+    DisjointWith: 
+        Campground, BedAndBreakfast
+    
+    
+Class: Beach
+
+    Annotations: 
+        rdfs:comment "Sandy shore, especially by the sea"@en
+    
+    SubClassOf: 
+        Destination
+    
+    
+Class: Traveller
+
+    Annotations: 
+        rdfs:comment "A person who wants to travel"
+    
+    
+Class: Travel_request_processed
+
+    Annotations: 
+        rdfs:comment "Travel agency has processed the travel request of a traveller "
+    
+    
+Class: Surfing
+
+    Annotations: 
+        rdfs:comment "The sport of being carried to the shore on the crest of large waves while standing or lying on a surfboard"@en
+    
+    SubClassOf: 
+        Sports
+    
+    
+Class: BackpackersDestination
+
+    Annotations: 
+        rdfs:comment "A destination that provides budget accommodation and offers sport or adventure activities."^^xsd:string
+    
+    EquivalentTo: 
+        Destination
+         and (hasAccommodation some BudgetAccommodation)
+         and (hasActivity some 
+            (Adventure
+             or Sports))
+    
+    
+Class: FamilyDestination
+
+    Annotations: 
+        rdfs:comment "A destination with at least one accommodation and at least 2 activities."^^xsd:string
+    
+    EquivalentTo: 
+        Destination
+         and (hasAccommodation min 1 owl:Thing)
+         and (hasActivity min 2 owl:Thing)
+    
+    
+Class: Yoga
+
+    Annotations: 
+        rdfs:comment "A Hindu spiritual and ascetic discipline, a part of which, including breath control, simple meditation, and the adoption of specific bodily postures, is widely practised for health and relaxation"@en
+    
+    SubClassOf: 
+        Relaxation
+    
+    
+Class: travel_request_received
+
+    Annotations: 
+        rdfs:comment "Travel agency has received a travel request from the customer"
+    
+    
+Class: NationalPark
+
+    Annotations: 
+        rdfs:comment "An area of countryside, or occasionally sea or fresh water, protected by the state for the enjoyment of the general public or the preservation of wildlife"@en
+    
+    SubClassOf: 
+        hasActivity some Hiking,
+        hasAccommodation some Campground,
+        RuralArea
+    
+    
+Class: Museums
+
+    Annotations: 
+        rdfs:comment "A building in which objects of historical, scientific, artistic, or cultural interest are stored and exhibited."@en
+    
+    SubClassOf: 
+        Sightseeing
+    
+    
+Class: Activity
+
+    Annotations: 
+        rdfs:comment "Type of activity performed "@en
+    
+    
+Class: Hiking
+
+    Annotations: 
+        rdfs:comment "Walk for a long distance, especially across country"@en
+    
+    SubClassOf: 
+        Sports
+    
+    
+Class: BedAndBreakfast
+
+    Annotations: 
+        rdfs:comment "Sleeping accommodation for a night and a meal in a the morning"@en
+    
+    SubClassOf: 
+        Accommodation
+    
+    DisjointWith: 
+        Hotel, Campground
+    
+    
+Class: BunjeeJumping
+
+    Annotations: 
+        rdfs:comment "Jumping from a bridge, crane, or other high place while secured by a long nylon-cased rubber band around the ankles."@en
+    
+    SubClassOf: 
+        Adventure
+    
+    
+Class: QuietDestination
+
+    Annotations: 
+        rdfs:comment "A destination that is not frequented by noisy families."^^xsd:string
+    
+    EquivalentTo: 
+        Destination
+         and (not (FamilyDestination))
+    
+    
+Class: Capital
+
+    Annotations: 
+        rdfs:comment "The city or town that functions as the seat of government and administrative centre of a country or region."@en
+    
+    SubClassOf: 
+        hasActivity some Museums,
+        City
+    
+    
+Class: Sightseeing
+
+    Annotations: 
+        rdfs:comment "The traveller is willing to go sightseeing "@en
+    
+    SubClassOf: 
+        Activity
+    
+    DisjointWith: 
+        Adventure, Relaxation, Sports
+    
+    
+Individual: BondiBeach
+
+    Types: 
+        Beach
+    
+    
+Individual: Cairns
+
+    Types: 
+        City
+    
+    
+Individual: Canberra
+
+    Types: 
+        Capital
+    
+    
+Individual: Sydney
+
+    Types: 
+        Capital
+    
+    Facts:  
+     hasPart  CurrawongBeach,
+     hasPart  BondiBeach,
+     hasAccommodation  FourSeasons
+    
+    
+Individual: CurrawongBeach
+
+    Types: 
+        Beach
+    
+    
+Individual: OneStarRating
+
+    Types: 
+        AccommodationRating
+    
+    DifferentFrom: 
+        ThreeStarRating,
+        TwoStarRating
+    
+    
+Individual: Warrumbungles
+
+    Types: 
+        NationalPark
+    
+    
+Individual: FourSeasons
+
+    Types: 
+        LuxuryHotel
+    
+    
+Individual: BlueMountains
+
+    Types: 
+        NationalPark
+    
+    
+Individual: Coonabarabran
+
+    Types: 
+        Town
+    
+    
+Individual: TwoStarRating
+
+    Types: 
+        AccommodationRating
+    
+    DifferentFrom: 
+        OneStarRating,
+        ThreeStarRating
+    
+    
+Individual: CapeYork
+
+    Types: 
+        RuralArea
+    
+    
+Individual: Woomera
+
+    Types: 
+        RuralArea
+    
+    
+Individual: ThreeStarRating
+
+    Types: 
+        AccommodationRating
+    
+    DifferentFrom: 
+        OneStarRating,
+        TwoStarRating
+    
+    

@@ -1,0 +1,132 @@
+Prefix: : <http://www.w3.org/2002/07/owl#>
+Prefix: owl: <http://www.w3.org/2002/07/owl#>
+Prefix: rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Prefix: xml: <http://www.w3.org/XML/1998/namespace>
+Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
+Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+
+
+Ontology: <http://www.semanticweb.org/nalkhald/ontologies/UFO>
+
+
+ObjectProperty: <http://www.semanticweb.org/nalkhald/ontologies/UFO#hasDomain>
+
+    Domain: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#MaterialRelationship_Type>
+    
+    Range: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Object_Type>
+    
+    
+ObjectProperty: <http://www.semanticweb.org/nalkhald/ontologies/UFO#participates>
+
+    Domain: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Event_Type>
+    
+    Range: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Object_Type>
+    
+    
+ObjectProperty: <http://www.semanticweb.org/nalkhald/ontologies/UFO#objectifies>
+
+    Domain: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Relator_Universal>
+    
+    Range: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#MaterialRelationship_Type>
+    
+    
+ObjectProperty: <http://www.semanticweb.org/nalkhald/ontologies/UFO#hasQuality>
+
+    Domain: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Object_Type>
+    
+    Range: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Quality_Universal>
+    
+    
+ObjectProperty: <http://www.semanticweb.org/nalkhald/ontologies/UFO#isMediatedBy>
+
+    Domain: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Object_Type>
+    
+    Range: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Relator_Universal>
+    
+    InverseOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#mediates>
+    
+    
+ObjectProperty: <http://www.semanticweb.org/nalkhald/ontologies/UFO#mediates>
+
+    Domain: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Relator_Universal>
+    
+    Range: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Object_Type>
+    
+    InverseOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#isMediatedBy>
+    
+    
+ObjectProperty: <http://www.semanticweb.org/nalkhald/ontologies/UFO#hasRange>
+
+    Domain: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#MaterialRelationship_Type>
+    
+    Range: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Object_Type>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/UFO#Role_Type>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Sortal_Type>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/UFO#Event_Type>
+
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/UFO#Relator_Universal>
+
+    EquivalentTo: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#mediates> min 2 <http://www.semanticweb.org/nalkhald/ontologies/UFO#Object_Type>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/UFO#Mixin_Type>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Object_Type>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/UFO#MaterialRelationship_Type>
+
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/UFO#FormalRelationshipType>
+
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/UFO#Sortal_Type>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Object_Type>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/UFO#Quality_Universal>
+
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Sortal_Type>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/UFO#Object_Type>
+
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/UFO#Phase_Type>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Sortal_Type>
+    
+    

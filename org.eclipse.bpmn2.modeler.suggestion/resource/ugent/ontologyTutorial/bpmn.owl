@@ -1,0 +1,156 @@
+Prefix: : <http://www.w3.org/2002/07/owl#>
+Prefix: owl: <http://www.w3.org/2002/07/owl#>
+Prefix: rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Prefix: xml: <http://www.w3.org/XML/1998/namespace>
+Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
+Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+
+
+Ontology: <http://www.semanticweb.org/nalkhald/ontologies/BPMN>
+
+
+ObjectProperty: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#memberOfPool>
+
+    Domain: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#FlowObject>
+    
+    Range: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Pool>
+    
+    
+ObjectProperty: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#hasNoun>
+
+    Domain: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Activity>
+    
+    Range: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#NounLabel>
+    
+    
+ObjectProperty: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#hasTarget>
+
+    Domain: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#ConnectivityObject>
+    
+    Range: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#FlowObject>
+    
+    
+ObjectProperty: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#comprimises>
+
+    Domain: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Subprocess>
+    
+    Range: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Task>
+    
+    
+ObjectProperty: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#hasLane>
+
+    Domain: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Pool>
+    
+    Range: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Pool>
+    
+    
+ObjectProperty: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#hasSource>
+
+    Domain: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#ConnectivityObject>
+    
+    Range: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#FlowObject>
+    
+    
+Class: Thing
+
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Sequenceflow>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#ConnectivityObject>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Pool>
+
+    SubClassOf: 
+        Thing
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#ParaellelGateway>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Gateway>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#NounLabel>
+
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Subprocess>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Activity>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Task>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Activity>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Activity>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#FlowObject>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#MessageFlow>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#ConnectivityObject>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#ExclusiveGateway>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Gateway>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Data_Object>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#FlowObject>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Association>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#ConnectivityObject>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#InclusiveGateway>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Gateway>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Event>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#FlowObject>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#Gateway>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/BPMN#FlowObject>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#ConnectivityObject>
+
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/BPMN#FlowObject>
+
+    

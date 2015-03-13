@@ -1,0 +1,187 @@
+Prefix: owl: <http://www.w3.org/2002/07/owl#>
+Prefix: rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Prefix: xml: <http://www.w3.org/XML/1998/namespace>
+Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
+Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+
+
+Ontology: <http://www.semanticweb.org/nalkhald/ontologies/2014/2/untitled-ontology-96>
+
+Import: <http://www.semanticweb.org/nalkhald/ontologies/UFO>
+Import: <http://www.owl-ontologies.com/travel.owl>
+
+Class: <http://www.semanticweb.org/nalkhald/ontologies/UFO#Event_Type>
+
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/UFO#Role_Type>
+
+    
+Class: <http://www.owl-ontologies.com/travel.owl#BudgetHotelDestination>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#Town>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#Campground>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#RuralArea>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#City>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#Farmland>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Quality_Universal>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#Contact>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Role_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#AccommodationRating>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#Destination>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#Accommodation>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#RetireeDestination>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#Travel_agency>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#LuxuryHotel>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#UrbanArea>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#BudgetAccommodation>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#Hotel>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#Beach>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#Traveller>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+
+    
+Class: <http://www.owl-ontologies.com/travel.owl#Travel_request_processed>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Event_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#BackpackersDestination>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#FamilyDestination>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#travel_request_received>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Event_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#NationalPark>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Quality_Universal>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#Activity>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#BedAndBreakfast>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    
+Class: <http://www.semanticweb.org/nalkhald/ontologies/UFO#Quality_Universal>
+
+    
+Class: <http://www.owl-ontologies.com/travel.owl#Capital>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Quality_Universal>
+    
+    
+Class: <http://www.owl-ontologies.com/travel.owl#QuietDestination>
+
+    SubClassOf: 
+        <http://www.semanticweb.org/nalkhald/ontologies/UFO#Base_Type>
+    
+    

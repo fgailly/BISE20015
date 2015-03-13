@@ -1,0 +1,1168 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.mis.ugent.be/ontologies/bank.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     ontologyIRI="http://www.mis.ugent.be/ontologies/bank.owl">
+    <Prefix name="" IRI="http://www.mis.ugent.be/ontologies/bank.owl#"/>
+    <Prefix name="dc" IRI="http://purl.org/dc/elements/1.1/"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="daml" IRI="http://www.daml.org/2001/03/daml+oil#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="protege" IRI="http://protege.stanford.edu/plugins/owl/protege#"/>
+    <Import>http://protege.stanford.edu/plugins/owl/protege</Import>
+    <Declaration>
+        <Class IRI="#APR"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AddedValue"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Administrative"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Asset"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Branch"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Capital"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Channel"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Collection"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Commercial"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Company"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Corporative"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Currency"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CurrentMortageLoan"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Customer"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DelayInterestRate"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Department"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Employee"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#EndingDate"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ExpirationDate"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#FutureMortgageLoan"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HandlingCapital"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HomeInsurance"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Individuals"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InitialQuota"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InterestRateValue"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InvestmentAccount"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#InvestmentFund"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Invoice"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Liability"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LifeInsurance"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Loan"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LoanApplication"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Loan_application_accepted"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Loan_application_received"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Loan_application_rejected"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Loan_application_verified"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Login"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MortgageLoan"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MortgageTaxation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Name"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Payment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PeriodicityQuota"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Person"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Product"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ProductRateApplication"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ProductRateApplicationFixed"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ProductRateApplicationMixed"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ProductRateApplicationVariable"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Quota"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#QuotaAfterRevision"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RepaymentAbility"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RevisionTermNext"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SME"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SOHO"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SavingAccount"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Service"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ServiceContractedByCustomerInChannel"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SignalDateContract"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Staff"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#StartingDate"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Term"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#User"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#buyCostProperty"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#initialPeriod"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#interestDelay"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#vBanking"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#NIF"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#cancelationCommission"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#channel"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#currencyProduct"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#customer"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasAPR"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasBuyCostProperty"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasCapital"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasDelayInterestRate"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasEndingDate"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasExpirationDate"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasHandlingCapital"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasHomeInsurance"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasInitialPeriod"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasInitialQuota"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasInterestDelay"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasInterestRateValue"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasLifeInsurance"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasLogin"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasMortgageTaxation"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasName"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasPeriodicityQuota"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasQuotaAfterRevision"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasRepaymentAbility"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasRevisionTermNext"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasSignalDateContract"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasStartingDate"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasTerm"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#interestRateType"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#openingCommission"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#password"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#payments"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#rateVariable"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#service"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#subrogationCommission"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#titularity"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    </Declaration>
+    <Declaration>
+        <Datatype abbreviatedIRI="rdf:PlainLiteral"/>
+    </Declaration>
+    <Declaration>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </Declaration>
+    <Declaration>
+        <Datatype abbreviatedIRI="xsd:date"/>
+    </Declaration>
+    <Declaration>
+        <Datatype abbreviatedIRI="xsd:duration"/>
+    </Declaration>
+    <Declaration>
+        <Datatype abbreviatedIRI="xsd:float"/>
+    </Declaration>
+    <Declaration>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#Administrative"/>
+        <Class IRI="#Employee"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Asset"/>
+        <Class IRI="#Product"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Commercial"/>
+        <Class IRI="#Employee"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Corporative"/>
+        <Class IRI="#Department"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CurrentMortageLoan"/>
+        <Class IRI="#MortgageLoan"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Customer"/>
+        <Class IRI="#User"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FutureMortgageLoan"/>
+        <Class IRI="#MortgageLoan"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Individuals"/>
+        <Class IRI="#Department"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Invoice"/>
+        <Class IRI="#Payment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LoanApplication"/>
+        <Class IRI="#Loan"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MortgageLoan"/>
+        <Class IRI="#Loan"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Product"/>
+        <Class IRI="#ProductRateApplication"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ProductRateApplicationFixed"/>
+        <Class IRI="#ProductRateApplication"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ProductRateApplicationMixed"/>
+        <Class IRI="#ProductRateApplication"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ProductRateApplicationVariable"/>
+        <Class IRI="#ProductRateApplication"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SME"/>
+        <Class IRI="#Department"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Staff"/>
+        <Class IRI="#Employee"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#Company"/>
+        <Class IRI="#Person"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Company"/>
+        <Class IRI="#SOHO"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Person"/>
+        <Class IRI="#SOHO"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ProductRateApplicationFixed"/>
+        <Class IRI="#ProductRateApplicationMixed"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ProductRateApplicationFixed"/>
+        <Class IRI="#ProductRateApplicationVariable"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ProductRateApplicationMixed"/>
+        <Class IRI="#ProductRateApplicationVariable"/>
+    </DisjointClasses>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#cancelationCommission"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#openingCommission"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#subrogationCommission"/>
+    </FunctionalObjectProperty>
+    <InverseFunctionalObjectProperty>
+        <ObjectProperty IRI="#cancelationCommission"/>
+    </InverseFunctionalObjectProperty>
+    <SymmetricObjectProperty>
+        <ObjectProperty IRI="#titularity"/>
+    </SymmetricObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#NIF"/>
+        <ObjectUnionOf>
+            <Class IRI="#Person"/>
+            <Class IRI="#SOHO"/>
+        </ObjectUnionOf>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#cancelationCommission"/>
+        <Class IRI="#CurrentMortageLoan"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#channel"/>
+        <Class IRI="#ServiceContractedByCustomerInChannel"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#currencyProduct"/>
+        <Class IRI="#Product"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#customer"/>
+        <Class IRI="#ServiceContractedByCustomerInChannel"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasAPR"/>
+        <Class IRI="#Product"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasBuyCostProperty"/>
+        <Class IRI="#FutureMortgageLoan"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasCapital"/>
+        <Class IRI="#MortgageLoan"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasDelayInterestRate"/>
+        <Class IRI="#FutureMortgageLoan"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasEndingDate"/>
+        <Class IRI="#Quota"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasExpirationDate"/>
+        <Class IRI="#Product"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasHandlingCapital"/>
+        <Class IRI="#CurrentMortageLoan"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasHomeInsurance"/>
+        <Class IRI="#FutureMortgageLoan"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasInitialPeriod"/>
+        <Class IRI="#FutureMortgageLoan"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasInitialQuota"/>
+        <Class IRI="#FutureMortgageLoan"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasInterestDelay"/>
+        <Class IRI="#FutureMortgageLoan"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasInterestRateValue"/>
+        <Class IRI="#Product"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasLifeInsurance"/>
+        <Class IRI="#FutureMortgageLoan"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasLogin"/>
+        <Class IRI="#User"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasMortgageTaxation"/>
+        <Class IRI="#FutureMortgageLoan"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasName"/>
+        <Class IRI="#Customer"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasName"/>
+        <Class IRI="#Product"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasPeriodicityQuota"/>
+        <Class IRI="#FutureMortgageLoan"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasQuotaAfterRevision"/>
+        <Class IRI="#FutureMortgageLoan"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasRepaymentAbility"/>
+        <Class IRI="#Customer"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasRevisionTermNext"/>
+        <Class IRI="#MortgageLoan"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasSignalDateContract"/>
+        <Class IRI="#Payment"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasStartingDate"/>
+        <Class IRI="#Quota"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasTerm"/>
+        <Class IRI="#FutureMortgageLoan"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#interestRateType"/>
+        <Class IRI="#Product"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#openingCommission"/>
+        <Class IRI="#FutureMortgageLoan"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#password"/>
+        <Class IRI="#User"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#payments"/>
+        <Class IRI="#SavingAccount"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#rateVariable"/>
+        <Class IRI="#ProductRateApplicationMixed"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#service"/>
+        <Class IRI="#ServiceContractedByCustomerInChannel"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#subrogationCommission"/>
+        <Class IRI="#FutureMortgageLoan"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#titularity"/>
+        <Class IRI="#Customer"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#cancelationCommission"/>
+        <Class IRI="#Quota"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#channel"/>
+        <Class IRI="#Channel"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#currencyProduct"/>
+        <Class IRI="#Currency"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#customer"/>
+        <Class IRI="#Customer"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasAPR"/>
+        <Class IRI="#APR"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasBuyCostProperty"/>
+        <Class IRI="#buyCostProperty"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasCapital"/>
+        <Class IRI="#Capital"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasDelayInterestRate"/>
+        <Class IRI="#DelayInterestRate"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasEndingDate"/>
+        <Class IRI="#EndingDate"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasExpirationDate"/>
+        <Class IRI="#ExpirationDate"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasHandlingCapital"/>
+        <Class IRI="#HandlingCapital"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasHomeInsurance"/>
+        <Class IRI="#HomeInsurance"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasInitialPeriod"/>
+        <Class IRI="#initialPeriod"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasInitialQuota"/>
+        <Class IRI="#InitialQuota"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasInterestDelay"/>
+        <Class IRI="#interestDelay"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasInterestRateValue"/>
+        <Class IRI="#InterestRateValue"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasLifeInsurance"/>
+        <Class IRI="#LifeInsurance"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasLogin"/>
+        <Class IRI="#Login"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasMortgageTaxation"/>
+        <Class IRI="#MortgageTaxation"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasName"/>
+        <Class IRI="#Name"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasPeriodicityQuota"/>
+        <Class IRI="#PeriodicityQuota"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasQuotaAfterRevision"/>
+        <Class IRI="#QuotaAfterRevision"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasRepaymentAbility"/>
+        <Class IRI="#RepaymentAbility"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasRevisionTermNext"/>
+        <Class IRI="#RevisionTermNext"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasSignalDateContract"/>
+        <Class IRI="#SignalDateContract"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasStartingDate"/>
+        <Class IRI="#StartingDate"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasTerm"/>
+        <Class IRI="#Term"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#interestRateType"/>
+        <Class IRI="#ProductRateApplication"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#openingCommission"/>
+        <Class IRI="#Quota"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#payments"/>
+        <Class IRI="#Payment"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#rateVariable"/>
+        <Class IRI="#ProductRateApplicationVariable"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#service"/>
+        <Class IRI="#Service"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#subrogationCommission"/>
+        <Class IRI="#Quota"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#titularity"/>
+        <Class IRI="#Product"/>
+    </ObjectPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#APR</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Annual Percentage Rate: describes the interest rate for the whole year</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#AddedValue</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">The sales revenue from selling a product less the cost
+of the materials or purchases used in those products. It is an indicator of relative
+efficiency within and between firms, although in the latter case it is open to distortion
+where mark-up varies between standard and premium-priced segments of a
+market</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Administrative</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Employee with administrative
+functions</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Asset</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The land or property of a company or individual,
+payments due from bills, investments, and anything else owned that can be turned into
+cash </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Branch</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Physical bank office</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Capital</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Financial assests or financial value of assets, such as cash </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Channel</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Communication means used in the relationship
+between the bank and its customers, including branches, phone, Internet, virtual
+banking, etc.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Collection</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Deposit in a saving account</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Commercial</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Employee with commercial
+functions</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Company</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A number of people grouped together as a business
+enterprise. Types of companies include public limited companies, partnerships, joint
+ventures and proprietorships, and branches of foreign companies</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Corporative</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Company with a specific set of characteristics that
+require a personalised commercial treatment. Depending on each bank, the set of
+characteristics may change, although they normally refer to number of employees and
+annual turnover. It includes company groups, multinational companies,
+etc.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Corporative</IRI>
+        <Literal xml:lang="es" datatypeIRI="&rdf;PlainLiteral">Empresa que por sus caracterÃ­ticas merece un
+tratamiento comercial individualizado. Dependiendo de cada Banco estas caracterÃ­sticas
+pueden variar, aunque normalmente se refieren a nÃºmero de empleados y/o facturaciÃ³n
+anual. Inluye grupos de empresas, multinacionales, etc</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Currency</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Money in circulation</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#CurrentMortageLoan</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Current mortgage loan that the user is willing to
+change.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Customer</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Bank client, who usually has a contractual
+relationship with the bank</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#DelayInterestRate</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Interest rate applied in case if payments are delayed</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Department</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Internal area of the bank that performs a specific
+function</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Employee</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A person who works in a branch</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#EndingDate</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">The deadline for loan payment</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ExpirationDate</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Expiry date of a financial product</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#FutureMortgageLoan</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Future mortgage loan that the user will use instead of
+the current one</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#HandlingCapital</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Capital of a mortgage loan</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#HomeInsurance</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Insurance paied on a property</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Individuals</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Department that deals with physical
+persons</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#InitialQuota</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Initial payment</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#InterestRateValue</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Numerical value for the interest</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#InvestmentAccount</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Account setup to perform an investment, such as a
+fixed term deposit</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#InvestmentFund</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Investment club where a set of customers put their
+money so that the bank performs an investment on behalf of them.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Invoice</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">An itemized statement given to a buyer by a seller
+and usually specifying the price of goods or services and the terms of
+sale</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Liability</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The amount that is owed by an individual or
+company, whether money, products, or services, to others.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#LifeInsurance</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Assurance designed to protect repayment of the mortgage</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Loan</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Money let out at interest</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#LoanApplication</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A formal request for a loan</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Loan_application_accepted</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">A bank has acceted the application submitted by the customer</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Loan_application_received</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">The bank has received the application submitted by the customer</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Loan_application_rejected</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">The bank has rejected the application submitted by the customer</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Loan_application_verified</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">The bank is verifying the application submitted by the customer</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Login</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">login details that the user uses to access the banking system</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#MortgageLoan</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A long-term loan backed by real estate or valuable
+property, usually the item purchased with the loan. The creditor can claim that property
+if all payments are not made by the borrower when they are due</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#MortgageTaxation</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Taxes payed on mortgage</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Name</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Customer&apos;s name.
+Name of a financial product</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Payment</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Money given to pay for something</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#PeriodicityQuota</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Periods in which the fee is payed every three months</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Person</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Bank client that represents a single person (physical
+or juridical)</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Product</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Bank product that requires the signature of a contract
+between the customer and the bank</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ProductRateApplication</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Applied interest rate</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ProductRateApplicationFixed</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Fixed interest rate. It never varies during the
+mortgage life</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ProductRateApplicationMixed</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Mixed interest rate, usually composed of fixed and
+variable interest rates</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ProductRateApplicationVariable</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Variable interest rate. It may vary during the
+mortgage life</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Quota</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Amount to be paid in a loan</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#QuotaAfterRevision</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Estimated share after the next rate revie interest</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#RepaymentAbility</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">whether a customer is able to repay the loan or not</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#RevisionTermNext</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Lead time untill the next revision of the type of interest in variable interest mortgages</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#SME</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Small or Medium Enterprise</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#SOHO</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Small Office, Home Office. It usually refers to
+professionals who work in their own offices</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#SavingAccount</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Account without a chequebook and normally with a
+low interest rate</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Service</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Financial products offered by a bank or services that
+do not require a contract, like a bank transfer order</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ServiceContractedByCustomerInChannel</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Product or service contracted by a
+channel</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#SignalDateContract</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Date when cotract for a product is signed</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Staff</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Central Services of a company, such as Human
+Resources, Management, Innovation, etc.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#StartingDate</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">starting date of a quota</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Term</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Repayment term of a mortgage</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#User</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">User of the banking system</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#buyCostProperty</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Value of the land or property associated to a
+mortgage</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#cancelationCommission</IRI>
+        <Literal xml:lang="es" datatypeIRI="&rdf;PlainLiteral">ComisiÃ³n de cancelaciÃ³n</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#cancelationCommission</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Commission to be paid when a mortgage is
+cancelled</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#hasAPR</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Annual Percentage Rate</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#interestDelay</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Interest on late payments</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#interestRateType</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Type of interest rate of a bank
+product</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#openingCommission</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Commission to be paid when a mortgage is
+opened</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#payments</IRI>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Payments due in a saving account</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#subrogationCommission</IRI>
+        <Literal datatypeIRI="&xsd;string">Commission to be paid when a mortgage is
+subrogated</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#vBanking</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Virtual Banking. Banking without human
+intervention</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
