@@ -28,7 +28,7 @@ public class SuggestionModel {
 		String uniqueId = sugView.getListener().getUniqueId();
 		BPMNSuggestionEngine2 engine = sugView.getEngine();
 		SortedSet<Suggestion> sugSet = engine.suggestionList(idUrl, name);
-		engine.printSugList(sugSet);
+		//engine.printSugList(sugSet);
 		assert(sugSet != null);
 		Object[] sugArray = (Object[]) sugSet.toArray();
 		for (int i = 0; i < sugArray.length; i++) {

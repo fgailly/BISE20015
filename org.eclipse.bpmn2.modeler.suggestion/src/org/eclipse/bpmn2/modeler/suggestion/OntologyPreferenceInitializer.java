@@ -12,11 +12,14 @@ public class OntologyPreferenceInitializer extends
 	@Override
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		store.setDefault("SDServer", "http://bizagi.ugent.be:5820/");
+		store.setDefault("SDLogin", "admin");
+		store.setDefault("SDPassword", "liesbeth1812");
 		store.setDefault("ESO", "Bank");
-		store.setDefault("CORE", "UFO");
-		store.setDefault("BPMN", "BPMN");
-		store.setDefault("BPMN_CORE", "BPMN_UFO");
-		store.setDefault("ESO_CORE", "Bank_UFO");
+		store.setDefault("CoO", "UFO");
+		store.setDefault("BpmnO", "BPMN");
+		store.setDefault("CoO-BpmnO", "BPMN_UFO");
+		store.setDefault("RuleO", "ExperimentRules");
 
 	}
 

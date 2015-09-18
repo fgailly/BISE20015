@@ -84,7 +84,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 import edu.smu.tspell.wordnet.Synset;
 import edu.smu.tspell.wordnet.WordNetDatabase;
 import edu.stanford.nlp.ling.TaggedWord;
-import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
+//import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
 import edu.stanford.nlp.trees.Tree;
 
 
@@ -103,7 +103,7 @@ public class BPMNSuggestionEngine {
     File wordnet;
     URL wordnet_url;
     String modelName;
-    LexicalizedParser lp;
+    //LexicalizedParser lp;
     final String task = "http://www.mis.ugent.be/ontologies/bpmn.owl#Task";
     final String activity = "http://www.mis.ugent.be/ontologies/bpmn.owl#Activity";
     final String event = "http://www.mis.ugent.be/ontologies/bpmn.owl#Event";
@@ -177,7 +177,7 @@ public class BPMNSuggestionEngine {
 	public String CoreBPMNOntology="";
 	
 	//Filename rulesfile
-	public String RulesOntology="rules3.owl";
+	public String RulesOntology="rules.owl";
 		
 	//Filename model ontology
 	public String ModelOntology="";
@@ -185,7 +185,7 @@ public class BPMNSuggestionEngine {
 	
 	public BPMNSuggestionEngine(){
 		m = OWLManager.createOWLOntologyManager();
-		lp = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
+		//lp = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
 		
 		modelName ="model";
 		
@@ -705,8 +705,8 @@ public class BPMNSuggestionEngine {
 		// check if label corresponds to <<verb> <<noun>
 		
 		if(irimodellingConstruct.equals(task) || irimodellingConstruct.equals(activity)) {
-			nouns = parseSentence(label,"NN");
-			verbs = parseSentence(label,"VB");
+			//nouns = parseSentence(label,"NN");
+			//verbs = parseSentence(label,"VB");
 			if(!nouns.isEmpty() && !verbs.isEmpty()){
 				label = nouns.get(0);
 				verbNounPattern = true;
@@ -1000,22 +1000,22 @@ public class BPMNSuggestionEngine {
 	
 		
 	
-	public List<String> parseSentence(String input, String Tag){
-		
-		 Tree parse = lp.parse(input.toLowerCase());
-		 List<String> taggedWords = new ArrayList<String>(); 
-		 for (TaggedWord tw : parse.taggedYield()) {
-		   if (tw.tag().startsWith(Tag)) {
-			 taggedWords.add(tw.word());
-		     System.out.printf("%s/%s%n", tw.word(), tw.tag());
-		   }
-		 }
-		 
-		 parse.pennPrint();
-		 System.out.println();
-		return taggedWords;
-	    
-	}
+//	public List<String> parseSentence(String input, String Tag){
+//		
+//		 Tree parse = lp.parse(input.toLowerCase());
+//		 List<String> taggedWords = new ArrayList<String>(); 
+//		 for (TaggedWord tw : parse.taggedYield()) {
+//		   if (tw.tag().startsWith(Tag)) {
+//			 taggedWords.add(tw.word());
+//		     System.out.printf("%s/%s%n", tw.word(), tw.tag());
+//		   }
+//		 }
+//		 
+//		 parse.pennPrint();
+//		 System.out.println();
+//		return taggedWords;
+//	    
+//	}
 
 	
 	 public void saveModelOntology() throws OWLOntologyStorageException, OWLOntologyCreationException, IOException {

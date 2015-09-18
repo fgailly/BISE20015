@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringReader;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,6 +22,11 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import org.cheetahplatform.common.CommonConstants;
+import org.cheetahplatform.common.logging.AuditTrailEntry;
+import org.cheetahplatform.common.logging.Process;
+import org.cheetahplatform.common.logging.ProcessInstance;
+import org.cheetahplatform.common.logging.PromLogger;
 import org.eclipse.bpmn2.modeler.suggestion.Activator;
 import org.eclipse.bpmn2.modeler.ui.Bpmn2DiagramEditorInput;
 import org.eclipse.core.resources.IProject;
@@ -28,8 +34,11 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
@@ -90,9 +99,12 @@ import com.hp.hpl.jena.rdf.model.Model;
 
 import edu.smu.tspell.wordnet.Synset;
 import edu.smu.tspell.wordnet.WordNetDatabase;
+import edu.stanford.nlp.ling.HasWord;
+import edu.stanford.nlp.ling.Sentence;
 import edu.stanford.nlp.ling.TaggedWord;
-import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
-import edu.stanford.nlp.trees.Tree;
+import edu.stanford.nlp.ling.Word;
+import edu.stanford.nlp.process.DocumentPreprocessor;
+import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 
 
 public class BPMNSuggestionEngine2 {
@@ -102,18 +114,19 @@ public class BPMNSuggestionEngine2 {
     OWLOntology BPMN_UFO;
     OWLOntology ESO;
     OWLOntologyManager manager;
-    OWLOntologyManager rulesManager;
     OWLOntology merged;
-    OWLOntology mergedRules;
     OWLOntology modelOntology;
     OWLOntology rules;
     OWLOntology semAnn;
     
     File wordnet;
+    private PromLogger recommendationLogger;
    
     URL wordnet_url;
     String modelName;
-    LexicalizedParser lp;
+    //LexicalizedParser lp;
+    //ShiftReduceParser model;
+    MaxentTagger tagger;
     final String task = "http://www.mis.ugent.be/ontologies/bpmn.owl#Task";
     final String activity = "http://www.mis.ugent.be/ontologies/bpmn.owl#Activity";
     final String event = "http://www.mis.ugent.be/ontologies/bpmn.owl#Event";
@@ -123,7 +136,7 @@ public class BPMNSuggestionEngine2 {
     final String qualityUniversal = "http://www.mis.ugent.be/ontologies/ufo.owl#Quality_Universal";
     
     final String semanticAnnotationProperty 
-    	= "http://www.mis.ugent.be/ontologies/SemanticAnnotation#representationClassIsAnnotedByDomainClass";
+    	= "http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass";
     
     Map<IRI,Suggestion> sugList;
 	
@@ -172,7 +185,7 @@ public class BPMNSuggestionEngine2 {
 	public boolean CandidateAnnotationPossiblity=true;
 	
 	//Source ontology files
-	public String source = "plug-in";
+	public String source = "local";
 		
 	//Filename core ontology
 	public String CoreOntology="";
@@ -197,11 +210,18 @@ public class BPMNSuggestionEngine2 {
   
 	
 	public BPMNSuggestionEngine2(){
+		recommendationLogger = new PromLogger();
+		
+		
 		manager = OWLManager.createOWLOntologyManager();
-		rulesManager = OWLManager.createOWLOntologyManager();
 		Properties systemProperties = System.getProperties();
 		
-		lp = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
+		//String modelPath = "edu/stanford/nlp/models/srparser/englishSR.ser.gz";
+	    String taggerPath = "models/english-left3words-distsim.tagger";
+		//lp = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
+		tagger = new MaxentTagger(taggerPath);
+	    //model = ShiftReduceParser.loadModel(modelPath);
+		System.out.println(source);
 		
 		modelName ="model";
 		
@@ -261,7 +281,7 @@ public class BPMNSuggestionEngine2 {
 				
 			}
 			
-			else if(source.equals("plug-in")){
+			else if(source.equals("local")){
 				
 				try {
 					URL propertiesURL;
@@ -285,44 +305,43 @@ public class BPMNSuggestionEngine2 {
 					URL ufo_url = new URL("platform:/plugin/org.eclipse.bpmn2.modeler.suggestion/ontology/" + CoreOntology);
 					InputStream ufoInputStream = ufo_url.openConnection().getInputStream();
 					UFO = manager.loadOntologyFromOntologyDocument(ufoInputStream);
-					rulesManager.loadOntology(UFO.getOntologyID().getOntologyIRI());
+					//rulesManager.loadOntology(UFO.getOntologyID().getOntologyIRI());
 					System.out.println("Loaded ontology: " + UFO);
 
 					URL bpmn_url = new URL("platform:/plugin/org.eclipse.bpmn2.modeler.suggestion/ontology/" + BPMNOntology);
 					InputStream bpmnInputStream = bpmn_url.openConnection().getInputStream();
 					BPMN = manager.loadOntologyFromOntologyDocument(bpmnInputStream);
-					rulesManager.loadOntology(BPMN.getOntologyID().getOntologyIRI());
+					//rulesManager.loadOntology(BPMN.getOntologyID().getOntologyIRI());
+					
 					System.out.println("Loaded ontology: " + BPMN);
 
 
 					URL bpmn_ufo_url = new URL("platform:/plugin/org.eclipse.bpmn2.modeler.suggestion/ontology/" + CoreBPMNOntology);
 					InputStream bpmn_ufoInputStream = bpmn_ufo_url.openConnection().getInputStream();
 					BPMN_UFO = manager.loadOntologyFromOntologyDocument(bpmn_ufoInputStream);
-					rulesManager.loadOntology(BPMN_UFO.getOntologyID().getOntologyIRI());
+					//rulesManager.loadOntology(BPMN_UFO.getOntologyID().getOntologyIRI());
+					
 					System.out.println("Loaded ontology: " + BPMN_UFO);
 
 					URL eso_url = new URL("platform:/plugin/org.eclipse.bpmn2.modeler.suggestion/ontology/" + ESOntology);
 					InputStream esoInputStream = eso_url.openConnection().getInputStream();
 					ESO = manager.loadOntologyFromOntologyDocument(esoInputStream);
 					System.out.println(ESO.getOntologyID().getOntologyIRI());
-					rulesManager.loadOntologyFromOntologyDocument(esoInputStream);
+					
 					System.out.println("Loaded ontology: " + ESO);
 
 					URL semAnn_url = new URL("platform:/plugin/org.eclipse.bpmn2.modeler.suggestion/ontology/" + SemAnnOntology);
 					InputStream semAnnInputStream = semAnn_url.openConnection().getInputStream();
 					semAnn = manager.loadOntologyFromOntologyDocument(semAnnInputStream);
-					rulesManager.loadOntologyFromOntologyDocument(semAnnInputStream);
+					
 					System.out.println("Loaded ontology: " + semAnn);
 
 					URL rules_url = new URL("platform:/plugin/org.eclipse.bpmn2.modeler.suggestion/ontology/" + RulesOntology);
 					InputStream rulesInputStream = rules_url.openConnection().getInputStream();
-					rules =rulesManager.loadOntologyFromOntologyDocument(rulesInputStream);
+					rules =manager.loadOntologyFromOntologyDocument(rulesInputStream);
 
 					System.out.println("Loaded ontology: " + rules);
 					listSWRLRules(rules);
-
-
-
 
 					System.out.println("Done Loading Ontologies");
 				} catch (Exception e1) {
@@ -334,7 +353,7 @@ public class BPMNSuggestionEngine2 {
 			
 			
 			
-			else if(source.equals("local")){
+			else if(source.equals("deploy")){
 				try {
 					File file; 
 				
@@ -355,28 +374,28 @@ public class BPMNSuggestionEngine2 {
 					wordnet = new File("dict");
 				
 					UFO = manager.loadOntologyFromOntologyDocument(new File("ontology/" + CoreOntology));
-					rulesManager.loadOntology(UFO.getOntologyID().getOntologyIRI());
+					
 					System.out.println("Loaded ontology: " + UFO);
 					
 					BPMN = manager.loadOntologyFromOntologyDocument(new File("ontology/" + BPMNOntology));
-					rulesManager.loadOntology(BPMN.getOntologyID().getOntologyIRI());
+					
 					System.out.println("Loaded ontology: " + BPMN);
 					
 					BPMN_UFO = manager.loadOntologyFromOntologyDocument(new File("ontology/" + CoreBPMNOntology ));
-					rulesManager.loadOntology(BPMN_UFO.getOntologyID().getOntologyIRI());
+					
 					System.out.println("Loaded ontology: " + BPMN_UFO);
 					
 					ESO = manager.loadOntologyFromOntologyDocument(new File("ontology/" + ESOntology));
-					rulesManager.loadOntologyFromOntologyDocument(BPMN_UFO.getOntologyID().getOntologyIRI());
+					
 					System.out.println("Loaded ontology: " + ESO);
 					
 					
 					semAnn = manager.loadOntologyFromOntologyDocument(new File("ontology/" + SemAnnOntology));
-					rulesManager.loadOntologyFromOntologyDocument(semAnn.getOntologyID().getOntologyIRI());
+					
 					System.out.println("Loaded ontology: " + semAnn);
 
 					
-					rules =rulesManager.loadOntologyFromOntologyDocument(new File("ontology/" + RulesOntology));
+					rules =manager.loadOntologyFromOntologyDocument(new File("ontology/" + RulesOntology));
 
 					System.out.println("Loaded ontology: " + rules);
 					listSWRLRules(rules);
@@ -452,18 +471,7 @@ public class BPMNSuggestionEngine2 {
 			e.printStackTrace();
 		}
 		
-		OWLOntologyMerger merger2 = new OWLOntologyMerger(rulesManager);
-		// We merge all of the loaded ontologies. Since an OWLOntologyManager is
-		// an OWLOntologySetProvider we just pass this in. We also need to
-		// specify the URI of the new ontology that will be created.
-		IRI mergedOntologyIRI2 = IRI.create("http://www.mis.ugent.be/ontologies/mymerge2");
-        
-		try {
-			mergedRules = merger2.createMergedOntology(rulesManager, mergedOntologyIRI2);
-		} catch (OWLOntologyCreationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		logNewProcessInstance();
 		
 		initializeSuggestionList();
 		
@@ -471,10 +479,33 @@ public class BPMNSuggestionEngine2 {
 	}
 	
 	
+	public void log(AuditTrailEntry entry) {
+		IStatus status = recommendationLogger.append(entry);
+		if (status.getSeverity() == IStatus.WARNING) {
+			MessageDialog.openWarning(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Logger Changed",
+					status.getMessage());
+		}
+	}
+	
+	public void logNewProcessInstance() {
+		
+		Process process = new Process("Create Business Process with suggestions");
+		ProcessInstance instance = new ProcessInstance();
+		instance.setId(modelName);
+		PromLogger.addHost(instance);
+
+		try {
+			recommendationLogger.append(process, instance);
+		} catch (Exception e) {
+			IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Could not initialize the log file.", e);
+			Activator.getDefault().getLog().log(status);
+		}
+	}
+	
 	public void loadModelOntology(File file){
         try {
         	
-        	modelOntology = rulesManager.loadOntologyFromOntologyDocument(file);
+        	modelOntology = manager.loadOntologyFromOntologyDocument(file);
 
 			System.out.println("Loaded ontology: " + modelOntology);
 		} catch (OWLOntologyCreationException e1) {
@@ -488,17 +519,20 @@ public class BPMNSuggestionEngine2 {
 		
 		try {
 			IRI ontologyIRI = IRI.create("www.mis.ugent.be/ontologies/" + filename);
-			modelOntology = rulesManager.createOntology(ontologyIRI);
-			OWLDataFactory fac = rulesManager.getOWLDataFactory();
+			modelOntology = manager.createOntology(ontologyIRI);
+			OWLDataFactory fac = manager.getOWLDataFactory();
 			OWLImportsDeclaration importBPMNDeclaraton =
 				   fac.getOWLImportsDeclaration(BPMN.getOntologyID().getOntologyIRI());
-			rulesManager.applyChange(new AddImport(modelOntology, importBPMNDeclaraton));
+			manager.applyChange(new AddImport(modelOntology, importBPMNDeclaraton));
 			OWLImportsDeclaration importSemAnnDeclaraton =
 					   fac.getOWLImportsDeclaration(semAnn.getOntologyID().getOntologyIRI());
-			rulesManager.applyChange(new AddImport(modelOntology, importSemAnnDeclaraton));
+			manager.applyChange(new AddImport(modelOntology, importSemAnnDeclaraton));
 			OWLImportsDeclaration importESODeclaraton =
 					   fac.getOWLImportsDeclaration(ESO.getOntologyID().getOntologyIRI());
-			rulesManager.applyChange(new AddImport(modelOntology, importESODeclaraton));
+			manager.applyChange(new AddImport(modelOntology, importESODeclaraton));
+			OWLImportsDeclaration importRulesDeclaraton =
+					   fac.getOWLImportsDeclaration(rules.getOntologyID().getOntologyIRI());
+			manager.applyChange(new AddImport(modelOntology, importRulesDeclaraton));
 			
 			
 			
@@ -529,7 +563,7 @@ public class BPMNSuggestionEngine2 {
 		
 		// add owl dataproperties to suggestionlist
     	Set<OWLDataProperty> dataProperties = ESO.getDataPropertiesInSignature();
-    	printOWLDataProperties(dataProperties, "ESO DataProperties");
+    	//printOWLDataProperties(dataProperties, "ESO DataProperties");
     	for (OWLDataProperty prop : dataProperties) {
     		OWLAnnotationProperty description = fac.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_COMMENT.getIRI());
     		String descriptionValue = "";
@@ -539,10 +573,10 @@ public class BPMNSuggestionEngine2 {
                 OWLLiteral val = (OWLLiteral) annotation.getValue();
                 descriptionValue = val.getLiteral();
                 }
-        }
-    	for (OWLClassExpression domainClass : prop.getDomains(ESO)) {
-            if (domainClass instanceof OWLClass) {
-                domainString = ((OWLClass)domainClass).getIRI().getFragment() + ", ";
+    		}
+    		for (OWLClassExpression domainClass : prop.getDomains(ESO)) {
+    			if (domainClass instanceof OWLClass) {
+    				domainString = ((OWLClass)domainClass).getIRI().getFragment() + ", ";
                 }
         }
     	
@@ -640,18 +674,54 @@ public class BPMNSuggestionEngine2 {
 	
 	public Set<OWLNamedIndividual> ruleBasedMechanism(String irimodellingConstruct){
 		
-		OWLDataFactory fac = rulesManager.getOWLDataFactory();
+		OWLDataFactory fac = manager.getOWLDataFactory();
 	    OWLClass owlClass = fac.getOWLClass(IRI
 	                .create(irimodellingConstruct));
 	    //OWLReasoner reasoner = getReasoner(merged);
 	    // reasoner = PelletReasonerFactory.getInstance().createReasoner(mergedRules);
 	    //reasoner.getKB().realize();
-	    org.semanticweb.HermiT.Reasoner reasoner = new Reasoner(mergedRules);
+	    org.semanticweb.HermiT.Reasoner reasoner = new Reasoner(modelOntology);
 	    NodeSet<OWLNamedIndividual> individuals = reasoner.getInstances(owlClass, false);
 	    
 	    return individuals.getFlattened();
 	}
 	
+	public Set<OWLNamedIndividual> ruleBasedMechanism2(String irimodellingConstruct){
+		
+		OWLDataFactory fac = manager.getOWLDataFactory();
+	    OWLClass owlClass = fac.getOWLClass(IRI
+	                .create(irimodellingConstruct));
+	    
+	    OWLNamedIndividual element = fac.getOWLNamedIndividual(IRI.create("http://www.mis.ugent.be/ontologies/model" + "#" + "test2"));
+	    OWLClassAssertionAxiom classAssertion = fac.getOWLClassAssertionAxiom(owlClass, element);
+	    AddAxiom addAxiom = new AddAxiom(modelOntology, classAssertion);
+	    // We now use the manager to apply the change
+	    manager.applyChange(addAxiom);
+	    
+	    //OWLReasonerFactory reasonerFactory = PelletReasonerFactory.getInstance(); 
+        //OWLReasoner reasoner = reasonerFactory.createReasoner(mergedRules, new SimpleConfiguration()); 
+	    //reasoner = getReasoner(mergedRules);
+	    //PelletReasoner reasoner = PelletReasonerFactory.getInstance().createReasoner(mergedRules);
+	    //reasoner.getKB().realize();
+	    org.semanticweb.HermiT.Reasoner reasoner = new Reasoner(modelOntology);
+	    reasoner.flush();
+	    OWLObjectProperty hasOntologyAnnotation = fac.getOWLObjectProperty(IRI
+                .create(semanticAnnotationProperty));
+	    
+	   
+	    NodeSet<OWLNamedIndividual> individuals3 = reasoner.getObjectPropertyValues(element, hasOntologyAnnotation.getSimplified());
+	    
+	    
+	    OWLEntityRemover remover = new OWLEntityRemover(manager, Collections.singleton(modelOntology));
+	    element.accept(remover);
+	    manager.applyChanges(remover.getChanges());
+	    reasoner.flush();
+	    
+	    return individuals3.getFlattened();
+	}
+	
+	
+
 	
 	
 	public Set<OWLNamedIndividual>  getWordNetSynClass(String label){
@@ -659,8 +729,7 @@ public class BPMNSuggestionEngine2 {
 		String[] wordForms = null;
 		WordNetDatabase database = WordNetDatabase.getFileInstance();
 		Synset[] synsets = database.getSynsets(label);
-		OWLDataFactory fac = manager.getOWLDataFactory();
-		OWLReasoner reasonerESO = getReasoner(ESO);
+		
 		//  Display the word forms and definitions for synsets retrieved
 		Set<OWLNamedIndividual> individuals = new TreeSet<OWLNamedIndividual>();
 		for (int i = 0; i < synsets.length; i++)
@@ -735,23 +804,29 @@ public class BPMNSuggestionEngine2 {
 	
 	
 	public SortedSet<Suggestion> suggestionList(String irimodellingConstruct, String label){
+		
 		resetWeightsSuggestions();
 		
 	
 		boolean verbNounPattern = false;
+		boolean labelNull = true;
 		
 		List<String> nouns = new ArrayList<String>();
 		List<String> verbs = new ArrayList<String>();
 		
+		if(label != null){
+			labelNull = false;
+		}
+		
 		// check if label corresponds to <<verb> <<noun>
 		
-		if(irimodellingConstruct.equals(task) || irimodellingConstruct.equals(activity)) {
-			nouns = parseSentence(label,"NN");
-			verbs = parseSentence(label,"VB");
+		if((irimodellingConstruct.equals(task) || irimodellingConstruct.equals(activity)) && !labelNull) {
+			nouns = parseSentence2(label,"NN");
+			verbs = parseSentence2(label,"VB");
 			if(!nouns.isEmpty() && !verbs.isEmpty()){
 				label = nouns.get(0);
 				verbNounPattern = true;
-			}
+			}	
 				
 		}
 	    
@@ -765,7 +840,7 @@ public class BPMNSuggestionEngine2 {
 			}
 	    
 			Set<OWLDataProperty> props1 = filterDataProperties(constructmatchingMechanismDataType(irimodellingConstruct));
-			printOWLDataProperties(props1, "ESO DataProperties construct matching");
+			//printOWLDataProperties(props1, "ESO DataProperties construct matching");
 			for (OWLDataProperty prop : props1) {
 				Suggestion sug = sugList.get(prop.getIRI());
 				sug.setWeightConstructMatching(scoreConstructMatching);
@@ -777,7 +852,7 @@ public class BPMNSuggestionEngine2 {
 	  	if (NeighborhoodBasedMatching){
 	    
 	  		Set<OWLNamedIndividual> individuals2 = new HashSet<OWLNamedIndividual>();
-	  		individuals2 = filterIndividuals(ruleBasedMechanism(irimodellingConstruct));
+	  		individuals2 = filterIndividuals(ruleBasedMechanism2(irimodellingConstruct));
 	  		
 	    
 	    
@@ -793,7 +868,7 @@ public class BPMNSuggestionEngine2 {
 	
 	  //SYNONYM MATCHING
 		
-		if (SynonymMatching){
+		if (SynonymMatching && !labelNull){
 			
 			Set<OWLNamedIndividual> individuals3 = getWordNetSynClass(label);
 			//printOWLClasses(clses3,"ESO OBjects Wordnet Syn (" + label);
@@ -805,7 +880,7 @@ public class BPMNSuggestionEngine2 {
 		
 		
 			Set<OWLDataProperty> props2 = filterDataProperties(getWordNetSynDataProperties(label));
-			printOWLDataProperties(props2,"ESO Dataproperties Wordnet Syn");
+			//printOWLDataProperties(props2,"ESO Dataproperties Wordnet Syn");
 			for(OWLDataProperty prop : props2) {
 				Suggestion sug = sugList.get(prop.getIRI());
 				sug.setWeightWordnetSynonyms(wordnetMatching);
@@ -815,7 +890,7 @@ public class BPMNSuggestionEngine2 {
 		
 		
 		//STRING MATCHING
-		if (StringMatching){
+		if (StringMatching && !labelNull){
 			for (Suggestion sug : sugList.values()) {
 				sug.setWeight(sug.getJaroWinklerDistance(label,JWDweightThreshold,JWDnumChars)*weightStringMatching + sug.getWeight());
 				sug.setWeightTextMatching(sug.getJaroWinklerDistance(label, JWDweightThreshold,JWDnumChars));
@@ -831,12 +906,14 @@ public class BPMNSuggestionEngine2 {
         	sortedSugList.add(sug);
 
         }
+		
+		AuditTrailEntry entry = new AuditTrailEntry("Generate recommendation");
+		entry.setAttribute("Model Construct", irimodellingConstruct); 
+		entry.setAttribute("Entered label", label);
+		this.log(entry);
 		return sortedSugList;
 		
 	}
-	
-
-	
 	
 	public IRI addModelInstance(String iriConstruct, String id, String label){
 		OWLDataFactory fac = manager.getOWLDataFactory();
@@ -856,7 +933,10 @@ public class BPMNSuggestionEngine2 {
 		AddAxiom addAxiom2 = new AddAxiom(modelOntology, ax);
 		manager.applyChange(addAxiom2);
 	    
-	    
+		AuditTrailEntry entry = new AuditTrailEntry("Add Model Element");
+		entry.setAttribute("Element Type", iriConstruct); 
+		entry.setAttribute("Element ", element.getIRI().toString()); 
+		this.log(entry);
    
 	    
 	    System.out.println("Updated ontology: " + modelOntology);
@@ -882,6 +962,12 @@ public class BPMNSuggestionEngine2 {
         // Finally, add the axiom to our ontology and save
         AddAxiom addAxiomChange = new AddAxiom(modelOntology, assertion);
         manager.applyChange(addAxiomChange);
+        
+        AuditTrailEntry entry = new AuditTrailEntry("Add Model Relationship");
+		entry.setAttribute("Element Type", iriConstructRelationship); 
+		entry.setAttribute("Element1 ", element1.toString()); 
+		entry.setAttribute("Element2 ", element2.toString()); 
+		this.log(entry);
 	    
 	    System.out.println("Updated ontology: " + modelOntology);
 	    return element.getIRI();
@@ -889,7 +975,7 @@ public class BPMNSuggestionEngine2 {
 	}
 	
 	public IRI addModelAnnotation(String iriModelElement, String iriOntologyElement){
-		OWLDataFactory fac = rulesManager.getOWLDataFactory();
+		OWLDataFactory fac = manager.getOWLDataFactory();
 		
 		OWLNamedIndividual modelElement = fac.getOWLNamedIndividual(IRI.create(iriModelElement));
 		OWLNamedIndividual ontologyElement = fac.getOWLNamedIndividual(IRI.create(iriOntologyElement));
@@ -901,6 +987,12 @@ public class BPMNSuggestionEngine2 {
         // Finally, add the axiom to our ontology and save
         AddAxiom addAxiomChange = new AddAxiom(modelOntology, assertion);
         manager.applyChange(addAxiomChange);
+        
+        AuditTrailEntry entry = new AuditTrailEntry("Add Model Annotation");
+		
+		entry.setAttribute("Model Element", iriModelElement.toString()); 
+		entry.setAttribute("Ontology Element ", ontologyElement.toString()); 
+		this.log(entry);
 	    
 	    System.out.println("Updated ontology: " + modelOntology);
 	    
@@ -910,7 +1002,7 @@ public class BPMNSuggestionEngine2 {
 	}
 	
 	public IRI removeModelAnnotation(String iriElement){
-		OWLDataFactory fac = rulesManager.getOWLDataFactory();
+		OWLDataFactory fac = manager.getOWLDataFactory();
 		
 		OWLNamedIndividual modelElement = fac.getOWLNamedIndividual(IRI.create(modelOntology.getOntologyID().getOntologyIRI().toString() + "#" +iriElement));
 		OWLObjectProperty relationship = fac.getOWLObjectProperty(IRI.create(semanticAnnotationProperty));
@@ -929,6 +1021,10 @@ public class BPMNSuggestionEngine2 {
 		}
 		List<OWLOntologyChange> list = new ArrayList<OWLOntologyChange>(changes);
         manager.applyChanges(list);
+        
+        AuditTrailEntry entry = new AuditTrailEntry("Remove ELement Annotation");
+      		entry.setAttribute("Element", iriElement.toString());  
+      		this.log(entry);
 		
 		
 	    System.out.println("Updated ontology: " + modelOntology);
@@ -985,7 +1081,7 @@ public class BPMNSuggestionEngine2 {
      }
 	
 		
-	
+	/*
 	public List<String> parseSentence(String input, String Tag){
 		
 		 Tree parse = lp.parse(input.toLowerCase());
@@ -993,19 +1089,43 @@ public class BPMNSuggestionEngine2 {
 		 for (TaggedWord tw : parse.taggedYield()) {
 		   if (tw.tag().startsWith(Tag)) {
 			 taggedWords.add(tw.word());
-		     System.out.printf("%s/%s%n", tw.word(), tw.tag());
+		     //System.out.printf("%s/%s%n", tw.word(), tw.tag());
 		   }
 		 }
 		 
-		 parse.pennPrint();
-		 System.out.println();
+		 //parse.pennPrint();
+		 //System.out.println();
 		return taggedWords;
 	    
 	}
+	*/
+	
+	public List<String> parseSentence2(String input, String Tag){
+		
+		//List<HasWord> sentence = Sentence.toWordList(input + ".");
+		//List<Word> sentence2 = Sentence.toUntaggedList(input);
+		DocumentPreprocessor tokenizer = new DocumentPreprocessor(new StringReader(input));
+		List<TaggedWord> tagged = null;
+		for (List<HasWord> sentence : tokenizer)
+			tagged = tagger.tagSentence(sentence);
+		
+		List<String> taggedWords = new ArrayList<String>(); 
+		for (TaggedWord tw : tagged) {
+			if (tw.tag().startsWith(Tag)) {
+				taggedWords.add(tw.word());
+			     //System.out.printf("%s/%s%n", tw.word(), tw.tag());
+			   }
+			}
+			 //parse.pennPrint();
+			 //System.out.println();
+		return taggedWords;
+    }
 
 	
 	 public void saveModelOntology() throws OWLOntologyStorageException, OWLOntologyCreationException, IOException {
 		 
+		 //System.out.println(PromLogger.getHost());
+		 //recommendationLogger.close();
 		 // Now save a local copy of the ontology. (Specify a path appropriate to
 		 // your setup)
 		 //Bundle bundle = Platform.getBundle("org.eclipse.bpmn2.modeler.suggestion");
@@ -1031,24 +1151,24 @@ public class BPMNSuggestionEngine2 {
 			IEditorInput input = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput();
 		 
 			if (input instanceof Bpmn2DiagramEditorInput) {
-			Bpmn2DiagramEditorInput bpmnInput = (Bpmn2DiagramEditorInput) input;
-			URI inputUri = bpmnInput.getModelUri();
-			String inputString = inputUri.path();
-			String model = inputString.split("/")[2];
-			IWorkspace ws = ResourcesPlugin.getWorkspace();
-			project = ws.getRoot().getProject(model);
-			filename = bpmnInput.getName();
-			projectDir = project.getLocationURI().getPath();
-			file = new File(projectDir + "/" + filename  + ".owl");
+				Bpmn2DiagramEditorInput bpmnInput = (Bpmn2DiagramEditorInput) input;
+				URI inputUri = bpmnInput.getModelUri();
+				String inputString = inputUri.path();
+				String model = inputString.split("/")[2];
+				IWorkspace ws = ResourcesPlugin.getWorkspace();
+				project = ws.getRoot().getProject(model);
+				filename = bpmnInput.getName();
+				projectDir = project.getLocationURI().getPath();
+				file = new File(projectDir + "/" + filename  + ".owl");
 			
-		} else {
-			 project = ((IFileEditorInput)input).getFile().getProject();
-			 filename = ((IFileEditorInput)input).getFile().getName();
-			//IWorkspace ws = ResourcesPlugin.getWorkspace();
-			 projectDir = project.getLocationURI().getPath();
-			 file = new File(projectDir + "/" + filename.substring(0, filename.length()-5)  + ".owl");
+			} else {
+				project = ((IFileEditorInput)input).getFile().getProject();
+				filename = ((IFileEditorInput)input).getFile().getName();
+				//IWorkspace ws = ResourcesPlugin.getWorkspace();
+				projectDir = project.getLocationURI().getPath();
+				file = new File(projectDir + "/" + filename.substring(0, filename.length()-5)  + ".owl");
 			 
-		}
+			}
 		//}
 		
 		 OWLXMLOntologyFormat owlxmlFormat = new OWLXMLOntologyFormat();

@@ -5,13 +5,14 @@
     <uri id="Imports Wizard Entry" name="http://www.mis.ugent.be/ontologies/ufo.owl" uri="ufo.owl"/>
     <uri id="Imports Wizard Entry" name="http://www.mis.ugent.be/ontologies/bpmn.owl" uri="bpmn.owl"/>
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1423750908736" name="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl" uri="SemanticAnnotation.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1423750908736" name="http://www.mis.ugent.be/ontologies/bank.owl" uri="bank.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1423750908736" name="http://www.mis.ugent.be/ontologies/bank2.owl" uri="bank2.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1423750908736" name="http://www.mis.ugent.be/ontologies/bpmn.owl" uri="bpmn.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1423750908736" name="http://www.mis.ugent.be/ontologies/bpmn_ufo.owl" uri="bpmn_ufo.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1423750908736" name="http://www.mis.ugent.be/ontologies/eso_ufo.owl" uri="eso_ufo.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1423750908736" name="http://www.mis.ugent.be/ontologies/rules" uri="rules.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1423750908736" name="http://www.mis.ugent.be/ontologies/ufo.owl" uri="ufo.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1427456134278" name="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl" uri="SemanticAnnotation.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1427456134278" name="http://www.mis.ugent.be/ontologies/bank.owl" uri="bank.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1427456134278" name="http://www.mis.ugent.be/ontologies/bank2.owl" uri="bank2.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1427456134278" name="http://www.mis.ugent.be/ontologies/bpmn.owl" uri="bpmn.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1427456134278" name="http://www.mis.ugent.be/ontologies/bpmn_ufo.owl" uri="bpmn_ufo.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1427456134278" name="http://www.mis.ugent.be/ontologies/eso_ufo.owl" uri="eso_ufo.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1427456134278" name="http://www.mis.ugent.be/ontologies/rules" uri="rules.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1427456134278" name="http://www.mis.ugent.be/ontologies/ufo.owl" uri="ufo.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1427456134278" name="http://www.semanticweb.org/nalkhald/ontologies/2015/1/untitled-ontology-129" uri="Insurance2.owl"/>
     </group>
 </catalog>

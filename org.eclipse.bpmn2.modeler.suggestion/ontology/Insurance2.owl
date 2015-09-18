@@ -118,10 +118,10 @@
         <NamedIndividual IRI="#Device"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Diagnostics"/>
+        <NamedIndividual IRI="#Diagnosis"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Differential_diagnostics"/>
+        <NamedIndividual IRI="#DifferentialDiagnosis"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#Diploma"/>
@@ -140,6 +140,9 @@
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#EmbeddedDevice"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Emergency"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#Examination"/>
@@ -194,6 +197,9 @@
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#MaternityCoverage"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#MedicalHistory"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#MedicalInstitution"/>
@@ -311,9 +317,6 @@
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#Treatment"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="#TreatmentHistory"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#UnemploymentCompensation"/>
@@ -399,11 +402,11 @@
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#QualityUniversal"/>
-        <NamedIndividual IRI="#Diagnostics"/>
+        <NamedIndividual IRI="#Diagnosis"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#QualityUniversal"/>
-        <NamedIndividual IRI="#Differential_diagnostics"/>
+        <NamedIndividual IRI="#DifferentialDiagnosis"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#QualityUniversal"/>
@@ -428,6 +431,10 @@
     <ClassAssertion>
         <Class IRI="#MixinType"/>
         <NamedIndividual IRI="#EmbeddedDevice"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BaseType"/>
+        <NamedIndividual IRI="#Emergency"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#RelatorUniversal"/>
@@ -500,6 +507,10 @@
     <ClassAssertion>
         <Class IRI="#RelatorUniversal"/>
         <NamedIndividual IRI="#MaternityCoverage"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#QualityUniversal"/>
+        <NamedIndividual IRI="#MedicalHistory"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#MixinType"/>
@@ -656,10 +667,6 @@
     <ClassAssertion>
         <Class IRI="#RelatorUniversal"/>
         <NamedIndividual IRI="#Treatment"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="#QualityUniversal"/>
-        <NamedIndividual IRI="#TreatmentHistory"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#RelatorUniversal"/>
@@ -937,16 +944,6 @@
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasQuality"/>
         <NamedIndividual IRI="#Patient"/>
-        <NamedIndividual IRI="#Diagnostics"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="#hasQuality"/>
-        <NamedIndividual IRI="#Patient"/>
-        <NamedIndividual IRI="#Differential_diagnostics"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="#hasQuality"/>
-        <NamedIndividual IRI="#Patient"/>
         <NamedIndividual IRI="#PatientDetails"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
@@ -957,12 +954,12 @@
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasQuality"/>
         <NamedIndividual IRI="#Patient"/>
-        <NamedIndividual IRI="#Condition"/>
+        <NamedIndividual IRI="#DifferentialDiagnosis"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasQuality"/>
         <NamedIndividual IRI="#Patient"/>
-        <NamedIndividual IRI="#TreatmentHistory"/>
+        <NamedIndividual IRI="#Condition"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasQuality"/>
@@ -972,17 +969,22 @@
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasQuality"/>
         <NamedIndividual IRI="#Patient"/>
-        <NamedIndividual IRI="#Caugh"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="#hasQuality"/>
-        <NamedIndividual IRI="#Patient"/>
         <NamedIndividual IRI="#VitalSigns"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasQuality"/>
         <NamedIndividual IRI="#Patient"/>
+        <NamedIndividual IRI="#Caugh"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasQuality"/>
+        <NamedIndividual IRI="#Patient"/>
         <NamedIndividual IRI="#ChestPain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasQuality"/>
+        <NamedIndividual IRI="#Patient"/>
+        <NamedIndividual IRI="#Diagnosis"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasQuality"/>
@@ -1003,6 +1005,11 @@
         <ObjectProperty IRI="#hasQuality"/>
         <NamedIndividual IRI="#Patient"/>
         <NamedIndividual IRI="#Headache"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasQuality"/>
+        <NamedIndividual IRI="#Patient"/>
+        <NamedIndividual IRI="#MedicalHistory"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasQuality"/>
@@ -1032,17 +1039,17 @@
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#isMediatedBy"/>
         <NamedIndividual IRI="#Patient"/>
-        <NamedIndividual IRI="#Surgery"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="#isMediatedBy"/>
-        <NamedIndividual IRI="#Patient"/>
         <NamedIndividual IRI="#SpeachTherapy"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#isMediatedBy"/>
         <NamedIndividual IRI="#Patient"/>
         <NamedIndividual IRI="#DentalCoverage"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#isMediatedBy"/>
+        <NamedIndividual IRI="#Patient"/>
+        <NamedIndividual IRI="#Surgery"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#isMediatedBy"/>

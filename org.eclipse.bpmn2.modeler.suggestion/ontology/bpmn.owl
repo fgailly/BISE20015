@@ -154,7 +154,10 @@
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#hasLane"/>
-        <Class IRI="#Pool"/>
+        <ObjectUnionOf>
+            <Class IRI="#Lane"/>
+            <Class IRI="#Pool"/>
+        </ObjectUnionOf>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#hasNoun"/>
@@ -178,7 +181,7 @@
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#hasLane"/>
-        <Class IRI="#Pool"/>
+        <Class IRI="#Lane"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#hasNoun"/>

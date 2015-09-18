@@ -159,6 +159,7 @@ public class SelectionChangeProcessor implements ISelectionListener {
 
 	private Boolean castElement() {
 		if(selection != null) {
+			
 			//uniqueId = System.identityHashCode(selection);
 			if (selection instanceof EventImpl) {
 				 EventImpl event = (EventImpl) selection;
@@ -177,6 +178,8 @@ public class SelectionChangeProcessor implements ISelectionListener {
 				setId("Task");
 				deriveFather();
 				return true;
+				
+				
 			}
 			else if (selection instanceof ParticipantImpl) {
 				ParticipantImpl pool = (ParticipantImpl) selection;
@@ -194,7 +197,7 @@ public class SelectionChangeProcessor implements ISelectionListener {
 				setName(lane.getName());
 				setUniqueId(lane.getId());
 				setId("Lane");
-				setFather("");
+				deriveFather();
 				return true;
 			}
 			else if (selection instanceof ExclusiveGatewayImpl) {

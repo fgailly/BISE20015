@@ -60,9 +60,6 @@
     <Declaration>
         <Class abbreviatedIRI="ufo:Relator_Universal"/>
     </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="#Cust"/>
-    </Declaration>
     <EquivalentClasses>
         <Class abbreviatedIRI="bpmn:Data_Object"/>
         <ObjectUnionOf>
@@ -104,10 +101,6 @@
             <Class abbreviatedIRI="ufo:Relator_Universal"/>
         </ObjectUnionOf>
     </EquivalentClasses>
-    <ClassAssertion>
-        <Class abbreviatedIRI="ufo:Role_Type"/>
-        <NamedIndividual IRI="#Cust"/>
-    </ClassAssertion>
 </Ontology>
 
 

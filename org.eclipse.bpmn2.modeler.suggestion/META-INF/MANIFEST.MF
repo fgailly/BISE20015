@@ -12,7 +12,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.bpmn2.modeler.ui;bundle-version="0.2.7",
  org.eclipse.emf.transaction,
  org.eclipse.gef;bundle-version="3.9.0",
- org.eclipse.bpmn2.modeler.core
+ org.eclipse.bpmn2.modeler.core,
+ org.eclipse.gmf.runtime.diagram.ui,
+ org.cheetahplatform.common
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ClassPath: libs/jaws-bin.jar,
@@ -21,7 +23,7 @@ Bundle-ClassPath: libs/jaws-bin.jar,
  .,
  libs/lingpipe-4.1.0.jar,
  libs/stanford-parser-3.3.0-models.jar,
- libs/stanford-parser.jar,
+ libs/stanford-parser-3.3.0.jar,
  libs/stardog-common-rdf-2.2.3.jar,
  libs/stardog-common-utils-2.2.3.jar,
  libs/stardog-icv-2.2.3.jar,
@@ -199,7 +201,9 @@ Bundle-ClassPath: libs/jaws-bin.jar,
  libs/xml-apis-1.4.01.jar,
  libs/xml-security-impl-1.0.jar,
  libs/xz-1.4.jar,
- libs/zookeeper-3.4.5.jar
+ libs/zookeeper-3.4.5.jar,
+ libs/stanford-postagger.jar,
+ libs/stanford-postagger-3.5.1.jar
 Export-Package: org.eclipse.bpmn2.modeler.suggestion.algorithm
 Import-Package: org.eclipse.core.resources,
  org.eclipse.swt.widgets,

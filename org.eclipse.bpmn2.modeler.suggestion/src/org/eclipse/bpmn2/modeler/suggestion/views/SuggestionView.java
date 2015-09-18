@@ -8,8 +8,13 @@ import org.eclipse.bpmn2.modeler.suggestion.algorithm.BPMNSuggestionEngine2;
 import org.eclipse.bpmn2.modeler.suggestion.internal.SuggestionContentProvider;
 import org.eclipse.bpmn2.modeler.suggestion.internal.SuggestionLabelProvider;
 import org.eclipse.bpmn2.modeler.suggestion.part.AnnotateProcessor;
+import org.eclipse.bpmn2.modeler.suggestion.part.EditorProcessor;
 import org.eclipse.bpmn2.modeler.suggestion.part.SelectionChangeProcessor;
 import org.eclipse.bpmn2.modeler.suggestion.part.SuggestionModel;
+import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
+import org.eclipse.core.commands.CommandManager;
+import org.eclipse.graphiti.ui.editor.DiagramEditor;
+import org.eclipse.graphiti.ui.internal.services.impl.CommandService;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -18,6 +23,10 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.commands.ICommandManagerListener;
+import org.eclipse.ui.commands.ICommandService;
+import org.eclipse.ui.contexts.IContextService;
 import org.eclipse.ui.part.ViewPart;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
@@ -41,6 +50,7 @@ public class SuggestionView extends ViewPart {
 	private BPMNSuggestionEngine2 engine;
 
 	private SelectionChangeProcessor listener = new SelectionChangeProcessor();
+	private EditorProcessor listener2 = new EditorProcessor();
 
 	public void createPartControl(Composite parent) {
 		setViewer(new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL));
@@ -58,6 +68,13 @@ public class SuggestionView extends ViewPart {
 		
 		// Register Diagram Selection Listener
 		getSite().getWorkbenchWindow().getSelectionService().addSelectionListener(listener);
+		
+		DiagramEditor test = (DiagramEditor) (getSite().getWorkbenchWindow().getActivePage().getActiveEditor());
+		
+		
+		CommandManager service = (CommandManager) getSite().getWorkbenchWindow().getService(CommandManager.class);
+		service.addCommandManagerListener(listener2);
+		
 		
 		// Register Selection Provider for Ontology Properties View
 		getSite().setSelectionProvider(getViewer());

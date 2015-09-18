@@ -17,7 +17,7 @@ public class OntologyValueColumn extends OntologyColumn {
 	
 	@Override
 	public int getWidth() {
-		return 400; 
+		return 800; 
 	}
 
 	@Override

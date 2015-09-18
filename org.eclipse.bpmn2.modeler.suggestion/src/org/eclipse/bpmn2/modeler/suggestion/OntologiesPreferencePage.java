@@ -16,11 +16,14 @@ public class OntologiesPreferencePage extends FieldEditorPreferencePage implemen
 
 	@Override
 	protected void createFieldEditors() {
-		addField(new StringFieldEditor("CORE", "Core ontology: ", getFieldEditorParent()));
-		addField(new StringFieldEditor("BPMN", "BPMN ontology: ", getFieldEditorParent()));
-		addField(new StringFieldEditor("ESO", "ESO: ", getFieldEditorParent()));
-		addField(new StringFieldEditor("BPMN_CORE", "BPMN - Core ontology mapings: ", getFieldEditorParent()));
-		addField(new StringFieldEditor("ESO_CORE", "ESO - Core ontology mapings: ", getFieldEditorParent()));
+		//addField(new StringFieldEditor("SDServer", "Stardog Server: ", getFieldEditorParent()));
+		//addField(new StringFieldEditor("SDLogin", "Stardog Login: ", getFieldEditorParent()));
+		//addField(new StringFieldEditor("SDPassword", "Stardog Password: ", getFieldEditorParent()));
+		addField(new StringFieldEditor("CoO", "Core ontology: ", getFieldEditorParent()));
+		addField(new StringFieldEditor("BpmnO", "BPMN ontology: ", getFieldEditorParent()));
+		addField(new StringFieldEditor("ESO", "Enterprise-specici ontology: ", getFieldEditorParent()));
+		addField(new StringFieldEditor("CoO-BpmnO", "CoO-BPMN mappings: ", getFieldEditorParent()));
+		addField(new StringFieldEditor("RuleO", "Rules: ", getFieldEditorParent()));
 		
 	}
 

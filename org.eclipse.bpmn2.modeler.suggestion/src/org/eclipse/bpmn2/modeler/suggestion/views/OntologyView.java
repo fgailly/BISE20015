@@ -7,6 +7,7 @@ import org.eclipse.bpmn2.modeler.suggestion.algorithm.BPMNSuggestionEngine;
 import org.eclipse.bpmn2.modeler.suggestion.internal.OntologyContentProvider;
 import org.eclipse.bpmn2.modeler.suggestion.internal.SuggestionLabelProvider;
 import org.eclipse.bpmn2.modeler.suggestion.part.AnnotateProcessor;
+import org.eclipse.bpmn2.modeler.suggestion.part.EditorProcessor;
 import org.eclipse.bpmn2.modeler.suggestion.part.OntologyModel;
 import org.eclipse.bpmn2.modeler.suggestion.part.SelectionChangeProcessor;
 import org.eclipse.jface.action.Action;
@@ -32,6 +33,7 @@ public class OntologyView extends ViewPart {
 	private BPMNSuggestionEngine engine;
 	
 	private SelectionChangeProcessor listener = new SelectionChangeProcessor();
+	private EditorProcessor listener2 = new EditorProcessor();
 	
 	public void createPartControl(Composite parent) {
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);

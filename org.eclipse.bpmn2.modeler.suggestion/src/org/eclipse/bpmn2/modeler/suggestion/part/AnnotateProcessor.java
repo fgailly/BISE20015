@@ -31,7 +31,7 @@ public class AnnotateProcessor extends Action {
 	public Boolean suggestions;
 	private EObject selection;
 	
-	private String owlUrl = "http://www.mis.ugent.be/ontologies/bank#";
+	private String owlUrl = "http://www.mis.ugent.be/ontologies/bank2.owl#";
 
 	
 	public AnnotateProcessor(SelectionChangeProcessor sel) {

@@ -33,10 +33,12 @@ public class OntologyPropertyView extends ViewPart {
 			IViewPart ontview = activePage.findView(OntologyView.ID);
 			if (part == sugView || part == ontview) {
 				Object selected = ((IStructuredSelection) sel).getFirstElement();
-				if (selected instanceof Suggestion) {
+				if (selected instanceof Suggestion && selected != null) {
 					Suggestion sug = (Suggestion) selected;
-					String[] input = createPropertyArray(sug);
-					tableViewer.setInput(input);
+					if(sug.getType() != null){
+						String[] input = createPropertyArray(sug);
+						tableViewer.setInput(input);
+					}
 				}
 
 			}
@@ -46,6 +48,7 @@ public class OntologyPropertyView extends ViewPart {
 	};	
 
 	protected String[] createPropertyArray(Suggestion sug) {
+		
 		ArrayList<String> properties = new ArrayList<String>();
 		if (sug.getType().toString() == "Datatype") {
 			properties.add("Class" + "#" + sug.getClasses());
