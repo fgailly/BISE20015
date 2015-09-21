@@ -974,7 +974,7 @@ public class BPMNSuggestionEngine2 {
 		
 	}
 	
-	public IRI addModelAnnotation(String iriModelElement, String iriOntologyElement){
+	public IRI addModelAnnotation(String iriModelElement, String iriOntologyElement, Suggestion suggestion){
 		OWLDataFactory fac = manager.getOWLDataFactory();
 		
 		OWLNamedIndividual modelElement = fac.getOWLNamedIndividual(IRI.create(iriModelElement));
@@ -992,6 +992,11 @@ public class BPMNSuggestionEngine2 {
 		
 		entry.setAttribute("Model Element", iriModelElement.toString()); 
 		entry.setAttribute("Ontology Element ", ontologyElement.toString()); 
+		entry.setAttribute("Score",Double.toString(suggestion.getWeight()));
+		entry.setAttribute("Score ConstructMatching",Double.toString(suggestion.getWeightConstructMatching()));
+		entry.setAttribute("Score TextMatching",Double.toString(suggestion.getWeightWordnetSynonyms()));
+		entry.setAttribute("Order in Suggestion List",Integer.toString(suggestion.getOrder()));
+		
 		this.log(entry);
 	    
 	    System.out.println("Updated ontology: " + modelOntology);

@@ -17,6 +17,7 @@ public class Suggestion implements Comparable<Suggestion> {
 	private double weightLocationMechanism;
 	private double weightWordnetSynonyms;
 	private double weightTextMatching;
+	private int order;
 	
 	
 	public Suggestion(IRI iri, double weight, Type type, String suggestionString, String description, String classes){
@@ -149,6 +150,15 @@ public class Suggestion implements Comparable<Suggestion> {
 
 	public void setWeightTextMatching(double weightTextMatching) {
 		this.weightTextMatching = weightTextMatching;
+	}
+
+	public void setOrder(int i) {
+		order = i;
+		
+	}
+
+	public int getOrder() {
+		return order;
 	}
 
 }
