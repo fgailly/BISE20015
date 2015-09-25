@@ -76,6 +76,7 @@ import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.semanticweb.owlapi.model.RemoveAxiom;
 import org.semanticweb.owlapi.model.RemoveOntologyAnnotation;
 import org.semanticweb.owlapi.model.SWRLRule;
+import org.semanticweb.owlapi.reasoner.Node;
 import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.OWLReasonerConfiguration;
@@ -645,8 +646,17 @@ public class BPMNSuggestionEngine2 {
 	    //OWLReasoner reasoner = getReasoner(merged);
 	    org.semanticweb.HermiT.Reasoner reasoner = new Reasoner(merged);
 	    NodeSet<OWLNamedIndividual> individuals = reasoner.getInstances(owlClass, false);
+	    Set<OWLNamedIndividual> extendedIndividuals = individuals.getFlattened();
 	    
-	    return individuals.getFlattened();
+	    for(Node<OWLNamedIndividual> individual: individuals){
+	    	OWLClass owlClass2 = fac.getOWLClass(IRI
+	                .create(individual.getRepresentativeElement().getIRI().toString()));
+	    	NodeSet<OWLClass> subClses = reasoner.getSubClasses(owlClass2, false);
+	    	for(OWLClass owlClass3: subClses.getFlattened()){
+	    		extendedIndividuals.add(fac.getOWLNamedIndividual(owlClass3.getIRI()));
+	    	}
+	    }
+	    return extendedIndividuals;
 	}
 	
 	//Construct Matching Mechanism DataType
@@ -683,7 +693,18 @@ public class BPMNSuggestionEngine2 {
 	    org.semanticweb.HermiT.Reasoner reasoner = new Reasoner(modelOntology);
 	    NodeSet<OWLNamedIndividual> individuals = reasoner.getInstances(owlClass, false);
 	    
-	    return individuals.getFlattened();
+	    Set<OWLNamedIndividual> extendedIndividuals = individuals.getFlattened();
+	    
+	    for(Node<OWLNamedIndividual> individual: individuals){
+	    	OWLClass owlClass2 = fac.getOWLClass(IRI
+	                .create(individual.getRepresentativeElement().getIRI().toString()));
+	    	NodeSet<OWLClass> subClses = reasoner.getSubClasses(owlClass2, false);
+	    	for(OWLClass owlClass3: subClses.getFlattened()){
+	    		extendedIndividuals.add(fac.getOWLNamedIndividual(owlClass3.getIRI()));
+	    	}
+	    }
+	    return extendedIndividuals;
+	    
 	}
 	
 	public Set<OWLNamedIndividual> ruleBasedMechanism2(String irimodellingConstruct){
@@ -710,14 +731,23 @@ public class BPMNSuggestionEngine2 {
 	    
 	   
 	    NodeSet<OWLNamedIndividual> individuals3 = reasoner.getObjectPropertyValues(element, hasOntologyAnnotation.getSimplified());
+	    Set<OWLNamedIndividual> extendedIndividuals = individuals3.getFlattened();
 	    
+	    for(Node<OWLNamedIndividual> individual: individuals3){
+	    	OWLClass owlClass2 = fac.getOWLClass(IRI
+	                .create(individual.getRepresentativeElement().getIRI().toString()));
+	    	NodeSet<OWLClass> subClses = reasoner.getSubClasses(owlClass2, false);
+	    	for(OWLClass owlClass3: subClses.getFlattened()){
+	    		extendedIndividuals.add(fac.getOWLNamedIndividual(owlClass3.getIRI()));
+	    	}
+	    }
 	    
 	    OWLEntityRemover remover = new OWLEntityRemover(manager, Collections.singleton(modelOntology));
 	    element.accept(remover);
 	    manager.applyChanges(remover.getChanges());
 	    reasoner.flush();
 	    
-	    return individuals3.getFlattened();
+	    return extendedIndividuals;
 	}
 	
 	
