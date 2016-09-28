@@ -14,6 +14,9 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPage;
@@ -57,10 +60,10 @@ public class OntologyPropertyView extends ViewPart {
 		}
 		properties.add("Description" + "#" + sug.getDescription());
 		properties.add("Weight" + "#" + ((Double)sug.getWeight()).toString());
-		properties.add("Weight ConstructMatching" + "#" + ((Double)sug.getWeightConstructMatching()).toString());
-		properties.add("Weight LocationMatching" + "#" + ((Double)sug.getWeightLocationMechanism()).toString());
-		properties.add("Weight WordnetSynonyms" + "#" + ((Double)sug.getWeightWordnetSynonyms()).toString());
-		properties.add("Weight TextMatching" + "#" + ((Double)sug.getWeightTextMatching()).toString());
+		properties.add("Weight Model Language RS" + "#" + ((Double)sug.getWeightConstructMatching()).toString());
+		properties.add("Weight Rule-based RS" + "#" + ((Double)sug.getWeightLocationMechanism()).toString());
+		//properties.add("Weight WordnetSynonyms" + "#" + ((Double)sug.getWeightWordnetSynonyms()).toString());
+		properties.add("Weight Label-based RS" + "#" + ((Double)sug.getWeightTextMatching()).toString());
 		String[] input = Arrays.copyOf(properties.toArray(), properties.toArray().length, String[].class);
 		return input;
 	}
@@ -73,6 +76,16 @@ public class OntologyPropertyView extends ViewPart {
 		FontRegistry fr = JFaceResources.getFontRegistry();
 		new OntologyPropertyColumn(fr).addColumnTo(tableViewer);
 		new OntologyValueColumn(fr).addColumnTo(tableViewer);
+		
+		Table table = tableViewer.getTable();
+		
+		table.addListener(SWT.MeasureItem, new Listener() {
+			   public void handleEvent(Event event) {
+			      // height cannot be per row so simply set
+			      event.height = 28;
+			   }
+			});
+		
 		
 		getSite().getWorkbenchWindow().getSelectionService().addSelectionListener(selectionListener);
 		

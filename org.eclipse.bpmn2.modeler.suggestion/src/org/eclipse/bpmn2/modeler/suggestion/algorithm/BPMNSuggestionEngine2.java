@@ -90,6 +90,7 @@ import org.semanticweb.owlapi.vocab.PrefixOWLOntologyFormat;
 
 import uk.ac.manchester.cs.owlapi.dlsyntax.DLSyntaxObjectRenderer;
 
+import com.aliasi.spell.JaroWinklerDistance;
 import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
 import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
 import com.complexible.stardog.StardogException;
@@ -142,29 +143,25 @@ public class BPMNSuggestionEngine2 {
     Map<IRI,Suggestion> sugList;
 	
 	//Set parameters for types of matching
-	boolean StringMatching = true;					//String-Matching-Mechanism
-	boolean SynonymMatching = true;					//Synonym-Matching-Mechanism
+	boolean LabelBasedMatching = true;					//String-Matching-Mechanism				
 	boolean ConstructMatching = true;				//Construct-Matching-Mechanism
-	boolean NeighborhoodBasedMatching = true;		//Neighborhood-Matching-Mechanism
+	boolean RuleBasedMatching = true;		//Neighborhood-Matching-Mechanism
 	
 	//Set parameters for jaro-winkler distance:
 	double JWDweightThreshold=0.4;
 	int JWDnumChars=4;
 		
 	//Set weights and scores for matching mechanisms
-	double weightStringMatching = 1.0;				//String-matching mechanism weight
+	double weightLabelBasedMatching = 1.0;				//String-matching mechanism weight
 	
 	
 	//Jaro-winkler distance							//String-matching mechanism score
 	double weightConstructMatching = 1.0;				//Construct-matching mechanism weight
 	double scoreConstructMatching = 1.0;				//Construct-matching mechanism score
 		
-	double weightLocationMatching = 1.0;				//Neighborhood-matching mechanism weight - overal (if needed)
-	double weightLocationMechanism = 1;
-	double scoreLocationMatching = 1.0;				//Neighborhood-matching mechanism score
-	double wordnetMatching = 1.0;						//Synonym-matching mechanism score			
-	double weightwordnetMatching = 1.0;				//Synonym-matching mechanism weight
-		
+	double weightRuleBasedMatching = 1.0;				//Neighborhood-matching mechanism weight - overal (if needed)
+	double weightRuleBasedMechanism = 1;
+	double scoreRuleBasedMatching = 1.0;				//Neighborhood-matching mechanism score
 	
 	public Boolean automaticAnnotation=true;
 		
@@ -752,6 +749,27 @@ public class BPMNSuggestionEngine2 {
 	}
 	
 	
+	public Set<String>  getWordNetSyn(String label){
+		System.setProperty("wordnet.database.dir", wordnet.getAbsolutePath());
+		String[] wordForms = null;
+		WordNetDatabase database = WordNetDatabase.getFileInstance();
+		Synset[] synsets = database.getSynsets(label);
+		Set<String> result = new HashSet();
+		for (int i = 0; i < synsets.length; i++)
+		{
+			
+			Synset synset = synsets[i];
+			//System.out.println("SYN: " + synset.getDefinition());
+			wordForms = synset.getWordForms();
+			for (int j = 0; j < wordForms.length; j++)
+			{
+				String word = wordForms[j];
+				result.add(word);
+				}
+		}
+		return result;
+		
+	}
 
 	
 	
@@ -879,8 +897,8 @@ public class BPMNSuggestionEngine2 {
 	    	}
 		}
 	    
-	    //NEIGHBORHOOD-BASED MATCHING
-	  	if (NeighborhoodBasedMatching){
+	    //RULE-BASED RECOMMENDATION SERVICE
+	  	if (RuleBasedMatching){
 	    
 	  		Set<OWLNamedIndividual> individuals2 = new HashSet<OWLNamedIndividual>();
 	  		individuals2 = filterIndividuals(ruleBasedMechanism2(irimodellingConstruct));
@@ -891,40 +909,28 @@ public class BPMNSuggestionEngine2 {
 	  		for (OWLNamedIndividual ind : individuals2) {
 	  			//System.out.println(cls.getIRI());
 	  			Suggestion sug = sugList.get(ind.getIRI());
-	  			sug.setWeight(sug.getWeight() + weightLocationMechanism*scoreLocationMatching);
-	  			sug.setWeightLocationMechanism(scoreLocationMatching);
+	  			sug.setWeight(sug.getWeight() + weightRuleBasedMechanism*scoreRuleBasedMatching);
+	  			sug.setWeightLocationMechanism(scoreRuleBasedMatching);
 	  		}
 	  	}
 		
-	
-	  //SYNONYM MATCHING
-		
-		if (SynonymMatching && !labelNull){
 			
-			Set<OWLNamedIndividual> individuals3 = getWordNetSynClass(label);
-			//printOWLClasses(clses3,"ESO OBjects Wordnet Syn (" + label);
-			for (OWLNamedIndividual ind : individuals3) {
-				Suggestion sug = sugList.get(ind.getIRI());
-				sug.setWeightWordnetSynonyms(wordnetMatching);
-				sug.setWeight(sug.getWeight() + wordnetMatching*weightwordnetMatching);
-			}
 		
-		
-			Set<OWLDataProperty> props2 = filterDataProperties(getWordNetSynDataProperties(label));
-			//printOWLDataProperties(props2,"ESO Dataproperties Wordnet Syn");
-			for(OWLDataProperty prop : props2) {
-				Suggestion sug = sugList.get(prop.getIRI());
-				sug.setWeightWordnetSynonyms(wordnetMatching);
-				sug.setWeight(sug.getWeight() + wordnetMatching*weightwordnetMatching);
-			}
-		}
-		
-		
-		//STRING MATCHING
-		if (StringMatching && !labelNull){
+		//Label-based recommendation Service
+		if (LabelBasedMatching && !labelNull){
 			for (Suggestion sug : sugList.values()) {
-				sug.setWeight(sug.getJaroWinklerDistance(label,JWDweightThreshold,JWDnumChars)*weightStringMatching + sug.getWeight());
-				sug.setWeightTextMatching(sug.getJaroWinklerDistance(label, JWDweightThreshold,JWDnumChars));
+				double max = 0.0;
+				max = sug.getJaroWinklerDistance(label,JWDweightThreshold,JWDnumChars);
+				Set<String> synonyms = getWordNetSyn(label);
+				
+				for (String synonym : synonyms) {
+					double score = this.getJaroWinklerDistance(synonym, label, JWDweightThreshold, JWDnumChars);
+					if(score > max)
+						max = score;
+				}
+				
+				sug.setWeight(max + sug.getWeight());
+				sug.setWeightTextMatching(max);
 	        }
 		}
 		
@@ -944,6 +950,11 @@ public class BPMNSuggestionEngine2 {
 		//this.log(entry);
 		return sortedSugList;
 		
+	}
+	
+	public double getJaroWinklerDistance(String string1, String string2, double jWDweightThreshold, int jWDnumChars){
+		JaroWinklerDistance jwd = new JaroWinklerDistance(jWDweightThreshold,jWDnumChars);
+		return 1- jwd.distance((CharSequence)string1.toLowerCase(), string2.toLowerCase());
 	}
 	
 	public IRI addModelInstance(String iriConstruct, String id, String label){
@@ -1258,17 +1269,14 @@ public class BPMNSuggestionEngine2 {
 					System.out.println(key + ": " + value);
 					
 					switch(key){
-						case "StringMatching":
-							StringMatching = Boolean.parseBoolean(value);
-							break;
-						case "SynonymMatching":
-							SynonymMatching = Boolean.parseBoolean(value);
+						case "LabelBasedMatching":
+							LabelBasedMatching = Boolean.parseBoolean(value);
 							break;
 						case "ConstructMatching":
 							ConstructMatching = Boolean.parseBoolean(value);
 							break;
-						case "NeighborhoodBasedMatching":
-							NeighborhoodBasedMatching = Boolean.parseBoolean(value);
+						case "RuleBasedMatching":
+							RuleBasedMatching = Boolean.parseBoolean(value);
 							break;
 						case "JWDweightThreshold":
 							JWDweightThreshold = Double.parseDouble(value);
@@ -1276,8 +1284,8 @@ public class BPMNSuggestionEngine2 {
 						case "JWDnumChars":
 							JWDweightThreshold = Integer.parseInt(value);
 							break;
-						case "weightStringMatching":
-							weightStringMatching = Double.parseDouble(value);
+						case "weightLabelBasedMatching":
+							weightLabelBasedMatching = Double.parseDouble(value);
 							break;	
 						case "weightConstructMatching":
 							weightConstructMatching = Double.parseDouble(value);
@@ -1285,18 +1293,12 @@ public class BPMNSuggestionEngine2 {
 						case "scoreConstructMatching":
 							scoreConstructMatching = Double.parseDouble(value);
 							break;	
-						case "weightLocationMatching":
-							weightLocationMatching = Double.parseDouble(value);
+						case "weightRuleBasedMatching":
+							weightRuleBasedMatching = Double.parseDouble(value);
 							break;		
-						case "scoreLocationMatching":
-							scoreLocationMatching = Double.parseDouble(value);
-							break;	
-						case "wordnetMatching":
-							wordnetMatching = Double.parseDouble(value);
+						case "scoreRuleBasedMatching":
+							scoreRuleBasedMatching = Double.parseDouble(value);
 							break;			
-						case "weightwordnetMatching":
-							weightwordnetMatching = Double.parseDouble(value);
-							break;		
 						case "makeNewOntology":
 							makeNewOntology = Boolean.parseBoolean(value);
 							break;	

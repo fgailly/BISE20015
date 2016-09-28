@@ -22,6 +22,7 @@ public class OntologyPropertyColumn extends OntologyColumn {
 	public int getWidth() {
 		return 80; 
 	}
+	
 
 	@Override
 	public String getTitle() {

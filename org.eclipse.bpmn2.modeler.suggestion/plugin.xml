@@ -25,7 +25,7 @@
       </view>
       <view
             category="org.eclipse.bpmn2.modeler.view"
-            class="org.eclipse.bpmn2.modeler.suggestion.views.OntologyPropertyView2"
+            class="org.eclipse.bpmn2.modeler.suggestion.views.OntologyPropertyView"
             icon="icons/tag.gif"
             id="org.eclipse.bpmn2.modeler.suggestion.views.OntologyPropertyView"
             name="Ontology Concept Properties"
