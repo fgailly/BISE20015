@@ -211,18 +211,18 @@ public class BPMNSuggestionEngine2 {
   
 	
 	public BPMNSuggestionEngine2(){
-		recommendationLogger = new PromLogger();
+		//recommendationLogger = new PromLogger();
 		
 		
 		manager = OWLManager.createOWLOntologyManager();
 		Properties systemProperties = System.getProperties();
 		
 		//String modelPath = "edu/stanford/nlp/models/srparser/englishSR.ser.gz";
-	    String taggerPath = "models/english-left3words-distsim.tagger";
+	   // String taggerPath = "models/english-left3words-distsim.tagger";
 		//lp = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
-		tagger = new MaxentTagger(taggerPath);
+	//	tagger = new MaxentTagger(taggerPath);
 	    //model = ShiftReduceParser.loadModel(modelPath);
-		System.out.println(source);
+		//System.out.println(source);
 		
 		modelName ="model";
 		
@@ -289,7 +289,7 @@ public class BPMNSuggestionEngine2 {
 					if(systemProperties.containsKey("Experiment") && systemProperties.getProperty("Experiment").equals("true")){
 						propertiesURL = new URL("platform:/plugin/org.eclipse.bpmn2.modeler.suggestion/experiment.properties");
 					}
-					if(systemProperties.containsKey("Tutorial") && systemProperties.getProperty("Tutorial").equals("true")){
+					else if(systemProperties.containsKey("Tutorial") && systemProperties.getProperty("Tutorial").equals("true")){
 						propertiesURL = new URL("platform:/plugin/org.eclipse.bpmn2.modeler.suggestion/tutorial.properties");
 					}
 					else {
@@ -361,7 +361,7 @@ public class BPMNSuggestionEngine2 {
 					if(systemProperties.containsKey("Experiment") && systemProperties.getProperty("Experiment").equals("true")){
 						file = new File("experiment.properties");
 					}
-					if(systemProperties.containsKey("Tutorial") && systemProperties.getProperty("Tutorial").equals("true")){
+					else if(systemProperties.containsKey("Tutorial") && systemProperties.getProperty("Tutorial").equals("true")){
 						file = new File("tutorial.properties");
 					}
 					else {
@@ -486,6 +486,7 @@ public class BPMNSuggestionEngine2 {
 			MessageDialog.openWarning(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Logger Changed",
 					status.getMessage());
 		}
+		
 	}
 	
 	public void logNewProcessInstance() {
@@ -850,7 +851,7 @@ public class BPMNSuggestionEngine2 {
 		
 		// check if label corresponds to <<verb> <<noun>
 		
-		if((irimodellingConstruct.equals(task) || irimodellingConstruct.equals(activity)) && !labelNull) {
+		/*if((irimodellingConstruct.equals(task) || irimodellingConstruct.equals(activity)) && !labelNull) {
 			nouns = parseSentence2(label,"NN");
 			verbs = parseSentence2(label,"VB");
 			if(!nouns.isEmpty() && !verbs.isEmpty()){
@@ -858,7 +859,7 @@ public class BPMNSuggestionEngine2 {
 				verbNounPattern = true;
 			}	
 				
-		}
+		}*/
 	    
 		//CONSTRUCT MATCHING
 		if (ConstructMatching){
@@ -940,7 +941,7 @@ public class BPMNSuggestionEngine2 {
 		AuditTrailEntry entry = new AuditTrailEntry("Generate recommendation");
 		entry.setAttribute("Model Construct", irimodellingConstruct); 
 		entry.setAttribute("Entered label", label);
-		this.log(entry);
+		//this.log(entry);
 		return sortedSugList;
 		
 	}
@@ -966,7 +967,7 @@ public class BPMNSuggestionEngine2 {
 		AuditTrailEntry entry = new AuditTrailEntry("Add Model Element");
 		entry.setAttribute("Element Type", iriConstruct); 
 		entry.setAttribute("Element ", element.getIRI().toString()); 
-		this.log(entry);
+		//this.log(entry);
    
 	    
 	    System.out.println("Updated ontology: " + modelOntology);
@@ -997,7 +998,7 @@ public class BPMNSuggestionEngine2 {
 		entry.setAttribute("Element Type", iriConstructRelationship); 
 		entry.setAttribute("Element1 ", element1.toString()); 
 		entry.setAttribute("Element2 ", element2.toString()); 
-		this.log(entry);
+		//this.log(entry);
 	    
 	    System.out.println("Updated ontology: " + modelOntology);
 	    return element.getIRI();
@@ -1027,7 +1028,7 @@ public class BPMNSuggestionEngine2 {
 		entry.setAttribute("Score TextMatching",Double.toString(suggestion.getWeightWordnetSynonyms()));
 		entry.setAttribute("Order in Suggestion List",Integer.toString(suggestion.getOrder()));
 		
-		this.log(entry);
+		//this.log(entry);
 	    
 	    System.out.println("Updated ontology: " + modelOntology);
 	    
@@ -1059,7 +1060,7 @@ public class BPMNSuggestionEngine2 {
         
         AuditTrailEntry entry = new AuditTrailEntry("Remove ELement Annotation");
       		entry.setAttribute("Element", iriElement.toString());  
-      		this.log(entry);
+      		//this.log(entry);
 		
 		
 	    System.out.println("Updated ontology: " + modelOntology);
@@ -1208,6 +1209,7 @@ public class BPMNSuggestionEngine2 {
 		
 		 OWLXMLOntologyFormat owlxmlFormat = new OWLXMLOntologyFormat();
 		 manager.saveOntology(modelOntology, owlxmlFormat, IRI.create(file.toURI()));
+		
 		 
 		 System.out.println("Owl file saved: " + file.getAbsolutePath());
 		 System.out.println("Owl file saved to: " + projectDir);

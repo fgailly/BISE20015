@@ -85,7 +85,7 @@ public class AnnotateProcessor extends Action {
 			else if (!sel.getAnnotated()) {
 
 				
-				annotateSuggestion(sel.getUniqueId(), sug.getOntologyString());
+				annotateSuggestion(sel.getUniqueId(), sug.getOntologyString(), sug);
 				annotateUI("@"+sug.getSuggestionString());
 				refresh(sug.getSuggestionString(), false);
 				if (suggestions) {
@@ -119,7 +119,7 @@ public class AnnotateProcessor extends Action {
 		
 		try {
 			if (suggestions) {
-				((SuggestionView)viewer).getEngine().saveModelOntology();	
+			//	((SuggestionView)viewer).getEngine().saveModelOntology();	
 			} else {
 				((OntologyView)viewer).getEngine().saveModelOntology();
 			}
@@ -152,13 +152,13 @@ public class AnnotateProcessor extends Action {
 			}
 	}
 
-	protected void annotateSuggestion(String id, String label) {
+	protected void annotateSuggestion(String id, String label, Suggestion suggestion) {
 		if (sel.getType() != "unknown" && sel.getType() != "Error") {
 			String constructIRI = sel.createBpmnUrl();
 			String ontologyID = createOwlUrl(label);
 			if (suggestions) {
 				IRI modelIRI = ((SuggestionView)viewer).getEngine().addModelInstance(constructIRI, id, label );
-				((SuggestionView)viewer).getEngine().addModelAnnotation(modelIRI.toString(), ontologyID);
+				((SuggestionView)viewer).getEngine().addModelAnnotation(modelIRI.toString(), ontologyID, suggestion);
 			} else {
 				IRI modelIRI = ((OntologyView)viewer).getEngine().addModelInstance(constructIRI, id, label);
 				((OntologyView)viewer).getEngine().addModelAnnotation(modelIRI.toString(), ontologyID);

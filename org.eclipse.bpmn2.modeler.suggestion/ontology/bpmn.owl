@@ -28,13 +28,16 @@
         <Class IRI="#Activity"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#ActivityNoun"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#Association"/>
     </Declaration>
     <Declaration>
         <Class IRI="#ConnectivityObject"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Data_Object"/>
+        <Class IRI="#DataObject"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Event"/>
@@ -58,13 +61,13 @@
         <Class IRI="#MessageFlow"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#NounLabel"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#ParaellelGateway"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Pool"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Process"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Sequenceflow"/>
@@ -82,6 +85,12 @@
         <ObjectProperty IRI="#comprimises"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="#dataObjectIsConnectedTo"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#flowObjectIsConnectedBy"/>
+    </Declaration>
+    <Declaration>
         <ObjectProperty IRI="#hasLane"/>
     </Declaration>
     <Declaration>
@@ -94,7 +103,16 @@
         <ObjectProperty IRI="#hasTarget"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="#memberOfPool"/>
+        <ObjectProperty IRI="#isComposedOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isConnectedBy"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isLocatedWithin"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#poolIsConnectedBy"/>
     </Declaration>
     <SubClassOf>
         <Class IRI="#Activity"/>
@@ -105,7 +123,7 @@
         <Class IRI="#ConnectivityObject"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Data_Object"/>
+        <Class IRI="#DataObject"/>
         <Class IRI="#FlowObject"/>
     </SubClassOf>
     <SubClassOf>
@@ -123,6 +141,10 @@
     <SubClassOf>
         <Class IRI="#InclusiveGateway"/>
         <Class IRI="#Gateway"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Lane"/>
+        <Class IRI="#Pool"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#MessageFlow"/>
@@ -148,56 +170,109 @@
         <Class IRI="#Task"/>
         <Class IRI="#Activity"/>
     </SubClassOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#dataObjectIsConnectedTo"/>
+        <ObjectProperty IRI="#isConnectedBy"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#flowObjectIsConnectedBy"/>
+        <ObjectProperty IRI="#isConnectedBy"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#poolIsConnectedBy"/>
+        <ObjectProperty IRI="#isConnectedBy"/>
+    </SubObjectPropertyOf>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasSource"/>
+        <ObjectProperty IRI="#isConnectedBy"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasTarget"/>
+        <ObjectProperty IRI="#isConnectedBy"/>
+    </InverseObjectProperties>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#comprimises"/>
         <Class IRI="#Subprocess"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
+        <ObjectProperty IRI="#flowObjectIsConnectedBy"/>
+        <Class IRI="#FlowObject"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
         <ObjectProperty IRI="#hasLane"/>
+        <Class IRI="#Pool"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasNoun"/>
+        <Class IRI="#Activity"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasSource"/>
+        <Class IRI="#ConnectivityObject"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasTarget"/>
+        <Class IRI="#ConnectivityObject"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#isComposedOf"/>
+        <Class IRI="#Process"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#isLocatedWithin"/>
+        <Class IRI="#FlowObject"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#poolIsConnectedBy"/>
+        <Class IRI="#Pool"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#comprimises"/>
+        <Class IRI="#Task"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#dataObjectIsConnectedTo"/>
+        <Class IRI="#Association"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#flowObjectIsConnectedBy"/>
+        <Class IRI="#ConnectivityObject"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasLane"/>
+        <Class IRI="#Lane"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasNoun"/>
+        <Class IRI="#ActivityNoun"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasSource"/>
+        <Class IRI="#FlowObject"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasTarget"/>
+        <Class IRI="#FlowObject"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#isComposedOf"/>
         <ObjectUnionOf>
-            <Class IRI="#Lane"/>
+            <Class IRI="#ConnectivityObject"/>
+            <Class IRI="#FlowObject"/>
             <Class IRI="#Pool"/>
         </ObjectUnionOf>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="#hasNoun"/>
-        <Class IRI="#Activity"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="#hasSource"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#isConnectedBy"/>
         <Class IRI="#ConnectivityObject"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="#hasTarget"/>
-        <Class IRI="#ConnectivityObject"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="#memberOfPool"/>
-        <Class IRI="#FlowObject"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="#comprimises"/>
-        <Class IRI="#Task"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
-        <ObjectProperty IRI="#hasLane"/>
-        <Class IRI="#Lane"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="#hasNoun"/>
-        <Class IRI="#NounLabel"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="#hasSource"/>
-        <Class IRI="#FlowObject"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="#hasTarget"/>
-        <Class IRI="#FlowObject"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="#memberOfPool"/>
+        <ObjectProperty IRI="#isLocatedWithin"/>
         <Class IRI="#Pool"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#poolIsConnectedBy"/>
+        <Class IRI="#MessageFlow"/>
     </ObjectPropertyRange>
 </Ontology>
 

@@ -17,6 +17,9 @@ import org.eclipse.graphiti.ui.editor.DiagramEditor;
 import org.eclipse.graphiti.ui.internal.services.impl.CommandService;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.resource.FontRegistry;
+import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
@@ -54,11 +57,14 @@ public class SuggestionView extends ViewPart {
 
 	public void createPartControl(Composite parent) {
 		setViewer(new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL));
+		FontRegistry fr = JFaceResources.getFontRegistry();
+		ColumnViewerToolTipSupport.enableFor(viewer);
 		getViewer().setContentProvider(new SuggestionContentProvider());
-		getViewer().setLabelProvider(new SuggestionLabelProvider());
+		getViewer().setLabelProvider(new SuggestionLabelProvider(fr));
 		
 		 // Expand the tree
 	    getViewer().setAutoExpandLevel(2);
+	    
 	    
 	    // Provide the input to the ContentProvider
 	    //viewer.setInput(getInstructions());
@@ -68,8 +74,6 @@ public class SuggestionView extends ViewPart {
 		
 		// Register Diagram Selection Listener
 		getSite().getWorkbenchWindow().getSelectionService().addSelectionListener(listener);
-		
-		DiagramEditor test = (DiagramEditor) (getSite().getWorkbenchWindow().getActivePage().getActiveEditor());
 		
 		
 		CommandManager service = (CommandManager) getSite().getWorkbenchWindow().getService(CommandManager.class);

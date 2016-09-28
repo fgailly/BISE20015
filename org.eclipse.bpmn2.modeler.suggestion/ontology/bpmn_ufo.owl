@@ -27,79 +27,52 @@
     <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
     <Import>http://www.mis.ugent.be/ontologies/ufo.owl</Import>
     <Import>http://www.mis.ugent.be/ontologies/bpmn.owl</Import>
-    <Declaration>
+    <EquivalentClasses>
         <Class abbreviatedIRI="bpmn:Activity"/>
-    </Declaration>
-    <Declaration>
-        <Class abbreviatedIRI="bpmn:Data_Object"/>
-    </Declaration>
-    <Declaration>
-        <Class abbreviatedIRI="bpmn:Event"/>
-    </Declaration>
-    <Declaration>
-        <Class abbreviatedIRI="bpmn:MessageFlow"/>
-    </Declaration>
-    <Declaration>
-        <Class abbreviatedIRI="bpmn:Pool"/>
-    </Declaration>
-    <Declaration>
-        <Class abbreviatedIRI="ufo:Base_Type"/>
-    </Declaration>
-    <Declaration>
-        <Class abbreviatedIRI="ufo:Event_Type"/>
-    </Declaration>
-    <Declaration>
-        <Class abbreviatedIRI="ufo:Mixin_Type"/>
-    </Declaration>
-    <Declaration>
-        <Class abbreviatedIRI="ufo:Object_Type"/>
-    </Declaration>
-    <Declaration>
-        <Class abbreviatedIRI="ufo:Quality_Universal"/>
-    </Declaration>
-    <Declaration>
-        <Class abbreviatedIRI="ufo:Relator_Universal"/>
-    </Declaration>
+        <Class abbreviatedIRI="ufo:EventType"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class abbreviatedIRI="bpmn:ActivityNoun"/>
+        <ObjectUnionOf>
+            <Class abbreviatedIRI="ufo:ObjectType"/>
+            <Class abbreviatedIRI="ufo:QualityUniversal"/>
+            <Class abbreviatedIRI="ufo:RelatorUniversal"/>
+        </ObjectUnionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class abbreviatedIRI="bpmn:Association"/>
+        <ObjectUnionOf>
+            <Class abbreviatedIRI="ufo:FormalRelationshipType"/>
+            <Class abbreviatedIRI="ufo:MaterialRelationshipType"/>
+        </ObjectUnionOf>
+    </EquivalentClasses>
     <EquivalentClasses>
         <Class abbreviatedIRI="bpmn:Data_Object"/>
         <ObjectUnionOf>
-            <Class abbreviatedIRI="ufo:Base_Type"/>
-            <Class abbreviatedIRI="ufo:Relator_Universal"/>
+            <Class abbreviatedIRI="ufo:BaseType"/>
+            <Class abbreviatedIRI="ufo:QualityUniversal"/>
+            <Class abbreviatedIRI="ufo:RelatorUniversal"/>
         </ObjectUnionOf>
     </EquivalentClasses>
     <EquivalentClasses>
         <Class abbreviatedIRI="bpmn:Event"/>
-        <Class abbreviatedIRI="ufo:Event_Type"/>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class abbreviatedIRI="bpmn:ExclusiveGateway"/>
-        <Class abbreviatedIRI="ufo:Quality_Universal"/>
+        <Class abbreviatedIRI="ufo:EventType"/>
     </EquivalentClasses>
     <EquivalentClasses>
         <Class abbreviatedIRI="bpmn:Lane"/>
-        <Class abbreviatedIRI="ufo:Role_Type"/>
+        <Class abbreviatedIRI="ufo:ObjectType"/>
     </EquivalentClasses>
     <EquivalentClasses>
         <Class abbreviatedIRI="bpmn:MessageFlow"/>
-        <Class abbreviatedIRI="ufo:Relator_Universal"/>
+        <ObjectUnionOf>
+            <Class abbreviatedIRI="ufo:ObjectType"/>
+            <Class abbreviatedIRI="ufo:QualityUniversal"/>
+            <Class abbreviatedIRI="ufo:RelatorUniversal"/>
+        </ObjectUnionOf>
     </EquivalentClasses>
     <EquivalentClasses>
         <Class abbreviatedIRI="bpmn:Pool"/>
-        <Class abbreviatedIRI="ufo:Object_Type"/>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class abbreviatedIRI="bpmn:Subprocess"/>
-        <ObjectUnionOf>
-            <Class abbreviatedIRI="ufo:Quality_Universal"/>
-            <Class abbreviatedIRI="ufo:Relator_Universal"/>
-        </ObjectUnionOf>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class abbreviatedIRI="bpmn:Task"/>
-        <ObjectUnionOf>
-            <Class abbreviatedIRI="ufo:Quality_Universal"/>
-            <Class abbreviatedIRI="ufo:Relator_Universal"/>
-        </ObjectUnionOf>
+        <Class abbreviatedIRI="ufo:ObjectType"/>
     </EquivalentClasses>
 </Ontology>
 

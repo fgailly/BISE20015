@@ -12,6 +12,8 @@ import org.eclipse.bpmn2.modeler.suggestion.part.OntologyModel;
 import org.eclipse.bpmn2.modeler.suggestion.part.SelectionChangeProcessor;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.resource.FontRegistry;
+import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -36,9 +38,10 @@ public class OntologyView extends ViewPart {
 	private EditorProcessor listener2 = new EditorProcessor();
 	
 	public void createPartControl(Composite parent) {
+		FontRegistry fr = JFaceResources.getFontRegistry();
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		viewer.setContentProvider(new OntologyContentProvider());
-		viewer.setLabelProvider(new SuggestionLabelProvider());
+		viewer.setLabelProvider(new SuggestionLabelProvider(fr));
 		
 		 // Expand the tree
 	    viewer.setAutoExpandLevel(2);

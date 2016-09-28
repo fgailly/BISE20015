@@ -1,5 +1,12 @@
 package org.eclipse.bpmn2.modeler.suggestion.views;
 
+import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.FontData;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -22,9 +29,13 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 
 
-public class OntologyPropertyView extends ViewPart {
+public class OntologyPropertyView2 extends ViewPart {
 
-	private TableViewer tableViewer;
+	
+	private Suggestion suggestion;
+	private Label label;
+	private Group txtBox;
+	private StyledText styledText;
 	private ISelectionListener selectionListener = new ISelectionListener() {
 		
 		@Override
@@ -38,8 +49,20 @@ public class OntologyPropertyView extends ViewPart {
 				if (selected instanceof Suggestion && selected != null) {
 					Suggestion sug = (Suggestion) selected;
 					if(sug.getType() != null){
-						String[] input = createPropertyArray(sug);
-						tableViewer.setInput(input);
+						//String[] input = createPropertyArray(sug);
+						//tableViewer.setInput(input);
+						suggestion = sug;
+						
+						//label.setText(suggestion.getDescription());
+						//label.setBounds(120, 10, 100, 100);
+						//label.pack();
+						styledText.setText(suggestion.getDescription());
+						FontRegistry fr = JFaceResources.getFontRegistry();
+						fr.put("text", new FontData[]{new FontData("Arial", 14, SWT.NORMAL)} );
+				        Font text = fr.get("text");
+						styledText.setFont(text);
+						//txtBox.pack();
+						styledText.pack();
 					}
 				}
 
@@ -67,27 +90,41 @@ public class OntologyPropertyView extends ViewPart {
 
 	@Override
 	public void createPartControl(Composite parent) {
-		tableViewer = new TableViewer(parent,SWT.H_SCROLL|SWT.V_SCROLL);
-		tableViewer.getTable().setHeaderVisible(true);
-		tableViewer.setContentProvider(ArrayContentProvider.getInstance());
-		FontRegistry fr = JFaceResources.getFontRegistry();
-		new OntologyPropertyColumn(fr).addColumnTo(tableViewer);
-		new OntologyValueColumn(fr).addColumnTo(tableViewer);
+		
+		txtBox = new Group(parent, 0);
+		//txtBox.setSize(300, 300);
+		txtBox.setText("Description");
+	
+		
+		//label = new Label(txtBox, SWT.WRAP | SWT.BORDER | SWT.LEFT);
+		styledText = new StyledText(txtBox, SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
+		//styledText.setBounds(10, 10, 400, 400);
+		//label.setSize(500, 500);
+		//final GridData data = new GridData(SWT.HORIZONTAL, SWT.TOP, true, false, 1, 1);
+		//label.setLayoutData(data); 
+		//styledText.setWordWrap(true);
+		styledText.setText("This panel contains a description\n of the ontology element selected\n in the suggestion panel.");
+		styledText.pack();
+		
+        
+		
 		
 		getSite().getWorkbenchWindow().getSelectionService().addSelectionListener(selectionListener);
 		
 	}
 
-	@Override
-	public void setFocus() {
-		tableViewer.getControl().setFocus();
-	}
+	
 	
 	public void dispose() {
 		if (selectionListener != null) {
        	 getSite().getWorkbenchWindow().getSelectionService().removeSelectionListener(selectionListener);
        	 selectionListener = null;
         }
+	}
+
+	@Override
+	public void setFocus() {
+		label.setFocus();		
 	}
 
 }

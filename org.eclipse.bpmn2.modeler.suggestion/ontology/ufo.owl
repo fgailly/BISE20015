@@ -24,37 +24,40 @@
     <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
     <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
     <Declaration>
-        <Class IRI="#Base_Type"/>
+        <Class IRI="#BaseType"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Event_Type"/>
+        <Class IRI="#EventType"/>
     </Declaration>
     <Declaration>
         <Class IRI="#FormalRelationshipType"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#MaterialRelationship_Type"/>
+        <Class IRI="#MaterialRelationshipType"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Mixin_Type"/>
+        <Class IRI="#MixinType"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Object_Type"/>
+        <Class IRI="#ObjectType"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Phase_Type"/>
+        <Class IRI="#PhaseType"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Quality_Universal"/>
+        <Class IRI="#QualityUniversal"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Relator_Universal"/>
+        <Class IRI="#RelatorUniversal"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Role_Type"/>
+        <Class IRI="#RoleType"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Sortal_Type"/>
+        <Class IRI="#SortalType"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Universal"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#hasDomain"/>
@@ -78,31 +81,47 @@
         <ObjectProperty IRI="#participates"/>
     </Declaration>
     <EquivalentClasses>
-        <Class IRI="#Relator_Universal"/>
+        <Class IRI="#RelatorUniversal"/>
         <ObjectMinCardinality cardinality="2">
             <ObjectProperty IRI="#mediates"/>
-            <Class IRI="#Object_Type"/>
+            <Class IRI="#ObjectType"/>
         </ObjectMinCardinality>
     </EquivalentClasses>
     <SubClassOf>
-        <Class IRI="#Base_Type"/>
-        <Class IRI="#Sortal_Type"/>
+        <Class IRI="#BaseType"/>
+        <Class IRI="#SortalType"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Mixin_Type"/>
-        <Class IRI="#Object_Type"/>
+        <Class IRI="#EventType"/>
+        <Class IRI="#Universal"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Phase_Type"/>
-        <Class IRI="#Sortal_Type"/>
+        <Class IRI="#MixinType"/>
+        <Class IRI="#ObjectType"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Role_Type"/>
-        <Class IRI="#Sortal_Type"/>
+        <Class IRI="#ObjectType"/>
+        <Class IRI="#Universal"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Sortal_Type"/>
-        <Class IRI="#Object_Type"/>
+        <Class IRI="#PhaseType"/>
+        <Class IRI="#SortalType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#QualityUniversal"/>
+        <Class IRI="#Universal"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RelatorUniversal"/>
+        <Class IRI="#Universal"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RoleType"/>
+        <Class IRI="#SortalType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SortalType"/>
+        <Class IRI="#ObjectType"/>
     </SubClassOf>
     <InverseObjectProperties>
         <ObjectProperty IRI="#mediates"/>
@@ -110,59 +129,59 @@
     </InverseObjectProperties>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#hasDomain"/>
-        <Class IRI="#MaterialRelationship_Type"/>
+        <Class IRI="#MaterialRelationshipType"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#hasQuality"/>
-        <Class IRI="#Object_Type"/>
+        <Class IRI="#ObjectType"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#hasRange"/>
-        <Class IRI="#MaterialRelationship_Type"/>
+        <Class IRI="#MaterialRelationshipType"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#isMediatedBy"/>
-        <Class IRI="#Object_Type"/>
+        <Class IRI="#ObjectType"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#mediates"/>
-        <Class IRI="#Relator_Universal"/>
+        <Class IRI="#RelatorUniversal"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#objectifies"/>
-        <Class IRI="#Relator_Universal"/>
+        <Class IRI="#RelatorUniversal"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#participates"/>
-        <Class IRI="#Event_Type"/>
+        <Class IRI="#EventType"/>
     </ObjectPropertyDomain>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#hasDomain"/>
-        <Class IRI="#Object_Type"/>
+        <Class IRI="#ObjectType"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#hasQuality"/>
-        <Class IRI="#Quality_Universal"/>
+        <Class IRI="#QualityUniversal"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#hasRange"/>
-        <Class IRI="#Object_Type"/>
+        <Class IRI="#ObjectType"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#isMediatedBy"/>
-        <Class IRI="#Relator_Universal"/>
+        <Class IRI="#RelatorUniversal"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#mediates"/>
-        <Class IRI="#Object_Type"/>
+        <Class IRI="#ObjectType"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#objectifies"/>
-        <Class IRI="#MaterialRelationship_Type"/>
+        <Class IRI="#MaterialRelationshipType"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#participates"/>
-        <Class IRI="#Object_Type"/>
+        <Class IRI="#ObjectType"/>
     </ObjectPropertyRange>
 </Ontology>
 

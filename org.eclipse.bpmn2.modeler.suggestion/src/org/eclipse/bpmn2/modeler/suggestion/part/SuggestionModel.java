@@ -49,6 +49,11 @@ public class SuggestionModel {
 
 	private void sortSuggestionModel(List<Suggestion> suggestionModel) {
 		Collections.sort(suggestionModel);
+		int i=0;
+		for(Suggestion suggestion: suggestionModel){
+			suggestion.setOrder(i);
+			i++;
+		}
 		
 	}
 

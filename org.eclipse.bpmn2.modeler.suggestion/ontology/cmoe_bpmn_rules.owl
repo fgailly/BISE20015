@@ -27,26 +27,91 @@
     <Import>http://www.mis.ugent.be/ontologies/ufo.owl</Import>
     <Import>http://www.mis.ugent.be/ontologies/bpmn_ufo.owl</Import>
     <Import>http://www.mis.ugent.be/ontologies/bpmn.owl</Import>
-    <Import>http://www.mis.ugent.be/ontologies/bank.owl</Import>
     <DLSafeRule>
         <Body>
             <ClassAtom>
-                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Pool"/>
-                <Variable IRI="urn:swrl#pool1"/>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Activity"/>
+                <Variable IRI="urn:swrl#z"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#ActivityNoun"/>
+                <Variable IRI="urn:swrl#n"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#MessageFlow"/>
+                <Variable IRI="urn:swrl#x"/>
             </ClassAtom>
             <ClassAtom>
                 <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Pool"/>
-                <Variable IRI="urn:swrl#pool2"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/ufo.owl#RelatorUniversal"/>
+                <Variable IRI="urn:swrl#r"/>
             </ClassAtom>
             <ObjectPropertyAtom>
                 <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
-                <Variable IRI="urn:swrl#pool1"/>
+                <Variable IRI="urn:swrl#n"/>
+                <Variable IRI="urn:swrl#p"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#y"/>
+                <Variable IRI="urn:swrl#o"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#flowObjectIsConnectedBy"/>
+                <Variable IRI="urn:swrl#z"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#hasNoun"/>
+                <Variable IRI="urn:swrl#z"/>
+                <Variable IRI="urn:swrl#n"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#poolIsConnectedBy"/>
+                <Variable IRI="urn:swrl#y"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/ufo.owl#mediates"/>
+                <Variable IRI="urn:swrl#r"/>
+                <Variable IRI="urn:swrl#o"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/ufo.owl#mediates"/>
+                <Variable IRI="urn:swrl#r"/>
+                <Variable IRI="urn:swrl#p"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#x"/>
+                <Variable IRI="urn:swrl#r"/>
+            </ObjectPropertyAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Lane"/>
+                <Variable IRI="urn:swrl#lane"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Pool"/>
+                <Variable IRI="urn:swrl#pool"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#pool"/>
                 <Variable IRI="urn:swrl#domain1"/>
             </ObjectPropertyAtom>
             <ObjectPropertyAtom>
                 <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#hasLane"/>
-                <Variable IRI="urn:swrl#pool1"/>
-                <Variable IRI="urn:swrl#pool2"/>
+                <Variable IRI="urn:swrl#pool"/>
+                <Variable IRI="urn:swrl#lane"/>
             </ObjectPropertyAtom>
             <ObjectPropertyAtom>
                 <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/ufo.owl#mediates"/>

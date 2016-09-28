@@ -1,6 +1,13 @@
 package org.eclipse.bpmn2.modeler.suggestion.internal;
 
+import org.eclipse.jface.resource.FontRegistry;
+
 public class OntologyPropertyColumn extends OntologyColumn {
+
+	public OntologyPropertyColumn(FontRegistry fr) {
+		super(fr);
+		
+	}
 
 	@Override
 	public String getText(Object element) {

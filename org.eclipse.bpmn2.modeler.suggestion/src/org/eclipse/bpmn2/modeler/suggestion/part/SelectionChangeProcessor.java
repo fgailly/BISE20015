@@ -71,6 +71,7 @@ public class SelectionChangeProcessor implements ISelectionListener {
 				sugView.setEngine(new BPMNSuggestionEngine2());
 			}
 		}
+		System.gc();
 			
 		
 		if (part instanceof EditorPart) {
