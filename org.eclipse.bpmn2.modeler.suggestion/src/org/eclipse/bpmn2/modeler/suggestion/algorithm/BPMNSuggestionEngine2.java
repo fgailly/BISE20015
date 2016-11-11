@@ -86,13 +86,10 @@ import org.semanticweb.owlapi.reasoner.structural.StructuralReasonerFactory;
 import org.semanticweb.owlapi.util.OWLEntityRemover;
 import org.semanticweb.owlapi.util.OWLOntologyMerger;
 import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
-import org.semanticweb.owlapi.vocab.PrefixOWLOntologyFormat;
-
+import ugent.mis.cmoeplus.Recommendation;
 import uk.ac.manchester.cs.owlapi.dlsyntax.DLSyntaxObjectRenderer;
 
 import com.aliasi.spell.JaroWinklerDistance;
-import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
-import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
 import com.complexible.stardog.StardogException;
 import com.complexible.stardog.api.Connection;
 import com.complexible.stardog.api.ConnectionConfiguration;
@@ -102,139 +99,138 @@ import com.hp.hpl.jena.rdf.model.Model;
 import edu.smu.tspell.wordnet.Synset;
 import edu.smu.tspell.wordnet.WordNetDatabase;
 import edu.stanford.nlp.ling.HasWord;
-import edu.stanford.nlp.ling.Sentence;
 import edu.stanford.nlp.ling.TaggedWord;
-import edu.stanford.nlp.ling.Word;
 import edu.stanford.nlp.process.DocumentPreprocessor;
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 
 
 public class BPMNSuggestionEngine2 {
-	
+
 	OWLOntology UFO;
 	OWLOntology BPMN;
-    OWLOntology BPMN_UFO;
-    OWLOntology ESO;
-    OWLOntologyManager manager;
-    OWLOntology merged;
-    OWLOntology modelOntology;
-    OWLOntology rules;
-    OWLOntology semAnn;
-    
-    File wordnet;
-    private PromLogger recommendationLogger;
-   
-    URL wordnet_url;
-    String modelName;
-    //LexicalizedParser lp;
-    //ShiftReduceParser model;
-    MaxentTagger tagger;
-    final String task = "http://www.mis.ugent.be/ontologies/bpmn.owl#Task";
-    final String activity = "http://www.mis.ugent.be/ontologies/bpmn.owl#Activity";
-    final String event = "http://www.mis.ugent.be/ontologies/bpmn.owl#Event";
-    final String pool = "http://www.mis.ugent.be/ontologies/bpmn.owl#Pool";
-    final String message = "http://www.mis.ugent.be/ontologies/bpmn.owl#Message";
-    final String gateway = "http://www.mis.ugent.be/ontologies/bpmn.owl#Gateway";
-    final String qualityUniversal = "http://www.mis.ugent.be/ontologies/ufo.owl#Quality_Universal";
-    
-    final String semanticAnnotationProperty 
-    	= "http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass";
-    
-    Map<IRI,Suggestion> sugList;
-	
+	OWLOntology BPMN_UFO;
+	OWLOntology ESO;
+	OWLOntologyManager manager;
+	OWLOntology merged;
+	OWLOntology modelOntology;
+	OWLOntology rules;
+	OWLOntology semAnn;
+
+	File wordnet;
+	private PromLogger recommendationLogger;
+
+	URL wordnet_url;
+	String modelName;
+	//LexicalizedParser lp;
+	//ShiftReduceParser model;
+	MaxentTagger tagger;
+	final String task = "http://www.mis.ugent.be/ontologies/bpmn.owl#Task";
+	final String activity = "http://www.mis.ugent.be/ontologies/bpmn.owl#Activity";
+	final String event = "http://www.mis.ugent.be/ontologies/bpmn.owl#Event";
+	final String pool = "http://www.mis.ugent.be/ontologies/bpmn.owl#Pool";
+	final String message = "http://www.mis.ugent.be/ontologies/bpmn.owl#Message";
+	final String gateway = "http://www.mis.ugent.be/ontologies/bpmn.owl#Gateway";
+	final String qualityUniversal = "http://www.mis.ugent.be/ontologies/ufo.owl#Quality_Universal";
+
+	final String semanticAnnotationProperty 
+	= "http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass";
+
+	Map<IRI,Recommendation> sugList;
+
 	//Set parameters for types of matching
 	boolean LabelBasedMatching = true;					//String-Matching-Mechanism				
 	boolean ConstructMatching = true;				//Construct-Matching-Mechanism
 	boolean RuleBasedMatching = true;		//Neighborhood-Matching-Mechanism
-	
+
 	//Set parameters for jaro-winkler distance:
 	double JWDweightThreshold=0.4;
 	int JWDnumChars=4;
-		
+
 	//Set weights and scores for matching mechanisms
 	double weightLabelBasedMatching = 1.0;				//String-matching mechanism weight
-	
-	
+
+
 	//Jaro-winkler distance							//String-matching mechanism score
 	double weightConstructMatching = 1.0;				//Construct-matching mechanism weight
 	double scoreConstructMatching = 1.0;				//Construct-matching mechanism score
-		
+
 	double weightRuleBasedMatching = 1.0;				//Neighborhood-matching mechanism weight - overal (if needed)
 	double weightRuleBasedMechanism = 1;
 	double scoreRuleBasedMatching = 1.0;				//Neighborhood-matching mechanism score
-	
+
 	public Boolean automaticAnnotation=true;
-		
+
 	//Make a new ontology
 	//True  =Create new model.owl file
 	//False =Load from model.owl file
 	boolean makeNewOntology=true;
-		
+
 	//Make an automatic annotation in the model ontology when a suggestion is clicked
 	public boolean AnnotateWhenSuggestionClicked=true;
-		
+
 	//Generate also synonym-based suggestions when AnnotationWindow is opened
 	public boolean AnnotateSynonymBasedGenerationSuggestions=true;
-		
+
 	//The indication-string for candidate-annotations from the feedback ontology
 	public String canAnnQua="*";
-		
+
 	//Show candidate annotation possibility
 	public boolean CandidateAnnotationPossiblity=true;
-	
+
 	//Source ontology files
 	public String source = "local";
-		
+
 	//Filename core ontology
 	public String CoreOntology="";
-		
+
 	//Filename istar ontology
 	public String BPMNOntology="";
-			
+
 	//Filename Enterprise-specific Ontology
 	public String ESOntology ="";
-		
+
 	//Filename mapping core ontology and BPMN
 	public String CoreBPMNOntology="";
-	
+
 	//Filename rulesfile
 	public String RulesOntology="";
-		
+
 	//Filename model ontology
 	public String ModelOntology="";
-	
+
 	//Filename semann file
 	public String SemAnnOntology="";
-  
-	
+
+
 	public BPMNSuggestionEngine2(){
 		//recommendationLogger = new PromLogger();
-		
-		
+
+
 		manager = OWLManager.createOWLOntologyManager();
 		Properties systemProperties = System.getProperties();
-		
+
 		//String modelPath = "edu/stanford/nlp/models/srparser/englishSR.ser.gz";
-	   // String taggerPath = "models/english-left3words-distsim.tagger";
+		// String taggerPath = "models/english-left3words-distsim.tagger";
 		//lp = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
-	//	tagger = new MaxentTagger(taggerPath);
-	    //model = ShiftReduceParser.loadModel(modelPath);
+		//	tagger = new MaxentTagger(taggerPath);
+		//model = ShiftReduceParser.loadModel(modelPath);
 		//System.out.println(source);
-		
+
 		modelName ="model";
-		
+		source ="local";
+
 		try {
-			
+
 			if(source.equals("cheetah")) {
 				Bundle bundle = Platform.getBundle("org.cheetahplatform.modeler");
 				//Bundle bundle = Platform.getBundle("org.eclipse.bpmn2.modeler.suggestion");
 				System.out.println(bundle.getLocation());
 				System.out.println(System.getProperty("user.dir"));
-				
+
 				//wordnet = new File("resource/ugent/ontology/dict");
 				wordnet = new File(FileLocator.resolve(bundle.getEntry("resource/ugent/ontology/dict")).toURI());
-				
-				
+
+
 				UFO = manager.loadOntologyFromOntologyDocument(new File(FileLocator.resolve(bundle.getEntry("resource/ugent/ontology/ufo.owl")).toURI()));
 				//UFO = m.loadOntologyFromOntologyDocument(new File("resource/ugent/ontology/ufo.owl"));
 				System.out.println("Loaded ontology: " + UFO);
@@ -247,22 +243,22 @@ public class BPMNSuggestionEngine2 {
 				ESO = manager.loadOntologyFromOntologyDocument(new File(FileLocator.resolve(bundle.getEntry("resource/ugent/ontology/bank2.owl")).toURI()));
 				//ESO = m.loadOntologyFromOntologyDocument(new File("resource/ugent/ontology/bank.owl"));
 				System.out.println("Loaded ontology: " + ESO);
-				
-				
+
+
 				System.out.println("Done Loading Ontologies");
 			}
 			else if(source.equals("bizagi")){
-				
+
 				Bundle bundle = Platform.getBundle("org.eclipse.bpmn2.modeler.suggestion");
-				
+
 				System.out.println("BUNDLE: " + bundle.getLocation());
 				System.out.println("USER.DIR: "+ System.getProperty("user.dir"));
-				
+
 				wordnet = new File("resource/ugent/ontology/dict");
-				
+
 				//wordnet = new File(FileLocator.resolve(bundle.getEntry("resource/ugent/ontology/dict")).toURI());
-				
-				
+
+
 				IPreferenceStore preferenceStore = Activator.getDefault().getPreferenceStore();
 				System.out.println("Loading Ontologies");
 				UFO = loadOntologyFromStardogDB(preferenceStore.getString("CORE"));
@@ -273,14 +269,14 @@ public class BPMNSuggestionEngine2 {
 				System.out.println("Loaded ontology: " + BPMN_UFO);
 				ESO = loadOntologyFromStardogDB("Bank");
 				System.out.println("Loaded ontology: " + ESO);
-				
+
 				System.out.println("Done Loading Ontologies");
-			
-				
+
+
 			}
-			
+
 			else if(source.equals("local")){
-				
+
 				try {
 					URL propertiesURL;
 					if(systemProperties.containsKey("Experiment") && systemProperties.getProperty("Experiment").equals("true")){
@@ -292,11 +288,11 @@ public class BPMNSuggestionEngine2 {
 					else {
 						propertiesURL = new URL("platform:/plugin/org.eclipse.bpmn2.modeler.suggestion/suggestionalgorithm.properties");
 					}
-					
+
 					FileInputStream fileInput = (FileInputStream) propertiesURL.openConnection().getInputStream();
 					ReadPropertiesFile(fileInput);
-	
-				
+
+
 					URL wordnet_url = new URL("platform:/plugin/org.eclipse.bpmn2.modeler.suggestion/dict");
 					wordnet = new File(FileLocator.resolve(wordnet_url).toURI());
 
@@ -310,7 +306,7 @@ public class BPMNSuggestionEngine2 {
 					InputStream bpmnInputStream = bpmn_url.openConnection().getInputStream();
 					BPMN = manager.loadOntologyFromOntologyDocument(bpmnInputStream);
 					//rulesManager.loadOntology(BPMN.getOntologyID().getOntologyIRI());
-					
+
 					System.out.println("Loaded ontology: " + BPMN);
 
 
@@ -318,20 +314,20 @@ public class BPMNSuggestionEngine2 {
 					InputStream bpmn_ufoInputStream = bpmn_ufo_url.openConnection().getInputStream();
 					BPMN_UFO = manager.loadOntologyFromOntologyDocument(bpmn_ufoInputStream);
 					//rulesManager.loadOntology(BPMN_UFO.getOntologyID().getOntologyIRI());
-					
+
 					System.out.println("Loaded ontology: " + BPMN_UFO);
 
 					URL eso_url = new URL("platform:/plugin/org.eclipse.bpmn2.modeler.suggestion/ontology/" + ESOntology);
 					InputStream esoInputStream = eso_url.openConnection().getInputStream();
 					ESO = manager.loadOntologyFromOntologyDocument(esoInputStream);
 					System.out.println(ESO.getOntologyID().getOntologyIRI());
-					
+
 					System.out.println("Loaded ontology: " + ESO);
 
 					URL semAnn_url = new URL("platform:/plugin/org.eclipse.bpmn2.modeler.suggestion/ontology/" + SemAnnOntology);
 					InputStream semAnnInputStream = semAnn_url.openConnection().getInputStream();
 					semAnn = manager.loadOntologyFromOntologyDocument(semAnnInputStream);
-					
+
 					System.out.println("Loaded ontology: " + semAnn);
 
 					URL rules_url = new URL("platform:/plugin/org.eclipse.bpmn2.modeler.suggestion/ontology/" + RulesOntology);
@@ -346,15 +342,15 @@ public class BPMNSuggestionEngine2 {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-			
+
 			}
-			
-			
-			
+
+
+
 			else if(source.equals("deploy")){
 				try {
 					File file; 
-				
+
 					if(systemProperties.containsKey("Experiment") && systemProperties.getProperty("Experiment").equals("true")){
 						file = new File("experiment.properties");
 					}
@@ -362,49 +358,49 @@ public class BPMNSuggestionEngine2 {
 						file = new File("tutorial.properties");
 					}
 					else {
-					file = new File("suggestionalgorithm.properties");
+						file = new File("suggestionalgorithm.properties");
 					}
 					FileInputStream fileInput = new FileInputStream(file);
 					ReadPropertiesFile(fileInput);
-				
+
 					System.out.println(System.getProperty("user.dir"));
-				
+
 					wordnet = new File("dict");
-				
+
 					UFO = manager.loadOntologyFromOntologyDocument(new File("ontology/" + CoreOntology));
-					
+
 					System.out.println("Loaded ontology: " + UFO);
-					
+
 					BPMN = manager.loadOntologyFromOntologyDocument(new File("ontology/" + BPMNOntology));
-					
+
 					System.out.println("Loaded ontology: " + BPMN);
-					
+
 					BPMN_UFO = manager.loadOntologyFromOntologyDocument(new File("ontology/" + CoreBPMNOntology ));
-					
+
 					System.out.println("Loaded ontology: " + BPMN_UFO);
-					
+
 					ESO = manager.loadOntologyFromOntologyDocument(new File("ontology/" + ESOntology));
-					
+
 					System.out.println("Loaded ontology: " + ESO);
-					
-					
+
+
 					semAnn = manager.loadOntologyFromOntologyDocument(new File("ontology/" + SemAnnOntology));
-					
+
 					System.out.println("Loaded ontology: " + semAnn);
 
-					
+
 					rules =manager.loadOntologyFromOntologyDocument(new File("ontology/" + RulesOntology));
 
 					System.out.println("Loaded ontology: " + rules);
 					listSWRLRules(rules);
-				
+
 					System.out.println("Done Loading Ontologies");
-					
+
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+
 			}
 			else {
 				System.out.println("Ontologies could not be loaded");
@@ -417,7 +413,7 @@ public class BPMNSuggestionEngine2 {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		if(systemProperties.containsKey("Experiment") && systemProperties.getProperty("Experiment").equals("true")){
 			makeModelOntology("default.owl");
 		}
@@ -461,33 +457,33 @@ public class BPMNSuggestionEngine2 {
 		// an OWLOntologySetProvider we just pass this in. We also need to
 		// specify the URI of the new ontology that will be created.
 		IRI mergedOntologyIRI = IRI.create("http://www.mis.ugent.be/ontologies/mymerge");
-        
+
 		try {
 			merged = merger.createMergedOntology(manager, mergedOntologyIRI);
 		} catch (OWLOntologyCreationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		logNewProcessInstance();
-		
+
 		initializeSuggestionList();
-		
-		
+
+
 	}
-	
-	
+
+
 	public void log(AuditTrailEntry entry) {
 		IStatus status = recommendationLogger.append(entry);
 		if (status.getSeverity() == IStatus.WARNING) {
 			MessageDialog.openWarning(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Logger Changed",
 					status.getMessage());
 		}
-		
+
 	}
-	
+
 	public void logNewProcessInstance() {
-		
+
 		Process process = new Process("Create Business Process with suggestions");
 		ProcessInstance instance = new ProcessInstance();
 		instance.setId(modelName);
@@ -500,113 +496,113 @@ public class BPMNSuggestionEngine2 {
 			Activator.getDefault().getLog().log(status);
 		}
 	}
-	
+
 	public void loadModelOntology(File file){
-        try {
-        	
-        	modelOntology = manager.loadOntologyFromOntologyDocument(file);
+		try {
+
+			modelOntology = manager.loadOntologyFromOntologyDocument(file);
 
 			System.out.println("Loaded ontology: " + modelOntology);
 		} catch (OWLOntologyCreationException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		
+
 		}
 	}
-	
+
 	public void makeModelOntology(String filename){
-		
+
 		try {
 			IRI ontologyIRI = IRI.create("www.mis.ugent.be/ontologies/" + filename);
 			modelOntology = manager.createOntology(ontologyIRI);
 			OWLDataFactory fac = manager.getOWLDataFactory();
 			OWLImportsDeclaration importBPMNDeclaraton =
-				   fac.getOWLImportsDeclaration(BPMN.getOntologyID().getOntologyIRI());
+					fac.getOWLImportsDeclaration(BPMN.getOntologyID().getOntologyIRI());
 			manager.applyChange(new AddImport(modelOntology, importBPMNDeclaraton));
 			OWLImportsDeclaration importSemAnnDeclaraton =
-					   fac.getOWLImportsDeclaration(semAnn.getOntologyID().getOntologyIRI());
+					fac.getOWLImportsDeclaration(semAnn.getOntologyID().getOntologyIRI());
 			manager.applyChange(new AddImport(modelOntology, importSemAnnDeclaraton));
 			OWLImportsDeclaration importESODeclaraton =
-					   fac.getOWLImportsDeclaration(ESO.getOntologyID().getOntologyIRI());
+					fac.getOWLImportsDeclaration(ESO.getOntologyID().getOntologyIRI());
 			manager.applyChange(new AddImport(modelOntology, importESODeclaraton));
 			OWLImportsDeclaration importRulesDeclaraton =
-					   fac.getOWLImportsDeclaration(rules.getOntologyID().getOntologyIRI());
+					fac.getOWLImportsDeclaration(rules.getOntologyID().getOntologyIRI());
 			manager.applyChange(new AddImport(modelOntology, importRulesDeclaraton));
-			
-			
-			
+
+
+
 		} catch (OWLOntologyCreationException e1 ) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		System.out.println("Created ontology: " + modelOntology);
 	}
-	
+
 	public void initializeSuggestionList(){
-		sugList = new HashMap<IRI, Suggestion>();
+		sugList = new HashMap<IRI, Recommendation>();
 		Set<OWLNamedIndividual> individuals = ESO.getIndividualsInSignature();
 		OWLDataFactory fac = manager.getOWLDataFactory();
-    	for (OWLNamedIndividual ind : individuals) {
-	    	OWLAnnotationProperty description = fac.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_COMMENT.getIRI());
-	    	String descriptionValue = "";
-	    	Suggestion.Type type = Suggestion.Type.Class;
-	    	for (OWLAnnotation annotation : ind.getAnnotations(ESO, description)) {
-                if (annotation.getValue() instanceof OWLLiteral) {
-                    OWLLiteral val = (OWLLiteral) annotation.getValue();
-                    descriptionValue = val.getLiteral();
-                    }
-            }
-	    	Suggestion sug = new Suggestion(ind.getIRI(), type, ind.getIRI().getFragment(),descriptionValue, "");
-	        sugList.put(ind.getIRI(), sug);
-    	}
-		
+		for (OWLNamedIndividual ind : individuals) {
+			OWLAnnotationProperty description = fac.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_COMMENT.getIRI());
+			String descriptionValue = "";
+			Recommendation.Type type = Recommendation.Type.Class;
+			for (OWLAnnotation annotation : ind.getAnnotations(ESO, description)) {
+				if (annotation.getValue() instanceof OWLLiteral) {
+					OWLLiteral val = (OWLLiteral) annotation.getValue();
+					descriptionValue = val.getLiteral();
+				}
+			}
+			Recommendation sug = new Recommendation(ind.getIRI(), type, ind.getIRI().getFragment(),descriptionValue, "");
+			sugList.put(ind.getIRI(), sug);
+		}
+
 		// add owl dataproperties to suggestionlist
-    	Set<OWLDataProperty> dataProperties = ESO.getDataPropertiesInSignature();
-    	//printOWLDataProperties(dataProperties, "ESO DataProperties");
-    	for (OWLDataProperty prop : dataProperties) {
-    		OWLAnnotationProperty description = fac.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_COMMENT.getIRI());
-    		String descriptionValue = "";
-    		String domainString = "";
-    		for (OWLAnnotation annotation : prop.getAnnotations(ESO, description)) {
-    			if (annotation.getValue() instanceof OWLLiteral) {
-                OWLLiteral val = (OWLLiteral) annotation.getValue();
-                descriptionValue = val.getLiteral();
-                }
-    		}
-    		for (OWLClassExpression domainClass : prop.getDomains(ESO)) {
-    			if (domainClass instanceof OWLClass) {
-    				domainString = ((OWLClass)domainClass).getIRI().getFragment() + ", ";
-                }
-        }
-    	
-		Suggestion sug = new Suggestion(prop.getIRI(), Suggestion.Type.Datatype, prop.getIRI().getFragment(), descriptionValue, domainString);
-        sugList.put(prop.getIRI(), sug);
-    }
-		
+		Set<OWLDataProperty> dataProperties = ESO.getDataPropertiesInSignature();
+		//printOWLDataProperties(dataProperties, "ESO DataProperties");
+		for (OWLDataProperty prop : dataProperties) {
+			OWLAnnotationProperty description = fac.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_COMMENT.getIRI());
+			String descriptionValue = "";
+			String domainString = "";
+			for (OWLAnnotation annotation : prop.getAnnotations(ESO, description)) {
+				if (annotation.getValue() instanceof OWLLiteral) {
+					OWLLiteral val = (OWLLiteral) annotation.getValue();
+					descriptionValue = val.getLiteral();
+				}
+			}
+			for (OWLClassExpression domainClass : prop.getDomains(ESO)) {
+				if (domainClass instanceof OWLClass) {
+					domainString = ((OWLClass)domainClass).getIRI().getFragment() + ", ";
+				}
+			}
+
+			Recommendation sug = new Recommendation(prop.getIRI(), Recommendation.Type.Datatype, prop.getIRI().getFragment(), descriptionValue, domainString);
+			sugList.put(prop.getIRI(), sug);
+		}
+
 	}
-	
+
 	private OWLOntology loadOntologyFromStardogDB(String stardogDB) {
 		Connection aConn;
 		try {
-			
+
 			aConn = ConnectionConfiguration
 					.to(stardogDB)		    // the name of the db to connect 
 					.server("http://bizagi.ugent.be:5820/")
 					.credentials("admin", "liesbeth1812")// credentials to use while connecting
 					.connect();
-			
+
 			Model test = SDJenaFactory.createModel(aConn);
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
-		
+
 			test.write(out, "RDF/XML");
-			aConn.close();
-	    
+			//aConn.close();
+
 			return manager.loadOntologyFromOntologyDocument(new ByteArrayInputStream(out.toByteArray()));
-		
+
 		} catch (OWLOntologyCreationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
+
 			return null;
 		} catch (StardogException e) {
 			// TODO Auto-generated catch block
@@ -617,138 +613,138 @@ public class BPMNSuggestionEngine2 {
 
 	public OWLReasoner getReasoner(OWLOntology ontology){
 		OWLReasonerFactory reasonerFactory = new StructuralReasonerFactory();
-		
+
 		OWLReasonerConfiguration config = new SimpleConfiguration();
-        return reasonerFactory.createReasoner(ontology, config);
-		
-	}
-	
-	public void testConsistency(OWLOntology ontology){
-		
-        // Ask the reasoner to do all the necessary work now
-        OWLReasoner reasoner = getReasoner(ontology);
-        reasoner.precomputeInferences();
-        // We can determine if the ontology is actually consistent (in this
-        // case, it should be).
-        boolean consistent = reasoner.isConsistent();
-        System.out.println("Consistent: " + consistent);
-        }
-	
-	//Construct Matching Mechanism Class
-	
-	
-	public Set<OWLNamedIndividual> constructmatchingMechanismClass2(String irimodellingConstruct){
-		OWLDataFactory fac = manager.getOWLDataFactory();
-	    OWLClass owlClass = fac.getOWLClass(IRI
-	                .create(irimodellingConstruct));
-	    //OWLReasoner reasoner = getReasoner(merged);
-	    org.semanticweb.HermiT.Reasoner reasoner = new Reasoner(merged);
-	    NodeSet<OWLNamedIndividual> individuals = reasoner.getInstances(owlClass, false);
-	    Set<OWLNamedIndividual> extendedIndividuals = individuals.getFlattened();
-	    
-	    for(Node<OWLNamedIndividual> individual: individuals){
-	    	OWLClass owlClass2 = fac.getOWLClass(IRI
-	                .create(individual.getRepresentativeElement().getIRI().toString()));
-	    	NodeSet<OWLClass> subClses = reasoner.getSubClasses(owlClass2, false);
-	    	for(OWLClass owlClass3: subClses.getFlattened()){
-	    		extendedIndividuals.add(fac.getOWLNamedIndividual(owlClass3.getIRI()));
-	    	}
-	    }
-	    return extendedIndividuals;
-	}
-	
-	//Construct Matching Mechanism DataType
-	
-	public Set<OWLDataProperty> constructmatchingMechanismDataType(String irimodellingConstruct){
-		OWLDataFactory fac = manager.getOWLDataFactory();
-	    OWLDataProperty owlDataProperty = fac.getOWLDataProperty(IRI
-	                .create(irimodellingConstruct));
-	    //OWLReasoner reasoner = getReasoner(merged);
-	    org.semanticweb.HermiT.Reasoner reasoner = new Reasoner(merged);
-	    NodeSet<OWLDataProperty> subProps = reasoner.getSubDataProperties(owlDataProperty, false);
-	    
-	    return subProps.getFlattened();
+		return reasonerFactory.createReasoner(ontology, config);
+
 	}
 
-	
+	public void testConsistency(OWLOntology ontology){
+
+		// Ask the reasoner to do all the necessary work now
+		OWLReasoner reasoner = getReasoner(ontology);
+		reasoner.precomputeInferences();
+		// We can determine if the ontology is actually consistent (in this
+		// case, it should be).
+		boolean consistent = reasoner.isConsistent();
+		System.out.println("Consistent: " + consistent);
+	}
+
+	//Construct Matching Mechanism Class
+
+
+	public Set<OWLNamedIndividual> constructmatchingMechanismClass2(String irimodellingConstruct){
+		OWLDataFactory fac = manager.getOWLDataFactory();
+		OWLClass owlClass = fac.getOWLClass(IRI
+				.create(irimodellingConstruct));
+		//OWLReasoner reasoner = getReasoner(merged);
+		org.semanticweb.HermiT.Reasoner reasoner = new Reasoner(merged);
+		NodeSet<OWLNamedIndividual> individuals = reasoner.getInstances(owlClass, false);
+		Set<OWLNamedIndividual> extendedIndividuals = individuals.getFlattened();
+
+		for(Node<OWLNamedIndividual> individual: individuals){
+			OWLClass owlClass2 = fac.getOWLClass(IRI
+					.create(individual.getRepresentativeElement().getIRI().toString()));
+			NodeSet<OWLClass> subClses = reasoner.getSubClasses(owlClass2, false);
+			for(OWLClass owlClass3: subClses.getFlattened()){
+				extendedIndividuals.add(fac.getOWLNamedIndividual(owlClass3.getIRI()));
+			}
+		}
+		return extendedIndividuals;
+	}
+
+	//Construct Matching Mechanism DataType
+
+	public Set<OWLDataProperty> constructmatchingMechanismDataType(String irimodellingConstruct){
+		OWLDataFactory fac = manager.getOWLDataFactory();
+		OWLDataProperty owlDataProperty = fac.getOWLDataProperty(IRI
+				.create(irimodellingConstruct));
+		//OWLReasoner reasoner = getReasoner(merged);
+		org.semanticweb.HermiT.Reasoner reasoner = new Reasoner(merged);
+		NodeSet<OWLDataProperty> subProps = reasoner.getSubDataProperties(owlDataProperty, false);
+
+		return subProps.getFlattened();
+	}
+
+
 	public static void listSWRLRules(OWLOntology ontology) { 
-        OWLObjectRenderer renderer = new DLSyntaxObjectRenderer(); 
-        for (SWRLRule rule : ontology.getAxioms(AxiomType.SWRL_RULE)) { 
-            System.out.println(renderer.render(rule)); 
-        } 
-    }
-	
+		OWLObjectRenderer renderer = new DLSyntaxObjectRenderer(); 
+		for (SWRLRule rule : ontology.getAxioms(AxiomType.SWRL_RULE)) { 
+			System.out.println(renderer.render(rule)); 
+		} 
+	}
+
 	//Neighbourghood base mechanism
-	
+
 	public Set<OWLNamedIndividual> ruleBasedMechanism(String irimodellingConstruct){
-		
+
 		OWLDataFactory fac = manager.getOWLDataFactory();
-	    OWLClass owlClass = fac.getOWLClass(IRI
-	                .create(irimodellingConstruct));
-	    //OWLReasoner reasoner = getReasoner(merged);
-	    // reasoner = PelletReasonerFactory.getInstance().createReasoner(mergedRules);
-	    //reasoner.getKB().realize();
-	    org.semanticweb.HermiT.Reasoner reasoner = new Reasoner(modelOntology);
-	    NodeSet<OWLNamedIndividual> individuals = reasoner.getInstances(owlClass, false);
-	    
-	    Set<OWLNamedIndividual> extendedIndividuals = individuals.getFlattened();
-	    
-	    for(Node<OWLNamedIndividual> individual: individuals){
-	    	OWLClass owlClass2 = fac.getOWLClass(IRI
-	                .create(individual.getRepresentativeElement().getIRI().toString()));
-	    	NodeSet<OWLClass> subClses = reasoner.getSubClasses(owlClass2, false);
-	    	for(OWLClass owlClass3: subClses.getFlattened()){
-	    		extendedIndividuals.add(fac.getOWLNamedIndividual(owlClass3.getIRI()));
-	    	}
-	    }
-	    return extendedIndividuals;
-	    
+		OWLClass owlClass = fac.getOWLClass(IRI
+				.create(irimodellingConstruct));
+		//OWLReasoner reasoner = getReasoner(merged);
+		// reasoner = PelletReasonerFactory.getInstance().createReasoner(mergedRules);
+		//reasoner.getKB().realize();
+		org.semanticweb.HermiT.Reasoner reasoner = new Reasoner(modelOntology);
+		NodeSet<OWLNamedIndividual> individuals = reasoner.getInstances(owlClass, false);
+
+		Set<OWLNamedIndividual> extendedIndividuals = individuals.getFlattened();
+
+		for(Node<OWLNamedIndividual> individual: individuals){
+			OWLClass owlClass2 = fac.getOWLClass(IRI
+					.create(individual.getRepresentativeElement().getIRI().toString()));
+			NodeSet<OWLClass> subClses = reasoner.getSubClasses(owlClass2, false);
+			for(OWLClass owlClass3: subClses.getFlattened()){
+				extendedIndividuals.add(fac.getOWLNamedIndividual(owlClass3.getIRI()));
+			}
+		}
+		return extendedIndividuals;
+
 	}
-	
+
 	public Set<OWLNamedIndividual> ruleBasedMechanism2(String irimodellingConstruct){
-		
+
 		OWLDataFactory fac = manager.getOWLDataFactory();
-	    OWLClass owlClass = fac.getOWLClass(IRI
-	                .create(irimodellingConstruct));
-	    
-	    OWLNamedIndividual element = fac.getOWLNamedIndividual(IRI.create("http://www.mis.ugent.be/ontologies/model" + "#" + "test2"));
-	    OWLClassAssertionAxiom classAssertion = fac.getOWLClassAssertionAxiom(owlClass, element);
-	    AddAxiom addAxiom = new AddAxiom(modelOntology, classAssertion);
-	    // We now use the manager to apply the change
-	    manager.applyChange(addAxiom);
-	    
-	    //OWLReasonerFactory reasonerFactory = PelletReasonerFactory.getInstance(); 
-        //OWLReasoner reasoner = reasonerFactory.createReasoner(mergedRules, new SimpleConfiguration()); 
-	    //reasoner = getReasoner(mergedRules);
-	    //PelletReasoner reasoner = PelletReasonerFactory.getInstance().createReasoner(mergedRules);
-	    //reasoner.getKB().realize();
-	    org.semanticweb.HermiT.Reasoner reasoner = new Reasoner(modelOntology);
-	    reasoner.flush();
-	    OWLObjectProperty hasOntologyAnnotation = fac.getOWLObjectProperty(IRI
-                .create(semanticAnnotationProperty));
-	    
-	   
-	    NodeSet<OWLNamedIndividual> individuals3 = reasoner.getObjectPropertyValues(element, hasOntologyAnnotation.getSimplified());
-	    Set<OWLNamedIndividual> extendedIndividuals = individuals3.getFlattened();
-	    
-	    for(Node<OWLNamedIndividual> individual: individuals3){
-	    	OWLClass owlClass2 = fac.getOWLClass(IRI
-	                .create(individual.getRepresentativeElement().getIRI().toString()));
-	    	NodeSet<OWLClass> subClses = reasoner.getSubClasses(owlClass2, false);
-	    	for(OWLClass owlClass3: subClses.getFlattened()){
-	    		extendedIndividuals.add(fac.getOWLNamedIndividual(owlClass3.getIRI()));
-	    	}
-	    }
-	    
-	    OWLEntityRemover remover = new OWLEntityRemover(manager, Collections.singleton(modelOntology));
-	    element.accept(remover);
-	    manager.applyChanges(remover.getChanges());
-	    reasoner.flush();
-	    
-	    return extendedIndividuals;
+		OWLClass owlClass = fac.getOWLClass(IRI
+				.create(irimodellingConstruct));
+
+		OWLNamedIndividual element = fac.getOWLNamedIndividual(IRI.create("http://www.mis.ugent.be/ontologies/model" + "#" + "test2"));
+		OWLClassAssertionAxiom classAssertion = fac.getOWLClassAssertionAxiom(owlClass, element);
+		AddAxiom addAxiom = new AddAxiom(modelOntology, classAssertion);
+		// We now use the manager to apply the change
+		manager.applyChange(addAxiom);
+
+		//OWLReasonerFactory reasonerFactory = PelletReasonerFactory.getInstance(); 
+		//OWLReasoner reasoner = reasonerFactory.createReasoner(mergedRules, new SimpleConfiguration()); 
+		//reasoner = getReasoner(mergedRules);
+		//PelletReasoner reasoner = PelletReasonerFactory.getInstance().createReasoner(mergedRules);
+		//reasoner.getKB().realize();
+		org.semanticweb.HermiT.Reasoner reasoner = new Reasoner(modelOntology);
+		reasoner.flush();
+		OWLObjectProperty hasOntologyAnnotation = fac.getOWLObjectProperty(IRI
+				.create(semanticAnnotationProperty));
+
+
+		NodeSet<OWLNamedIndividual> individuals3 = reasoner.getObjectPropertyValues(element, hasOntologyAnnotation.getSimplified());
+		Set<OWLNamedIndividual> extendedIndividuals = individuals3.getFlattened();
+
+		for(Node<OWLNamedIndividual> individual: individuals3){
+			OWLClass owlClass2 = fac.getOWLClass(IRI
+					.create(individual.getRepresentativeElement().getIRI().toString()));
+			NodeSet<OWLClass> subClses = reasoner.getSubClasses(owlClass2, false);
+			for(OWLClass owlClass3: subClses.getFlattened()){
+				extendedIndividuals.add(fac.getOWLNamedIndividual(owlClass3.getIRI()));
+			}
+		}
+
+		OWLEntityRemover remover = new OWLEntityRemover(manager, Collections.singleton(modelOntology));
+		element.accept(remover);
+		manager.applyChanges(remover.getChanges());
+		reasoner.flush();
+
+		return extendedIndividuals;
 	}
-	
-	
+
+
 	public Set<String>  getWordNetSyn(String label){
 		System.setProperty("wordnet.database.dir", wordnet.getAbsolutePath());
 		String[] wordForms = null;
@@ -757,7 +753,7 @@ public class BPMNSuggestionEngine2 {
 		Set<String> result = new HashSet();
 		for (int i = 0; i < synsets.length; i++)
 		{
-			
+
 			Synset synset = synsets[i];
 			//System.out.println("SYN: " + synset.getDefinition());
 			wordForms = synset.getWordForms();
@@ -765,25 +761,25 @@ public class BPMNSuggestionEngine2 {
 			{
 				String word = wordForms[j];
 				result.add(word);
-				}
+			}
 		}
 		return result;
-		
+
 	}
 
-	
-	
+
+
 	public Set<OWLNamedIndividual>  getWordNetSynClass(String label){
 		System.setProperty("wordnet.database.dir", wordnet.getAbsolutePath());
 		String[] wordForms = null;
 		WordNetDatabase database = WordNetDatabase.getFileInstance();
 		Synset[] synsets = database.getSynsets(label);
-		
+
 		//  Display the word forms and definitions for synsets retrieved
 		Set<OWLNamedIndividual> individuals = new TreeSet<OWLNamedIndividual>();
 		for (int i = 0; i < synsets.length; i++)
 		{
-			
+
 			Synset synset = synsets[i];
 			System.out.println("SYN: " + synset.getDefinition());
 			wordForms = synset.getWordForms();
@@ -799,20 +795,20 @@ public class BPMNSuggestionEngine2 {
 						//clses.addAll(reasonerESO.getSubClasses(cls, false).getFlattened());
 					}
 				}	
-				
+
 			}
 		}
-				
+
 		return individuals;
-		
+
 	}
-	
+
 	public Set<OWLDataProperty>  getWordNetSynDataProperties(String label){
 		System.setProperty("wordnet.database.dir", wordnet.getAbsolutePath());
 		String[] wordForms = null;
 		WordNetDatabase database = WordNetDatabase.getFileInstance();
 		Synset[] synsets = database.getSynsets(label);
-		
+
 		OWLReasoner reasonerESO = getReasoner(ESO);
 		//  Display the word forms and definitions for synsets retrieved
 		Set<OWLDataProperty> props = new TreeSet<OWLDataProperty>();
@@ -825,7 +821,7 @@ public class BPMNSuggestionEngine2 {
 			{
 				String word = wordForms[j];
 				IRI propIRI = IRI.create(ESO.getOntologyID().getOntologyIRI().toString(), "#" + word);
-				
+
 				for(OWLDataProperty prop: ESO.getDataPropertiesInSignature())
 				{
 					if(prop.getIRI().toString().equals(propIRI.toString())){
@@ -833,42 +829,42 @@ public class BPMNSuggestionEngine2 {
 						props.addAll(reasonerESO.getSubDataProperties(prop, false).getFlattened());
 					}
 				}	
-					
-				
-				
+
+
+
 			}
-						//System.out.println(": " + synsets[i].getDefinition());
+			//System.out.println(": " + synsets[i].getDefinition());
 		}
-				
+
 		return props;
-		
+
 	}
-	
-	public SortedSet<Suggestion> calculateJaroWinklerDistanceClass(String label){
-		
-		
+
+	public SortedSet<Recommendation> calculateJaroWinklerDistanceClass(String label){
+
+
 		return null;
-		
+
 	}
-	
-	
-	public SortedSet<Suggestion> suggestionList(String irimodellingConstruct, String label){
-		
+
+
+	public SortedSet<Recommendation> suggestionList(String irimodellingConstruct, String label){
+
 		resetWeightsSuggestions();
-		
-	
+
+
 		boolean verbNounPattern = false;
 		boolean labelNull = true;
-		
+
 		List<String> nouns = new ArrayList<String>();
 		List<String> verbs = new ArrayList<String>();
-		
+
 		if(label != null){
 			labelNull = false;
 		}
-		
+
 		// check if label corresponds to <<verb> <<noun>
-		
+
 		/*if((irimodellingConstruct.equals(task) || irimodellingConstruct.equals(activity)) && !labelNull) {
 			nouns = parseSentence2(label,"NN");
 			verbs = parseSentence2(label,"VB");
@@ -876,187 +872,187 @@ public class BPMNSuggestionEngine2 {
 				label = nouns.get(0);
 				verbNounPattern = true;
 			}	
-				
+
 		}*/
-	    
+
 		//CONSTRUCT MATCHING
 		if (ConstructMatching){
 			Set<OWLNamedIndividual> individuals = filterIndividuals(constructmatchingMechanismClass2(irimodellingConstruct));
 			for (OWLNamedIndividual ind : individuals) {
-				Suggestion sug = sugList.get(ind.getIRI());
-				sug.setWeightConstructMatching(scoreConstructMatching);
-				sug.setWeight(sug.getWeight() + weightConstructMatching*scoreConstructMatching);
+				Recommendation sug = sugList.get(ind.getIRI());
+				sug.setScoreModelLanguageRecommendationService(scoreConstructMatching);
+				sug.setScore(sug.getScore() + weightConstructMatching*scoreConstructMatching);
 			}
-	    
+
 			Set<OWLDataProperty> props1 = filterDataProperties(constructmatchingMechanismDataType(irimodellingConstruct));
 			//printOWLDataProperties(props1, "ESO DataProperties construct matching");
 			for (OWLDataProperty prop : props1) {
-				Suggestion sug = sugList.get(prop.getIRI());
-				sug.setWeightConstructMatching(scoreConstructMatching);
-				sug.setWeight(sug.getWeight() + weightConstructMatching*scoreConstructMatching);
-	    	}
+				Recommendation sug = sugList.get(prop.getIRI());
+				sug.setScoreModelLanguageRecommendationService(scoreConstructMatching);
+				sug.setScore(sug.getScore() + weightConstructMatching*scoreConstructMatching);
+			}
 		}
-	    
-	    //RULE-BASED RECOMMENDATION SERVICE
-	  	if (RuleBasedMatching){
-	    
-	  		Set<OWLNamedIndividual> individuals2 = new HashSet<OWLNamedIndividual>();
-	  		individuals2 = filterIndividuals(ruleBasedMechanism2(irimodellingConstruct));
-	  		
-	    
-	    
-	  		//printOWLClasses(clses2,"ESO OBjects location mechanism");
-	  		for (OWLNamedIndividual ind : individuals2) {
-	  			//System.out.println(cls.getIRI());
-	  			Suggestion sug = sugList.get(ind.getIRI());
-	  			sug.setWeight(sug.getWeight() + weightRuleBasedMechanism*scoreRuleBasedMatching);
-	  			sug.setWeightLocationMechanism(scoreRuleBasedMatching);
-	  		}
-	  	}
-		
-			
-		
+
+		//RULE-BASED RECOMMENDATION SERVICE
+		if (RuleBasedMatching){
+
+			Set<OWLNamedIndividual> individuals2 = new HashSet<OWLNamedIndividual>();
+			individuals2 = filterIndividuals(ruleBasedMechanism2(irimodellingConstruct));
+
+
+
+			//printOWLClasses(clses2,"ESO OBjects location mechanism");
+			for (OWLNamedIndividual ind : individuals2) {
+				//System.out.println(cls.getIRI());
+				Recommendation sug = sugList.get(ind.getIRI());
+				sug.setScore(sug.getScore() + weightRuleBasedMechanism*scoreRuleBasedMatching);
+				sug.setScoreRuleBasedREcommendationService(scoreRuleBasedMatching);
+			}
+		}
+
+
+
 		//Label-based recommendation Service
 		if (LabelBasedMatching && !labelNull){
-			for (Suggestion sug : sugList.values()) {
+			for (Recommendation sug : sugList.values()) {
 				double max = 0.0;
-				max = sug.getJaroWinklerDistance(label,JWDweightThreshold,JWDnumChars);
+				//max = sug.getJaroWinklerDistance(label,JWDweightThreshold,JWDnumChars);
 				Set<String> synonyms = getWordNetSyn(label);
-				
+
 				for (String synonym : synonyms) {
 					double score = this.getJaroWinklerDistance(synonym, label, JWDweightThreshold, JWDnumChars);
 					if(score > max)
 						max = score;
 				}
-				
-				sug.setWeight(max + sug.getWeight());
-				sug.setWeightTextMatching(max);
-	        }
+
+				sug.setScore(max + sug.getScore());
+				sug.setScoreLabelBasedRecommendationService(max);
+			}
 		}
-		
-		
-		SortedSet<Suggestion> sortedSugList = new TreeSet<Suggestion>(); 
-		for (Suggestion sug : sugList.values()) {
+
+
+		SortedSet<Recommendation> sortedSugList = new TreeSet<Recommendation>(); 
+		for (Recommendation sug : sugList.values()) {
 			//System.out.println(cls.getIRI());
 			if(verbNounPattern)
 				sug.setSuggestionString(verbs.get(0) + " " + sug.getIri().getFragment());
-        	sortedSugList.add(sug);
+			sortedSugList.add(sug);
 
-        }
-		
+		}
+
 		AuditTrailEntry entry = new AuditTrailEntry("Generate recommendation");
 		entry.setAttribute("Model Construct", irimodellingConstruct); 
 		entry.setAttribute("Entered label", label);
 		//this.log(entry);
 		return sortedSugList;
-		
+
 	}
-	
+
 	public double getJaroWinklerDistance(String string1, String string2, double jWDweightThreshold, int jWDnumChars){
 		JaroWinklerDistance jwd = new JaroWinklerDistance(jWDweightThreshold,jWDnumChars);
 		return 1- jwd.distance((CharSequence)string1.toLowerCase(), string2.toLowerCase());
 	}
-	
+
 	public IRI addModelInstance(String iriConstruct, String id, String label){
 		OWLDataFactory fac = manager.getOWLDataFactory();
-	    OWLClass constructClass = fac.getOWLClass(IRI
-                .create(iriConstruct));
-	    
-	    OWLNamedIndividual element = fac.getOWLNamedIndividual(IRI.create("http://www.mis.ugent.be/ontologies/model" + "#" + id));
-   
-        OWLClassAssertionAxiom classAssertion = fac.getOWLClassAssertionAxiom(constructClass, element);
-        AddAxiom addAxiom = new AddAxiom(modelOntology, classAssertion);
-        // We now use the manager to apply the change
-        manager.applyChange(addAxiom);
-        
-        
-        OWLAnnotation labelAnno = fac.getOWLAnnotation(fac.getRDFSLabel(), fac.getOWLLiteral(label));
+		OWLClass constructClass = fac.getOWLClass(IRI
+				.create(iriConstruct));
+
+		OWLNamedIndividual element = fac.getOWLNamedIndividual(IRI.create("http://www.mis.ugent.be/ontologies/model" + "#" + id));
+
+		OWLClassAssertionAxiom classAssertion = fac.getOWLClassAssertionAxiom(constructClass, element);
+		AddAxiom addAxiom = new AddAxiom(modelOntology, classAssertion);
+		// We now use the manager to apply the change
+		manager.applyChange(addAxiom);
+
+
+		OWLAnnotation labelAnno = fac.getOWLAnnotation(fac.getRDFSLabel(), fac.getOWLLiteral(label));
 		OWLAxiom ax = fac.getOWLAnnotationAssertionAxiom(element.getIRI(), labelAnno);
 		AddAxiom addAxiom2 = new AddAxiom(modelOntology, ax);
 		manager.applyChange(addAxiom2);
-	    
+
 		AuditTrailEntry entry = new AuditTrailEntry("Add Model Element");
 		entry.setAttribute("Element Type", iriConstruct); 
 		entry.setAttribute("Element ", element.getIRI().toString()); 
 		//this.log(entry);
-   
-	    
-	    System.out.println("Updated ontology: " + modelOntology);
-	    return element.getIRI();
-		
+
+
+		System.out.println("Updated ontology: " + modelOntology);
+		return element.getIRI();
+
 	}
-	
+
 	public IRI addModelRelationship(String iriConstructRelationship, String iriElement1, String iriElement2){
 		OWLDataFactory fac = manager.getOWLDataFactory();
-	    
-	    OWLNamedIndividual element = fac.getOWLNamedIndividual(IRI.create("iriElement1"));
-	    
-   
-	    OWLIndividual element1 = fac.getOWLNamedIndividual(IRI.create(iriElement1));
-        OWLIndividual element2 = fac.getOWLNamedIndividual(IRI.create(iriElement2));
-        // We want to link the subject and object with the hasFather property,
-        // so use the data factory to obtain a reference to this object
-        // property.
-        OWLObjectProperty relationship = fac.getOWLObjectProperty(IRI.create(iriConstructRelationship));
-        // Now create the actual assertion (triple), as an object property
-        // assertion axiom matthew --> hasFather --> peter
-        OWLObjectPropertyAssertionAxiom assertion = fac.getOWLObjectPropertyAssertionAxiom(relationship, element1, element2);
-        // Finally, add the axiom to our ontology and save
-        AddAxiom addAxiomChange = new AddAxiom(modelOntology, assertion);
-        manager.applyChange(addAxiomChange);
-        
-        AuditTrailEntry entry = new AuditTrailEntry("Add Model Relationship");
+
+		OWLNamedIndividual element = fac.getOWLNamedIndividual(IRI.create("iriElement1"));
+
+
+		OWLIndividual element1 = fac.getOWLNamedIndividual(IRI.create(iriElement1));
+		OWLIndividual element2 = fac.getOWLNamedIndividual(IRI.create(iriElement2));
+		// We want to link the subject and object with the hasFather property,
+		// so use the data factory to obtain a reference to this object
+		// property.
+		OWLObjectProperty relationship = fac.getOWLObjectProperty(IRI.create(iriConstructRelationship));
+		// Now create the actual assertion (triple), as an object property
+		// assertion axiom matthew --> hasFather --> peter
+		OWLObjectPropertyAssertionAxiom assertion = fac.getOWLObjectPropertyAssertionAxiom(relationship, element1, element2);
+		// Finally, add the axiom to our ontology and save
+		AddAxiom addAxiomChange = new AddAxiom(modelOntology, assertion);
+		manager.applyChange(addAxiomChange);
+
+		AuditTrailEntry entry = new AuditTrailEntry("Add Model Relationship");
 		entry.setAttribute("Element Type", iriConstructRelationship); 
 		entry.setAttribute("Element1 ", element1.toString()); 
 		entry.setAttribute("Element2 ", element2.toString()); 
 		//this.log(entry);
-	    
-	    System.out.println("Updated ontology: " + modelOntology);
-	    return element.getIRI();
-		
+
+		System.out.println("Updated ontology: " + modelOntology);
+		return element.getIRI();
+
 	}
-	
-	public IRI addModelAnnotation(String iriModelElement, String iriOntologyElement, Suggestion suggestion){
+
+	public IRI addModelAnnotation(String iriModelElement, String iriOntologyElement, Recommendation suggestion){
 		OWLDataFactory fac = manager.getOWLDataFactory();
-		
+
 		OWLNamedIndividual modelElement = fac.getOWLNamedIndividual(IRI.create(iriModelElement));
 		OWLNamedIndividual ontologyElement = fac.getOWLNamedIndividual(IRI.create(iriOntologyElement));
-		
-        OWLObjectProperty relationship = fac.getOWLObjectProperty(IRI.create(semanticAnnotationProperty));
-        // Now create the actual assertion (triple), as an object property
-        // assertion axiom matthew --> hasFather --> peter
-        OWLObjectPropertyAssertionAxiom assertion = fac.getOWLObjectPropertyAssertionAxiom(relationship, modelElement, ontologyElement);
-        // Finally, add the axiom to our ontology and save
-        AddAxiom addAxiomChange = new AddAxiom(modelOntology, assertion);
-        manager.applyChange(addAxiomChange);
-        
-        AuditTrailEntry entry = new AuditTrailEntry("Add Model Annotation");
-		
+
+		OWLObjectProperty relationship = fac.getOWLObjectProperty(IRI.create(semanticAnnotationProperty));
+		// Now create the actual assertion (triple), as an object property
+		// assertion axiom matthew --> hasFather --> peter
+		OWLObjectPropertyAssertionAxiom assertion = fac.getOWLObjectPropertyAssertionAxiom(relationship, modelElement, ontologyElement);
+		// Finally, add the axiom to our ontology and save
+		AddAxiom addAxiomChange = new AddAxiom(modelOntology, assertion);
+		manager.applyChange(addAxiomChange);
+
+		AuditTrailEntry entry = new AuditTrailEntry("Add Model Annotation");
+
 		entry.setAttribute("Model Element", iriModelElement.toString()); 
 		entry.setAttribute("Ontology Element ", ontologyElement.toString()); 
-		entry.setAttribute("Score",Double.toString(suggestion.getWeight()));
-		entry.setAttribute("Score ConstructMatching",Double.toString(suggestion.getWeightConstructMatching()));
+		entry.setAttribute("Score",Double.toString(suggestion.getScore()));
+		entry.setAttribute("Score ConstructMatching",Double.toString(suggestion.getScoreModelLanguageRecommendationService()));
 		entry.setAttribute("Score TextMatching",Double.toString(suggestion.getWeightWordnetSynonyms()));
 		entry.setAttribute("Order in Suggestion List",Integer.toString(suggestion.getOrder()));
-		
+
 		//this.log(entry);
-	    
-	    System.out.println("Updated ontology: " + modelOntology);
-	    
-		
-	    return modelElement.getIRI();
-		
+
+		System.out.println("Updated ontology: " + modelOntology);
+
+
+		return modelElement.getIRI();
+
 	}
-	
+
 	public IRI removeModelAnnotation(String iriElement){
 		OWLDataFactory fac = manager.getOWLDataFactory();
-		
+
 		OWLNamedIndividual modelElement = fac.getOWLNamedIndividual(IRI.create(modelOntology.getOntologyID().getOntologyIRI().toString() + "#" +iriElement));
 		OWLObjectProperty relationship = fac.getOWLObjectProperty(IRI.create(semanticAnnotationProperty));
-		 
+
 		Set<OWLIndividual> domainElements = modelElement.getObjectPropertyValues(relationship, modelOntology);
 		//OWLAxiomVisitor remover = new OWLAxiomVisitor(m,Collections.singleton(modelOntology));
-		
+
 		Set<OWLOntologyChange> changes = new HashSet<OWLOntologyChange>();
 		for (OWLIndividual domainElement : domainElements)
 		{
@@ -1064,31 +1060,31 @@ public class BPMNSuggestionEngine2 {
 					fac.getOWLObjectPropertyAssertionAxiom(relationship, modelElement, domainElement);
 			RemoveAxiom remover = new RemoveAxiom(modelOntology, assertion);
 			changes.add(remover);
-			
+
 		}
 		List<OWLOntologyChange> list = new ArrayList<OWLOntologyChange>(changes);
-        manager.applyChanges(list);
-        
-        AuditTrailEntry entry = new AuditTrailEntry("Remove ELement Annotation");
-      		entry.setAttribute("Element", iriElement.toString());  
-      		//this.log(entry);
-		
-		
-	    System.out.println("Updated ontology: " + modelOntology);
-	    return modelElement.getIRI();
-		
+		manager.applyChanges(list);
+
+		AuditTrailEntry entry = new AuditTrailEntry("Remove ELement Annotation");
+		entry.setAttribute("Element", iriElement.toString());  
+		//this.log(entry);
+
+
+		System.out.println("Updated ontology: " + modelOntology);
+		return modelElement.getIRI();
+
 	}
 
-	
-	
-	public void printSugList(SortedSet<Suggestion> sugList){
+
+
+	public void printSugList(SortedSet<Recommendation> sugList){
 		System.out.println();
-		for(Suggestion sug: sugList)
-			System.out.println(sug.getIri() + "   Weight=" + sug.getWeight());
+		for(Recommendation sug: sugList)
+			System.out.println(sug.getIri() + "   Weight=" + sug.getScore());
 		System.out.println();
-		
+
 	}
-	
+
 	public void printOWLClasses(Set<OWLClass> clses, String title){
 		System.out.println();
 		System.out.println(title + "(size=" + clses.size() + ")");
@@ -1096,9 +1092,9 @@ public class BPMNSuggestionEngine2 {
 		for(OWLClass ocl: clses)
 			System.out.println(ocl.getIRI());
 		System.out.println();
-		
+
 	}
-	
+
 	public void printOWLDataProperties(Set<OWLDataProperty> dataProperties, String title){
 		System.out.println();
 		System.out.println(title + "(size=" + dataProperties.size() + ")");
@@ -1106,31 +1102,31 @@ public class BPMNSuggestionEngine2 {
 		for(OWLDataProperty prop: dataProperties)
 			System.out.println(prop.getIRI());
 		System.out.println();
-		
+
 	}
-	
+
 	public Set<OWLNamedIndividual> filterIndividuals(Set<OWLNamedIndividual> entities){
 		Set<OWLNamedIndividual> filteredEntities = new TreeSet<OWLNamedIndividual>();
 		for (OWLNamedIndividual entity : entities) {
 			if(ESO.containsIndividualInSignature(entity.getIRI()))
 				filteredEntities.add(entity);
-        }
+		}
 		return filteredEntities;
-     }
-	
+	}
+
 	public Set<OWLDataProperty> filterDataProperties(Set<OWLDataProperty> entities){
 		Set<OWLDataProperty> filteredEntities = new TreeSet<OWLDataProperty>();
 		for (OWLDataProperty entity : entities) {
 			if(ESO.containsDataPropertyInSignature(entity.getIRI()))
 				filteredEntities.add(entity);
-        }
+		}
 		return filteredEntities;
-     }
-	
-		
+	}
+
+
 	/*
 	public List<String> parseSentence(String input, String Tag){
-		
+
 		 Tree parse = lp.parse(input.toLowerCase());
 		 List<String> taggedWords = new ArrayList<String>(); 
 		 for (TaggedWord tw : parse.taggedYield()) {
@@ -1139,64 +1135,64 @@ public class BPMNSuggestionEngine2 {
 		     //System.out.printf("%s/%s%n", tw.word(), tw.tag());
 		   }
 		 }
-		 
+
 		 //parse.pennPrint();
 		 //System.out.println();
 		return taggedWords;
-	    
+
 	}
-	*/
-	
+	 */
+
 	public List<String> parseSentence2(String input, String Tag){
-		
+
 		//List<HasWord> sentence = Sentence.toWordList(input + ".");
 		//List<Word> sentence2 = Sentence.toUntaggedList(input);
 		DocumentPreprocessor tokenizer = new DocumentPreprocessor(new StringReader(input));
 		List<TaggedWord> tagged = null;
 		for (List<HasWord> sentence : tokenizer)
 			tagged = tagger.tagSentence(sentence);
-		
+
 		List<String> taggedWords = new ArrayList<String>(); 
 		for (TaggedWord tw : tagged) {
 			if (tw.tag().startsWith(Tag)) {
 				taggedWords.add(tw.word());
-			     //System.out.printf("%s/%s%n", tw.word(), tw.tag());
-			   }
+				//System.out.printf("%s/%s%n", tw.word(), tw.tag());
 			}
-			 //parse.pennPrint();
-			 //System.out.println();
+		}
+		//parse.pennPrint();
+		//System.out.println();
 		return taggedWords;
-    }
+	}
 
-	
-	 public void saveModelOntology() throws OWLOntologyStorageException, OWLOntologyCreationException, IOException {
-		 
-		 //System.out.println(PromLogger.getHost());
-		 //recommendationLogger.close();
-		 // Now save a local copy of the ontology. (Specify a path appropriate to
-		 // your setup)
-		 //Bundle bundle = Platform.getBundle("org.eclipse.bpmn2.modeler.suggestion");
-		 Properties systemProperties = System.getProperties();
-		 IProject project;
-		 String filename; 
-		 File file;
-		 String projectDir;
-//		 if(systemProperties.containsKey("Experiment") && systemProperties.getProperty("Experiment").equals("true")){
-//			 	IWorkspace ws = ResourcesPlugin.getWorkspace();
-//				project = ws.getRoot().getProject("default.bpmn");
-//				projectDir = project.getLocationURI().getPath();
-//				file = new File(projectDir + "/" + "default.owl");
-//		 }
-//		 else if(systemProperties.containsKey("Tutorial") && systemProperties.getProperty("Tutorial").equals("true")){
-//			 	IWorkspace ws = ResourcesPlugin.getWorkspace();
-//				project = ws.getRoot().getProject("default.bpmn");
-//				projectDir = project.getLocationURI().getPath();
-//				file = new File(projectDir + "/" + "default.owl");
-//		}
-//		else {
-		 if(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor() != null){
+
+	public void saveModelOntology() throws OWLOntologyStorageException, OWLOntologyCreationException, IOException {
+
+		//System.out.println(PromLogger.getHost());
+		//recommendationLogger.close();
+		// Now save a local copy of the ontology. (Specify a path appropriate to
+		// your setup)
+		//Bundle bundle = Platform.getBundle("org.eclipse.bpmn2.modeler.suggestion");
+		Properties systemProperties = System.getProperties();
+		IProject project;
+		String filename; 
+		File file;
+		String projectDir;
+		//		 if(systemProperties.containsKey("Experiment") && systemProperties.getProperty("Experiment").equals("true")){
+		//			 	IWorkspace ws = ResourcesPlugin.getWorkspace();
+		//				project = ws.getRoot().getProject("default.bpmn");
+		//				projectDir = project.getLocationURI().getPath();
+		//				file = new File(projectDir + "/" + "default.owl");
+		//		 }
+		//		 else if(systemProperties.containsKey("Tutorial") && systemProperties.getProperty("Tutorial").equals("true")){
+		//			 	IWorkspace ws = ResourcesPlugin.getWorkspace();
+		//				project = ws.getRoot().getProject("default.bpmn");
+		//				projectDir = project.getLocationURI().getPath();
+		//				file = new File(projectDir + "/" + "default.owl");
+		//		}
+		//		else {
+		if(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor() != null){
 			IEditorInput input = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput();
-		 
+
 			if (input instanceof Bpmn2DiagramEditorInput) {
 				Bpmn2DiagramEditorInput bpmnInput = (Bpmn2DiagramEditorInput) input;
 				URI inputUri = bpmnInput.getModelUri();
@@ -1207,150 +1203,150 @@ public class BPMNSuggestionEngine2 {
 				filename = bpmnInput.getName();
 				projectDir = project.getLocationURI().getPath();
 				file = new File(projectDir + "/" + filename  + ".owl");
-			
+
 			} else {
 				project = ((IFileEditorInput)input).getFile().getProject();
 				filename = ((IFileEditorInput)input).getFile().getName();
 				//IWorkspace ws = ResourcesPlugin.getWorkspace();
 				projectDir = project.getLocationURI().getPath();
 				file = new File(projectDir + "/" + filename.substring(0, filename.length()-5)  + ".owl");
-			 
-			}
-		//}
-		
-		 OWLXMLOntologyFormat owlxmlFormat = new OWLXMLOntologyFormat();
-		 manager.saveOntology(modelOntology, owlxmlFormat, IRI.create(file.toURI()));
-		
-		 
-		 System.out.println("Owl file saved: " + file.getAbsolutePath());
-		 System.out.println("Owl file saved to: " + projectDir);
-		 
-		 file.createNewFile();
-		 }
-		 
-		 
-		 
-		 //OWLOntologyDocumentTarget documentTarget = new SystemOutDocumentTarget();
-		
-		 //ManchesterOWLSyntaxOntologyFormat manSyntaxFormat = new ManchesterOWLSyntaxOntologyFormat();
-		 
-		 //m.saveOntology(model, manSyntaxFormat, documentTarget);
-		 //file.delete();
-	 }
-	 
-	 public void resetWeightsSuggestions(){
-		 for(Suggestion sug: sugList.values()){
-			 sug.setWeight(0);
-			 sug.setWeightConstructMatching(0);
-			 sug.setWeightLocationMechanism(0);
-			 sug.setWeightWordnetSynonyms(0);
-			 sug.setWeightTextMatching(0);
-			 sug.setSuggestionString(sug.getOntologyString());
-		 }
-		 
-			 
-	 }
-	 /**
-		* This function reads in the properties from a properties-file
-		*/	
-		public void ReadPropertiesFile(FileInputStream fileInput) throws Exception{
-			try {
-				
-				
-				Properties properties = new Properties();
-				properties.load(fileInput);
-				fileInput.close();
 
-				Enumeration enuKeys = properties.keys();
-				System.out.println("Read properties-file:");
-				while (enuKeys.hasMoreElements()) {
-					String key = (String) enuKeys.nextElement();
-					String value = properties.getProperty(key);
-					System.out.println(key + ": " + value);
-					
-					switch(key){
-						case "LabelBasedMatching":
-							LabelBasedMatching = Boolean.parseBoolean(value);
-							break;
-						case "ConstructMatching":
-							ConstructMatching = Boolean.parseBoolean(value);
-							break;
-						case "RuleBasedMatching":
-							RuleBasedMatching = Boolean.parseBoolean(value);
-							break;
-						case "JWDweightThreshold":
-							JWDweightThreshold = Double.parseDouble(value);
-							break;	
-						case "JWDnumChars":
-							JWDweightThreshold = Integer.parseInt(value);
-							break;
-						case "weightLabelBasedMatching":
-							weightLabelBasedMatching = Double.parseDouble(value);
-							break;	
-						case "weightConstructMatching":
-							weightConstructMatching = Double.parseDouble(value);
-							break;	
-						case "scoreConstructMatching":
-							scoreConstructMatching = Double.parseDouble(value);
-							break;	
-						case "weightRuleBasedMatching":
-							weightRuleBasedMatching = Double.parseDouble(value);
-							break;		
-						case "scoreRuleBasedMatching":
-							scoreRuleBasedMatching = Double.parseDouble(value);
-							break;			
-						case "makeNewOntology":
-							makeNewOntology = Boolean.parseBoolean(value);
-							break;	
-						case "AnnotateWhenSuggestionClicked":
-							AnnotateWhenSuggestionClicked = Boolean.parseBoolean(value);
-							break;	
-						case "AnnotateSynonymBasedGenerationSuggestions":
-							AnnotateSynonymBasedGenerationSuggestions = Boolean.parseBoolean(value);
-							break;			
-						case "automaticAnnotation":
-							automaticAnnotation = Boolean.parseBoolean(value);
-							break;			
-						case "AnnotationIndication":
-							canAnnQua = value.toString();
-							break;
-						case "CandidateAnnotationPossiblity":
-							CandidateAnnotationPossiblity=Boolean.parseBoolean(value);
-							break;
-						case "source":
-							source=value;
-							break;
-						case "CoreOntology":
-							CoreOntology=value;
-							break;
-						case "BPMNOntology":
-							BPMNOntology=value;
-							break;
-						case "CoreBPMNOntology":
-							CoreBPMNOntology=value;
-							break;
-						case "ESOntology":
-							ESOntology=value;
-							break;
-						case "ModelOntology":
-							ModelOntology=value;
-							break;
-						case "RulesOntology":
-							RulesOntology=value;
-							break;
-						case "SemAnnOntology":
-							SemAnnOntology=value;
-							break;
-					}
-
-				}
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
 			}
+			//}
+
+			OWLXMLOntologyFormat owlxmlFormat = new OWLXMLOntologyFormat();
+			manager.saveOntology(modelOntology, owlxmlFormat, IRI.create(file.toURI()));
+
+
+			System.out.println("Owl file saved: " + file.getAbsolutePath());
+			System.out.println("Owl file saved to: " + projectDir);
+
+			file.createNewFile();
 		}
-	
-	
+
+
+
+		//OWLOntologyDocumentTarget documentTarget = new SystemOutDocumentTarget();
+
+		//ManchesterOWLSyntaxOntologyFormat manSyntaxFormat = new ManchesterOWLSyntaxOntologyFormat();
+
+		//m.saveOntology(model, manSyntaxFormat, documentTarget);
+		//file.delete();
+	}
+
+	public void resetWeightsSuggestions(){
+		for(Recommendation sug: sugList.values()){
+			sug.setScore(0);
+			sug.setScoreModelLanguageRecommendationService(0);
+			sug.setScoreRuleBasedREcommendationService(0);;
+			sug.setWeightWordnetSynonyms(0);
+			sug.setScoreLabelBasedRecommendationService(0);
+			sug.setSuggestionString(sug.getOntologyString());
+		}
+
+
+	}
+	/**
+	 * This function reads in the properties from a properties-file
+	 */	
+	public void ReadPropertiesFile(FileInputStream fileInput) throws Exception{
+		try {
+
+
+			Properties properties = new Properties();
+			properties.load(fileInput);
+			fileInput.close();
+
+			Enumeration enuKeys = properties.keys();
+			System.out.println("Read properties-file:");
+			while (enuKeys.hasMoreElements()) {
+				String key = (String) enuKeys.nextElement();
+				String value = properties.getProperty(key);
+				System.out.println(key + ": " + value);
+
+				switch(key){
+				case "LabelBasedMatching":
+					LabelBasedMatching = Boolean.parseBoolean(value);
+					break;
+				case "ConstructMatching":
+					ConstructMatching = Boolean.parseBoolean(value);
+					break;
+				case "RuleBasedMatching":
+					RuleBasedMatching = Boolean.parseBoolean(value);
+					break;
+				case "JWDweightThreshold":
+					JWDweightThreshold = Double.parseDouble(value);
+					break;	
+				case "JWDnumChars":
+					JWDweightThreshold = Integer.parseInt(value);
+					break;
+				case "weightLabelBasedMatching":
+					weightLabelBasedMatching = Double.parseDouble(value);
+					break;	
+				case "weightConstructMatching":
+					weightConstructMatching = Double.parseDouble(value);
+					break;	
+				case "scoreConstructMatching":
+					scoreConstructMatching = Double.parseDouble(value);
+					break;	
+				case "weightRuleBasedMatching":
+					weightRuleBasedMatching = Double.parseDouble(value);
+					break;		
+				case "scoreRuleBasedMatching":
+					scoreRuleBasedMatching = Double.parseDouble(value);
+					break;			
+				case "makeNewOntology":
+					makeNewOntology = Boolean.parseBoolean(value);
+					break;	
+				case "AnnotateWhenSuggestionClicked":
+					AnnotateWhenSuggestionClicked = Boolean.parseBoolean(value);
+					break;	
+				case "AnnotateSynonymBasedGenerationSuggestions":
+					AnnotateSynonymBasedGenerationSuggestions = Boolean.parseBoolean(value);
+					break;			
+				case "automaticAnnotation":
+					automaticAnnotation = Boolean.parseBoolean(value);
+					break;			
+				case "AnnotationIndication":
+					canAnnQua = value.toString();
+					break;
+				case "CandidateAnnotationPossiblity":
+					CandidateAnnotationPossiblity=Boolean.parseBoolean(value);
+					break;
+				case "source":
+					source=value;
+					break;
+				case "CoO_file":
+					CoreOntology=value;
+					break;
+				case "MLO_file":
+					BPMNOntology=value;
+					break;
+				case "CoO_MLO_file":
+					CoreBPMNOntology=value;
+					break;
+				case "ESO_file":
+					ESOntology=value;
+					break;
+				case "ModelO_file":
+					ModelOntology=value;
+					break;
+				case "RulesO_file":
+					RulesOntology=value;
+					break;
+				case "SemAnnO_file":
+					SemAnnOntology=value;
+					break;
+				}
+
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+
 
 }

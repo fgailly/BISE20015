@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.bpmn2.modeler.suggestion.algorithm.Suggestion;
+import ugent.mis.cmoeplus.Recommendation;
+
+
 
 public class OntologyCategory implements Comparable<OntologyCategory> {
 	private String name;
 	private int sort;
-	private List<Suggestion> sugs = new ArrayList<Suggestion>();
+	private List<Recommendation> sugs = new ArrayList<Recommendation>();
 
 	public String getName() {
 		return name;
@@ -27,7 +29,7 @@ public class OntologyCategory implements Comparable<OntologyCategory> {
 		this.sort = sort;
 	}
 
-	public List<Suggestion> getSuggestions() {
+	public List<Recommendation> getSuggestions() {
 		return sugs;
 	}
 

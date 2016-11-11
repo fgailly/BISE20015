@@ -2,8 +2,6 @@ package org.eclipse.bpmn2.modeler.suggestion.internal;
 
 import java.net.URL;
 
-import org.eclipse.bpmn2.modeler.suggestion.algorithm.Suggestion;
-import org.eclipse.bpmn2.modeler.suggestion.algorithm.Suggestion.Type;
 import org.eclipse.bpmn2.modeler.suggestion.part.OntologyCategory;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
@@ -25,6 +23,9 @@ import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
+import ugent.mis.cmoeplus.Recommendation;
+import ugent.mis.cmoeplus.Recommendation.Type;
+
 public class SuggestionLabelProvider extends ColumnLabelProvider implements IFontProvider {
 
 	private static final Image CLASS = getImage("class.gif");
@@ -44,7 +45,7 @@ public class SuggestionLabelProvider extends ColumnLabelProvider implements IFon
 	    	}
 	    	return category.getName();
 	    }
-	    return ((Suggestion) element).getSuggestionString(); // + " " + ((Double)((Suggestion)element).getWeight()).toString();
+	    return ((Recommendation) element).getSuggestionString(); // + " " + ((Double)((Suggestion)element).getWeight()).toString();
 	  }
 	
 	public Point getToolTipShift(Object object) {
@@ -71,7 +72,7 @@ public class SuggestionLabelProvider extends ColumnLabelProvider implements IFon
 	    	}
 	    	return category.getName();
 	    }
-	    return ((Suggestion) element).getDescription(); // + " " + ((Double)((Suggestion)element).getWeight()).toString();
+	    return ((Recommendation) element).getDescription(); // + " " + ((Double)((Suggestion)element).getWeight()).toString();
 	}
 
 
@@ -86,10 +87,10 @@ public class SuggestionLabelProvider extends ColumnLabelProvider implements IFon
 	    	}
 			return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_FOLDER);
 		}
-		else if (element instanceof Suggestion) {
-			Suggestion sug = (Suggestion) element;
+		else if (element instanceof Recommendation) {
+			Recommendation sug = (Recommendation) element;
 			Type type = sug.getType();
-			if (sug.getWeight() == Double.MAX_VALUE) {
+			if (sug.getScore() == Double.MAX_VALUE) {
 				return DELETE;
 			}
 			switch (type) {

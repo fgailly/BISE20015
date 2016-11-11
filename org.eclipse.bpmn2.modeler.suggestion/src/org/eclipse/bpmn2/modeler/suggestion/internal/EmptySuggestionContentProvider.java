@@ -1,6 +1,6 @@
 package org.eclipse.bpmn2.modeler.suggestion.internal;
 
-import org.eclipse.bpmn2.modeler.suggestion.algorithm.Suggestion;
+
 import org.eclipse.bpmn2.modeler.suggestion.part.OntologyCategory;
 import org.eclipse.bpmn2.modeler.suggestion.part.SuggestionModel;
 import org.eclipse.jface.viewers.ITreeContentProvider;

@@ -9,41 +9,43 @@ import java.util.TreeSet;
 
 import org.eclipse.bpmn2.modeler.suggestion.algorithm.BPMNSuggestionEngine;
 import org.eclipse.bpmn2.modeler.suggestion.algorithm.BPMNSuggestionEngine2;
-import org.eclipse.bpmn2.modeler.suggestion.algorithm.Suggestion;
+import org.eclipse.bpmn2.modeler.suggestion.algorithm.BPMNSuggestionEngine3;
 import org.eclipse.bpmn2.modeler.suggestion.views.SuggestionView;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 
+import ugent.mis.cmoeplus.Recommendation;
+
 public class SuggestionComparator implements Comparator {
 	
 	
 	public int compare(Object o1, Object o2) {
-		if(o1 instanceof Suggestion && o2 instanceof Suggestion) {
-			return ((Suggestion) o1).compareTo(((Suggestion) o2));
+		if(o1 instanceof Recommendation && o2 instanceof Recommendation) {
+			return ((Recommendation) o1).compareTo(((Recommendation) o2));
 		}
 		else {
 			throw new IllegalArgumentException();
 		}
 	}
 	
-	public static Map<String, Set<Suggestion>> getSuggestions(String idUrl, String name){
+	public static Map<String, Set<Recommendation>> getSuggestions(String idUrl, String name){
 		
 		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		IViewPart view = activePage.findView(SuggestionView.ID);
 		assert(view != null);
 		SuggestionView sugView = (SuggestionView) view;
-		BPMNSuggestionEngine2 engine = sugView.getEngine();
-		SortedSet<Suggestion> sugSet = engine.suggestionList(idUrl, name);
+		BPMNSuggestionEngine3 engine = sugView.getEngine();
+		SortedSet<Recommendation> sugSet = engine.suggestionList(idUrl, name);
 		assert(sugSet != null);
-		Suggestion[] sugArray = (Suggestion[]) sugSet.toArray();
-		Map<String, Set<Suggestion>> suggestions = new TreeMap<String, Set<Suggestion>>();
+		Recommendation[] sugArray = (Recommendation[]) sugSet.toArray();
+		Map<String, Set<Recommendation>> suggestions = new TreeMap<String, Set<Recommendation>>();
 		for (int i = 0; i < sugArray.length; i++) {
-			Suggestion sug = sugArray[i];
+			Recommendation sug = sugArray[i];
 			String type = sug.getType().toString();
-			Set<Suggestion> typedSug = suggestions.get(type);
+			Set<Recommendation> typedSug = suggestions.get(type);
 			if (typedSug == null) {
-				typedSug = new TreeSet<Suggestion>(new SuggestionComparator());
+				typedSug = new TreeSet<Recommendation>(new SuggestionComparator());
 				suggestions.put(type, typedSug);
 			}
 			typedSug.add(sug);

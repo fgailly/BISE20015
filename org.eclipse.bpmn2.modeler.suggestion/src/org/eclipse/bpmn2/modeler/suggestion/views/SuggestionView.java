@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import org.eclipse.bpmn2.modeler.suggestion.algorithm.BPMNSuggestionEngine;
 import org.eclipse.bpmn2.modeler.suggestion.algorithm.BPMNSuggestionEngine2;
+import org.eclipse.bpmn2.modeler.suggestion.algorithm.BPMNSuggestionEngine3;
 import org.eclipse.bpmn2.modeler.suggestion.internal.SuggestionContentProvider;
 import org.eclipse.bpmn2.modeler.suggestion.internal.SuggestionLabelProvider;
 import org.eclipse.bpmn2.modeler.suggestion.part.AnnotateProcessor;
@@ -50,7 +51,7 @@ public class SuggestionView extends ViewPart {
 	//private TableViewer viewer;
 	private TreeViewer viewer;
 	private Action doubleClickAction;
-	private BPMNSuggestionEngine2 engine;
+	private BPMNSuggestionEngine3 engine;
 
 	private SelectionChangeProcessor listener = new SelectionChangeProcessor();
 	private EditorProcessor listener2 = new EditorProcessor();
@@ -175,11 +176,11 @@ public class SuggestionView extends ViewPart {
 	}
 
 
-	public BPMNSuggestionEngine2 getEngine() {
+	public BPMNSuggestionEngine3 getEngine() {
 		return engine;
 	}
 	
-	public void setEngine(BPMNSuggestionEngine2 engine){
+	public void setEngine(BPMNSuggestionEngine3 engine){
 		this.engine = engine;
 	}
 	

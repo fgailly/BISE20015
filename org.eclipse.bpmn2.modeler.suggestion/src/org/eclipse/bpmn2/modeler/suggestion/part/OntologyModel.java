@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.bpmn2.modeler.suggestion.algorithm.BPMNSuggestionEngine;
-import org.eclipse.bpmn2.modeler.suggestion.algorithm.Suggestion;
 import org.eclipse.bpmn2.modeler.suggestion.views.OntologyView;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
+
+import ugent.mis.cmoeplus.Recommendation;
+import ugent.mis.cmoeplus.Recommendation.Type;
 
 public class OntologyModel {
 
@@ -23,12 +25,12 @@ public class OntologyModel {
 		assert(view != null);
 		OntologyView ontView = (OntologyView) view;
 		BPMNSuggestionEngine engine = ontView.getEngine();
-		Set<Suggestion> sugSet = engine.getOntology();
+		Set<Recommendation> sugSet = engine.getOntology();
 		assert(sugSet != null);
 		Object[] sugArray = (Object[]) sugSet.toArray();
 		
 		for (int i = 0; i < sugArray.length; i++) {
-			Suggestion sug = (Suggestion) sugArray[i];
+			Recommendation sug = (Recommendation) sugArray[i];
 			String type = sug.getType().toString();
 			if (!existingCategory(type, ontologyModel)) {
 				OntologyCategory sugCat = new OntologyCategory();

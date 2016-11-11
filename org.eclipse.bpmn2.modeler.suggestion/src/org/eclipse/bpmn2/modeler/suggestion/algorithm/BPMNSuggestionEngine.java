@@ -73,6 +73,7 @@ import org.semanticweb.owlapi.util.OWLOntologyMerger;
 import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
 import org.semanticweb.owlapi.vocab.PrefixOWLOntologyFormat;
 
+import ugent.mis.cmoeplus.Recommendation;
 import uk.ac.manchester.cs.owlapi.dlsyntax.DLSyntaxObjectRenderer;
 
 import com.complexible.stardog.StardogException;
@@ -83,9 +84,6 @@ import com.hp.hpl.jena.rdf.model.Model;
 
 import edu.smu.tspell.wordnet.Synset;
 import edu.smu.tspell.wordnet.WordNetDatabase;
-import edu.stanford.nlp.ling.TaggedWord;
-//import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
-import edu.stanford.nlp.trees.Tree;
 
 
 public class BPMNSuggestionEngine {
@@ -112,7 +110,7 @@ public class BPMNSuggestionEngine {
     final String gateway = "http://www.mis.ugent.be/ontologies/bpmn.owl#Gateway";
     final String qualityUniversal = "http://www.mis.ugent.be/ontologies/ufo.owl#Quality_Universal";
     
-    Map<IRI,Suggestion> sugList;
+    Map<IRI,Recommendation> sugList;
 	
 	//Set parameters for types of matching
 	boolean StringMatching = true;					//String-Matching-Mechanism
@@ -376,7 +374,7 @@ public class BPMNSuggestionEngine {
 			e.printStackTrace();
 		}
         
-			sugList = new HashMap<IRI, Suggestion>();
+			sugList = new HashMap<IRI, Recommendation>();
 			Set<OWLClass> clses = ESO.getClassesInSignature();
 			printOWLClasses(clses, "ESO OBjects");
 			OWLDataFactory fac = m.getOWLDataFactory();
@@ -384,7 +382,7 @@ public class BPMNSuggestionEngine {
 			for (OWLClass cls : clses) {
 	    	OWLAnnotationProperty description = fac.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_COMMENT.getIRI());
 	    	String descriptionValue = "";
-	    	Suggestion.Type type = Suggestion.Type.Class;
+	    	Recommendation.Type type = Recommendation.Type.Class;
 	    	for (OWLAnnotation annotation : cls.getAnnotations(ESO, description)) {
                 if (annotation.getValue() instanceof OWLLiteral) {
                     OWLLiteral val = (OWLLiteral) annotation.getValue();
@@ -397,10 +395,10 @@ public class BPMNSuggestionEngine {
 	    	for(OWLClass superCls :reasoner.getSuperClasses(cls, false).getFlattened()){
 	    		if(superCls.getIRI().toString().equals(qualityUniversal))
 	    		{
-	    			type = Suggestion.Type.Datatype;
+	    			type = Recommendation.Type.Datatype;
 	    		}
 	    	}
-	    	Suggestion sug = new Suggestion(cls.getIRI(), type, cls.getIRI().getFragment(),descriptionValue, "");
+	    	Recommendation sug = new Recommendation(cls.getIRI(), type, cls.getIRI().getFragment(),descriptionValue, "");
 	        sugList.put(cls.getIRI(), sug);
 			}
 			
@@ -408,14 +406,14 @@ public class BPMNSuggestionEngine {
 	    	for (OWLNamedIndividual ind : individuals) {
 		    	OWLAnnotationProperty description = fac.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_COMMENT.getIRI());
 		    	String descriptionValue = "";
-		    	Suggestion.Type type = Suggestion.Type.Class;
+		    	Recommendation.Type type = Recommendation.Type.Class;
 		    	for (OWLAnnotation annotation : ind.getAnnotations(ESO, description)) {
 	                if (annotation.getValue() instanceof OWLLiteral) {
 	                    OWLLiteral val = (OWLLiteral) annotation.getValue();
 	                    descriptionValue = val.getLiteral();
 	                    }
 	            }
-		    	Suggestion sug = new Suggestion(ind.getIRI(), type, ind.getIRI().getFragment(),descriptionValue, "");
+		    	Recommendation sug = new Recommendation(ind.getIRI(), type, ind.getIRI().getFragment(),descriptionValue, "");
 		        sugList.put(ind.getIRI(), sug);
 	    	}
 			
@@ -438,7 +436,7 @@ public class BPMNSuggestionEngine {
                     }
             }
 	    	
-			Suggestion sug = new Suggestion(prop.getIRI(), Suggestion.Type.Datatype, prop.getIRI().getFragment(), descriptionValue, domainString);
+			Recommendation sug = new Recommendation(prop.getIRI(), Recommendation.Type.Datatype, prop.getIRI().getFragment(), descriptionValue, domainString);
 	        sugList.put(prop.getIRI(), sug);
 	    }
         
@@ -459,7 +457,7 @@ public class BPMNSuggestionEngine {
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 		
 			test.write(out, "RDF/XML");
-			aConn.close();
+			//aConn.close();
 	    
 			return m.loadOntologyFromOntologyDocument(new ByteArrayInputStream(out.toByteArray()));
 		
@@ -685,7 +683,7 @@ public class BPMNSuggestionEngine {
 		
 	}
 	
-	public SortedSet<Suggestion> calculateJaroWinklerDistanceClass(String label){
+	public SortedSet<Recommendation> calculateJaroWinklerDistanceClass(String label){
 		
 		
 		return null;
@@ -693,7 +691,7 @@ public class BPMNSuggestionEngine {
 	}
 	
 	
-	public SortedSet<Suggestion> suggestionList(String irimodellingConstruct, String label){
+	public SortedSet<Recommendation> suggestionList(String irimodellingConstruct, String label){
 		resetWeightsSuggestions();
 		
 	
@@ -727,17 +725,17 @@ public class BPMNSuggestionEngine {
 			
 			Set<OWLNamedIndividual> individuals = constructmatchingMechanismClass2(irimodellingConstruct);
 			for (OWLNamedIndividual ind : individuals) {
-				Suggestion sug = sugList.get(ind.getIRI());
-				sug.setWeightConstructMatching(weightConstructMatching*scoreConstructMatching);
-				sug.setWeight(sug.getWeight() + weightConstructMatching*scoreConstructMatching);
+				Recommendation sug = sugList.get(ind.getIRI());
+				sug.setScoreModelLanguageRecommendationService(weightConstructMatching*scoreConstructMatching);
+				sug.setScore(sug.getScore() + weightConstructMatching*scoreConstructMatching);
 			}
 	    
 			Set<OWLDataProperty> props1 = filterDataProperties(constructmatchingMechanismDataType(irimodellingConstruct));
 			printOWLDataProperties(props1, "ESO DataProperties construct matching");
 			for (OWLDataProperty prop : props1) {
-				Suggestion sug = sugList.get(prop.getIRI());
-				sug.setWeightConstructMatching(weightConstructMatching*scoreConstructMatching);
-				sug.setWeight(sug.getWeight() + weightConstructMatching*scoreConstructMatching);
+				Recommendation sug = sugList.get(prop.getIRI());
+				sug.setScoreModelLanguageRecommendationService(weightConstructMatching*scoreConstructMatching);
+				sug.setScore(sug.getScore() + weightConstructMatching*scoreConstructMatching);
 	    	}
 		}
 	    
@@ -756,9 +754,9 @@ public class BPMNSuggestionEngine {
 	  		printOWLClasses(clses2,"ESO OBjects location mechanism");
 	  		for (OWLClass cls : clses2) {
 	  			//System.out.println(cls.getIRI());
-	  			Suggestion sug = sugList.get(cls.getIRI());
-	  			sug.setWeight(sug.getWeight() + weightLocationMechanism);
-	  			sug.setWeightLocationMechanism(weightLocationMechanism);
+	  			Recommendation sug = sugList.get(cls.getIRI());
+	  			sug.setScore(sug.getScore() + weightLocationMechanism);
+	  			sug.setScoreRuleBasedREcommendationService(weightLocationMechanism);
 	  		}
 	  	}
 		
@@ -770,33 +768,33 @@ public class BPMNSuggestionEngine {
 			Set<OWLClass> clses3 = filterClass(getWordNetSynClass(label));
 			printOWLClasses(clses3,"ESO OBjects Wordnet Syn (" + label);
 			for (OWLClass cls : clses3) {
-				Suggestion sug = sugList.get(cls.getIRI());
+				Recommendation sug = sugList.get(cls.getIRI());
 				sug.setWeightWordnetSynonyms(wordnetMatching*weightwordnetMatching);
-				sug.setWeight(sug.getWeight() + wordnetMatching*weightwordnetMatching);
+				sug.setScore(sug.getScore() + wordnetMatching*weightwordnetMatching);
 			}
 		
 		
 			Set<OWLDataProperty> props2 = filterDataProperties(getWordNetSynDataProperties(label));
 			printOWLDataProperties(props2,"ESO Dataproperties Wordnet Syn");
 			for(OWLDataProperty prop : props2) {
-				Suggestion sug = sugList.get(prop.getIRI());
+				Recommendation sug = sugList.get(prop.getIRI());
 				sug.setWeightWordnetSynonyms(wordnetMatching*weightwordnetMatching);
-				sug.setWeight(sug.getWeight() + wordnetMatching*weightwordnetMatching);
+				sug.setScore(sug.getScore() + wordnetMatching*weightwordnetMatching);
 			}
 		}
 		
 		
 		//STRING MATCHING
 		if (StringMatching){
-			for (Suggestion sug : sugList.values()) {
-				sug.setWeight(sug.getJaroWinklerDistance(label,JWDweightThreshold,JWDnumChars)*weightStringMatching + sug.getWeight());
-				sug.setWeightTextMatching(sug.getJaroWinklerDistance(label, JWDweightThreshold,JWDnumChars));
+			for (Recommendation sug : sugList.values()) {
+				//sug.setWeight(sug.getJaroWinklerDistance(label,JWDweightThreshold,JWDnumChars)*weightStringMatching + sug.getWeight());
+				//sug.setWeightTextMatching(sug.getJaroWinklerDistance(label, JWDweightThreshold,JWDnumChars));
 	        }
 		}
 		
 		
-		SortedSet<Suggestion> sortedSugList = new TreeSet<Suggestion>(); 
-		for (Suggestion sug : sugList.values()) {
+		SortedSet<Recommendation> sortedSugList = new TreeSet<Recommendation>(); 
+		for (Recommendation sug : sugList.values()) {
 			//System.out.println(cls.getIRI());
 			if(verbNounPattern)
 				sug.setSuggestionString(verbs.get(0) + " " + sug.getIri().getFragment());
@@ -906,9 +904,9 @@ public class BPMNSuggestionEngine {
 		
 	}
 
-	public Set<Suggestion> getOntology(){
+	public Set<Recommendation> getOntology(){
 		
-		Set<Suggestion> sugListSet = new HashSet<Suggestion>(); 
+		Set<Recommendation> sugListSet = new HashSet<Recommendation>(); 
 //		Set<OWLClass> clses = ESO.getClassesInSignature();
 //		OWLDataFactory fac = m.getOWLDataFactory();
 //	    for (OWLClass cls : clses) {
@@ -945,17 +943,17 @@ public class BPMNSuggestionEngine {
 //			sugList.add(sug);
 //	    }	
 		
-		for(Suggestion sug: sugList.values())
+		for(Recommendation sug: sugList.values())
 			sugListSet.add(sug);
 		
 		return sugListSet;
 		
 	}
 	
-	public void printSugList(SortedSet<Suggestion> sugList){
+	public void printSugList(SortedSet<Recommendation> sugList){
 		System.out.println();
-		for(Suggestion sug: sugList)
-			System.out.println(sug.getIri() + "   Weight=" + sug.getWeight());
+		for(Recommendation sug: sugList)
+			System.out.println(sug.getIri() + "   Weight=" + sug.getScore());
 		System.out.println();
 		
 	}
@@ -1063,12 +1061,12 @@ public class BPMNSuggestionEngine {
 	 }
 	 
 	 public void resetWeightsSuggestions(){
-		 for(Suggestion sug: sugList.values()){
-			 sug.setWeight(0);
-			 sug.setWeightConstructMatching(0);
-			 sug.setWeightLocationMechanism(0);
+		 for(Recommendation sug: sugList.values()){
+			 sug.setScore(0);
+			 sug.setScoreModelLanguageRecommendationService(0);
+			 sug.setScoreRuleBasedREcommendationService(0);;
 			 sug.setWeightWordnetSynonyms(0);
-			 sug.setWeightTextMatching(0);
+			 sug.setScoreLabelBasedRecommendationService(0);
 			 sug.setSuggestionString(sug.getOntologyString());
 		 }
 		 

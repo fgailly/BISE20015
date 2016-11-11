@@ -9,6 +9,7 @@ import org.eclipse.bpmn2.impl.ParticipantImpl;
 import org.eclipse.bpmn2.impl.SubProcessImpl;
 import org.eclipse.bpmn2.impl.TaskImpl;
 import org.eclipse.bpmn2.modeler.suggestion.algorithm.BPMNSuggestionEngine2;
+import org.eclipse.bpmn2.modeler.suggestion.algorithm.BPMNSuggestionEngine3;
 import org.eclipse.bpmn2.modeler.suggestion.views.OntologyView;
 import org.eclipse.bpmn2.modeler.suggestion.views.SuggestionView;
 import org.eclipse.draw2d.IFigure;
@@ -68,7 +69,7 @@ public class SelectionChangeProcessor implements ISelectionListener {
 		if (suggestions) {
 			SuggestionView sugView = (SuggestionView)viewer;
 			if(sugView.getEngine()==null){
-				sugView.setEngine(new BPMNSuggestionEngine2());
+				sugView.setEngine(new BPMNSuggestionEngine3());
 			}
 		}
 		System.gc();

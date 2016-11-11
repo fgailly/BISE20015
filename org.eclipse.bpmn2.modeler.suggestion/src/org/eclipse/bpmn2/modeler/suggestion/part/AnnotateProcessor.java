@@ -6,7 +6,6 @@ import org.eclipse.bpmn2.impl.FlowElementImpl;
 import org.eclipse.bpmn2.impl.LaneImpl;
 import org.eclipse.bpmn2.impl.MessageFlowImpl;
 import org.eclipse.bpmn2.impl.ParticipantImpl;
-import org.eclipse.bpmn2.modeler.suggestion.algorithm.Suggestion;
 import org.eclipse.bpmn2.modeler.suggestion.views.OntologyView;
 import org.eclipse.bpmn2.modeler.suggestion.views.SuggestionView;
 import org.eclipse.emf.ecore.EObject;
@@ -23,6 +22,8 @@ import org.eclipse.ui.part.ViewPart;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
+
+import ugent.mis.cmoeplus.Recommendation;
 
 public class AnnotateProcessor extends Action {
 	
@@ -67,9 +68,9 @@ public class AnnotateProcessor extends Action {
 			viewSelection = ((OntologyView)viewer).getSelection();
 		}
 		Object obj = ((IStructuredSelection)viewSelection).getFirstElement();
-		if (obj instanceof Suggestion) {
-			Suggestion sug = (Suggestion) obj;
-			if(sug.getWeight() == Double.MAX_VALUE) {
+		if (obj instanceof Recommendation) {
+			Recommendation sug = (Recommendation) obj;
+			if(sug.getScore() == Double.MAX_VALUE) {
 				//Delete Annotation
 				//deleteAnnotation(sug.getSuggestionString());
 				annotateUI(sel.getName());
@@ -152,13 +153,13 @@ public class AnnotateProcessor extends Action {
 			}
 	}
 
-	protected void annotateSuggestion(String id, String label, Suggestion suggestion) {
+	protected void annotateSuggestion(String id, String label, Recommendation suggestion) {
 		if (sel.getType() != "unknown" && sel.getType() != "Error") {
 			String constructIRI = sel.createBpmnUrl();
 			String ontologyID = createOwlUrl(label);
 			if (suggestions) {
-				IRI modelIRI = ((SuggestionView)viewer).getEngine().addModelInstance(constructIRI, id, label );
-				((SuggestionView)viewer).getEngine().addModelAnnotation(modelIRI.toString(), ontologyID, suggestion);
+				IRI modelIRI = ((SuggestionView)viewer).getEngine().getManager().addModelInstance(constructIRI, id, label );
+				((SuggestionView)viewer).getEngine().getManager().addModelAnnotation(modelIRI.toString(), ontologyID, suggestion);
 			} else {
 				IRI modelIRI = ((OntologyView)viewer).getEngine().addModelInstance(constructIRI, id, label);
 				((OntologyView)viewer).getEngine().addModelAnnotation(modelIRI.toString(), ontologyID);
@@ -168,7 +169,7 @@ public class AnnotateProcessor extends Action {
 	
 	private void deleteAnnotation(String uniqueId) {
 		
-		((SuggestionView)viewer).getEngine().removeModelAnnotation(uniqueId);
+		((SuggestionView)viewer).getEngine().getManager().removeModelAnnotation(uniqueId);
 		
 	}
 	

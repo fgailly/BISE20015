@@ -1,10 +1,12 @@
 package org.eclipse.bpmn2.modeler.suggestion.internal;
 
-import org.eclipse.bpmn2.modeler.suggestion.algorithm.Suggestion;
+
 import org.eclipse.bpmn2.modeler.suggestion.part.OntologyCategory;
 import org.eclipse.bpmn2.modeler.suggestion.part.SuggestionModel;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
+
+import ugent.mis.cmoeplus.Recommendation;
 
 public class SuggestionContentProvider implements ITreeContentProvider {
 
@@ -45,11 +47,11 @@ public class SuggestionContentProvider implements ITreeContentProvider {
 
 	@Override
 	public Object getParent(Object element) {
-		if(model != null && element instanceof Suggestion) {
+		if(model != null && element instanceof Recommendation) {
 			for (Object o : model.getSuggestions()) {
 				if (o instanceof OntologyCategory) {
 					OntologyCategory suggestionCategory = (OntologyCategory) o;
-					for (Suggestion sug : suggestionCategory.getSuggestions()) {
+					for (Recommendation sug : suggestionCategory.getSuggestions()) {
 						if (element.equals(sug)) {
 							return suggestionCategory;
 							}

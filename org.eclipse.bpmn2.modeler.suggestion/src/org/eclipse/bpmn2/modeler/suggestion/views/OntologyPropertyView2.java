@@ -10,7 +10,6 @@ import org.eclipse.swt.widgets.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.eclipse.bpmn2.modeler.suggestion.algorithm.Suggestion;
 import org.eclipse.bpmn2.modeler.suggestion.internal.OntologyPropertyColumn;
 import org.eclipse.bpmn2.modeler.suggestion.internal.OntologyValueColumn;
 import org.eclipse.jface.resource.FontRegistry;
@@ -28,11 +27,13 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 
+import ugent.mis.cmoeplus.Recommendation;
+
 
 public class OntologyPropertyView2 extends ViewPart {
 
 	
-	private Suggestion suggestion;
+	private Recommendation suggestion;
 	private Label label;
 	private Group txtBox;
 	private StyledText styledText;
@@ -46,8 +47,8 @@ public class OntologyPropertyView2 extends ViewPart {
 			IViewPart ontview = activePage.findView(OntologyView.ID);
 			if (part == sugView || part == ontview) {
 				Object selected = ((IStructuredSelection) sel).getFirstElement();
-				if (selected instanceof Suggestion && selected != null) {
-					Suggestion sug = (Suggestion) selected;
+				if (selected instanceof Recommendation && selected != null) {
+					Recommendation sug = (Recommendation) selected;
 					if(sug.getType() != null){
 						//String[] input = createPropertyArray(sug);
 						//tableViewer.setInput(input);
@@ -72,18 +73,18 @@ public class OntologyPropertyView2 extends ViewPart {
 
 	};	
 
-	protected String[] createPropertyArray(Suggestion sug) {
+	protected String[] createPropertyArray(Recommendation sug) {
 		
 		ArrayList<String> properties = new ArrayList<String>();
 		if (sug.getType().toString() == "Datatype") {
 			properties.add("Class" + "#" + sug.getClasses());
 		}
 		properties.add("Description" + "#" + sug.getDescription());
-		properties.add("Weight" + "#" + ((Double)sug.getWeight()).toString());
-		properties.add("Weight ConstructMatching" + "#" + ((Double)sug.getWeightConstructMatching()).toString());
-		properties.add("Weight LocationMatching" + "#" + ((Double)sug.getWeightLocationMechanism()).toString());
+		properties.add("Weight" + "#" + ((Double)sug.getScore()).toString());
+		properties.add("Weight ConstructMatching" + "#" + ((Double)sug.getScoreModelLanguageRecommendationService()).toString());
+		properties.add("Weight LocationMatching" + "#" + ((Double)sug.getScoreRuleBasedRecommendationService()).toString());
 		properties.add("Weight WordnetSynonyms" + "#" + ((Double)sug.getWeightWordnetSynonyms()).toString());
-		properties.add("Weight TextMatching" + "#" + ((Double)sug.getWeightTextMatching()).toString());
+		properties.add("Weight TextMatching" + "#" + ((Double)sug.getScoreLabelBasedRecommendationService()).toString());
 		String[] input = Arrays.copyOf(properties.toArray(), properties.toArray().length, String[].class);
 		return input;
 	}
