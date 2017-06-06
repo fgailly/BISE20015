@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Istar
+Bundle-SymbolicName: ugent.mis.cmoeplus.bpmn.istar;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: ugent.mis.cmoeplus.bpmn.istar.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.bpmn2,
+ org.eclipse.graphiti.ui,
+ org.eclipse.graphiti,
+ org.eclipse.bpmn2.modeler.ui;bundle-version="0.2.7",
+ org.eclipse.emf.transaction,
+ org.eclipse.gef,
+ org.eclipse.bpmn2.modeler.core,
+ org.eclipse.gmf.runtime.diagram.ui,
+ org.cheetahplatform.common,
+ org.eclipse.emf.common
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.swt.widgets,
+ org.eclipse.ui
+Bundle-ClassPath: libs/cmoeplus.jar,
+ libs/jaws-bin.jar,
+ libs/lingpipe-4.1.0.jar,
+ libs/owlapi-distribution-3.4.5.jar,
+ libs/stanford-postagger-3.5.1.jar,
+ libs/stanford-postagger.jar,
+ .,
+ libs/HermiT.jar
+
+

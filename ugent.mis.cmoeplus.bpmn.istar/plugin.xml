@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+    <extension
+         point="org.eclipse.ui.views">
+      <view
+            name="Ontology Recommendations"
+            icon="icons/magic.gif"
+            category="org.eclipse.bpmn2.modeler.view"
+            class="ugent.mis.cmoeplus.bpmn.istar.views.SuggestionView"
+            id="ugent.mis.cmoeplus.bpmn.SuggestionView">
+      </view>
+      <view
+            category="org.eclipse.bpmn2.modeler.view"
+            class="ugent.mis.cmoeplus.bpmn.istar.views.OntologyPropertyViewSimple"
+            icon="icons/tag.gif"
+            id="ugent.mis.cmoeplus.bpmn.istar.ontpropsimple"
+            name="Ontology Concept Properties"
+            restorable="true">
+      </view>
+      <view
+            category="org.eclipse.bpmn2.modeler.view"
+            class="ugent.mis.cmoeplus.bpmn.istar.views.OntologyPropertyViewAdvanced"
+            icon="icons/tag.gif"
+            id="ugent.mis.cmoeplus.bpmn.istar.ontpropadv"
+            name="Ontology Concept Properties Detail"
+            restorable="true">
+      </view>
+   </extension>
+    <extension
+          id="product"
+          point="org.eclipse.core.runtime.products">
+       <product
+             application="org.eclipse.ui.ide.workbench"
+             name="BPMNmodeler with Suggestions">
+          <property
+                name="windowImages"
+                value="eclipse16.gif,eclipse32.gif,eclipse48.gif,eclipse16.png,eclipse32.png">
+          </property>
+          <property
+                name="aboutText"
+                value="%productBlurb">
+          </property>
+          <property
+                name="aboutImage"
+                value="eclipse_lg.gif">
+          </property>
+          <property
+                name="startupForegroundColor"
+                value="FFFFFF">
+          </property>
+          <property
+                name="startupProgressRect"
+                value="2,290,448,10">
+          </property>
+          <property
+                name="startupMessageRect"
+                value="7,225,320,20">
+          </property>
+          <property
+                name="appName"
+                value="BPMNmodeler with Suggestions">
+          </property>
+          <property
+                name="preferenceCustomization"
+                value="plugin_customization.ini">
+          </property>
+       </product>
+    </extension>
+    <extension
+          id="ugent.cmoeplus.recommendationaction"
+          name="Recommendation Action"
+          point="org.eclipse.ui.actionSets">
+       <actionSet
+             id="ugent.mis.cmoeplus.bpmn.istar.recommendations"
+             label="Generate Recommendation"
+             visible="true">
+          <menu
+                id="ugent.mis.cmoeplus.bpmn.istar.recommendationmenu"
+                label="CMOEplus">
+             <separator
+                   name="ugent.mis.cmoeplus.bpmn.istar.separator1">
+             </separator>
+          </menu>
+          <action
+                class="org.eclipse.bpmn2.modeler.suggestion.part.LoadSugViewAction"
+                id="ugent.mis.cmoeplus.bpmn.istar.action3"
+                label="Load suggestion view"
+                menubarPath="ugent.mis.cmoeplus.bpmn.istar.recommendationmenu/ugent.mis.cmoeplus.bpmn.istar.separator1"
+                style="push"
+                toolbarPath="ugent.mis.cmoeplus.bpmn.istar.separator1">
+          </action>
+          <action
+                class="org.eclipse.bpmn2.modeler.suggestion.part.DeleteAnnotationAction"
+                id="ugent.mis.cmoeplus.bpmn.istar.action2"
+                label="Delete Annotation"
+                menubarPath="ugent.mis.cmoeplus.bpmn.istar.recommendationmenu/ugent.mis.cmoeplus.bpmn.istar.separator1"
+                style="push"
+                toolbarPath="ugent.mis.cmoeplus.bpmn.istar.separator1">
+          </action>
+          <action
+                class="org.eclipse.bpmn2.modeler.suggestion.part.GenerateRecommendationAction"
+                id="ugent.mis.cmoeplus.bpmn.istar.action1"
+                label="Generate Recommendations"
+                menubarPath="ugent.mis.cmoeplus.bpmn.istar.recommendationmenu/ugent.mis.cmoeplus.bpmn.istar.separator1"
+                style="push"
+                toolbarPath="ugent.mis.cmoeplus.bpmn.istar.separator1">
+          </action>
+       </actionSet>
+    </extension>
+
+</plugin>

@@ -1,0 +1,588 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.mis.ugent.be/ontologies/rules"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.mis.ugent.be/ontologies/rules">
+    <Prefix name="" IRI="http://www.mis.ugent.be/ontologies/rules"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="swrl" IRI="http://www.w3.org/2003/11/swrl#"/>
+    <Prefix name="istar" IRI="http://www.mis.ugent.be/ontologies/istar.owl#"/>
+    <Prefix name="swrlb" IRI="http://www.w3.org/2003/11/swrlb#"/>
+    <Prefix name="istarmodel" IRI="http://www.semanticweb.org/nalkhald/ontologies/2016/10/untitled-ontology-7#"/>
+    <Import>http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl</Import>
+    <Import>http://www.mis.ugent.be/ontologies/ufo.owl</Import>
+    <Import>http://www.mis.ugent.be/ontologies/bpmn_ufo.owl</Import>
+    <Import>http://www.mis.ugent.be/ontologies/istarmodel.owl</Import>
+    <Import>http://www.mis.ugent.be/ontologies/istar.owl</Import>
+    <Import>http://www.mis.ugent.be/ontologies/bpmn</Import>
+    <Declaration>
+        <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#hasSource"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#hasLane"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="istar:hasSourceRefinement"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Sequenceflow"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Pool"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#ExclusiveGateway"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#hasTarget"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Task"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="istar:GoalTaskElement"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="istar:ORrefinement"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="istar:hasTargetRefinement"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#ParaellelGateway"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="istar:ANDrefinement"/>
+    </Declaration>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="istar:hasSourceRefinement"/>
+        <NamedIndividual IRI="http://www.mis.ugent.be/ontologies/istarmodel.owl#ApplyTreatment_ApplyTreatmentLocally"/>
+        <NamedIndividual IRI="http://www.mis.ugent.be/ontologies/istarmodel.owl#Apply_TreatmentLocally"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="istar:hasTargetRefinement"/>
+        <NamedIndividual IRI="http://www.mis.ugent.be/ontologies/istarmodel.owl#ApplyTreatment_ApplyTreatmentLocally"/>
+        <NamedIndividual IRI="http://www.mis.ugent.be/ontologies/istarmodel.owl#Apply_Treatment"/>
+    </ObjectPropertyAssertion>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Task"/>
+                <Variable IRI="urn:swrl#bpmntask1"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Task"/>
+                <Variable IRI="urn:swrl#bpmntask2"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Sequenceflow"/>
+                <Variable IRI="urn:swrl#flow1"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Sequenceflow"/>
+                <Variable IRI="urn:swrl#flow2"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#bpmntask1"/>
+                <Variable IRI="urn:swrl#domain"/>
+            </ObjectPropertyAtom>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#ExclusiveGateway"/>
+                <Variable IRI="urn:swrl#gateway"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#hasTarget"/>
+                <Variable IRI="urn:swrl#flow1"/>
+                <Variable IRI="urn:swrl#bpmntask1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#hasSource"/>
+                <Variable IRI="urn:swrl#flow1"/>
+                <Variable IRI="urn:swrl#gateway"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#hasTarget"/>
+                <Variable IRI="urn:swrl#flow2"/>
+                <Variable IRI="urn:swrl#bpmntask2"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#hasSource"/>
+                <Variable IRI="urn:swrl#flow2"/>
+                <Variable IRI="urn:swrl#gateway"/>
+            </ObjectPropertyAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:ORrefinement"/>
+                <Variable IRI="urn:swrl#or1"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:ORrefinement"/>
+                <Variable IRI="urn:swrl#or2"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:GoalTaskElement"/>
+                <Variable IRI="urn:swrl#goaltask1"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:GoalTaskElement"/>
+                <Variable IRI="urn:swrl#goaltask2"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:GoalTaskElement"/>
+                <Variable IRI="urn:swrl#goaltask3"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty abbreviatedIRI="istar:hasSourceRefinement"/>
+                <Variable IRI="urn:swrl#or1"/>
+                <Variable IRI="urn:swrl#goaltask2"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#goaltask2"/>
+                <Variable IRI="urn:swrl#domain"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty abbreviatedIRI="istar:hasSourceRefinement"/>
+                <Variable IRI="urn:swrl#or2"/>
+                <Variable IRI="urn:swrl#goaltask3"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty abbreviatedIRI="istar:hasTargetRefinement"/>
+                <Variable IRI="urn:swrl#or1"/>
+                <Variable IRI="urn:swrl#goaltask1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty abbreviatedIRI="istar:hasTargetRefinement"/>
+                <Variable IRI="urn:swrl#or2"/>
+                <Variable IRI="urn:swrl#goaltask1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#goaltask3"/>
+                <Variable IRI="urn:swrl#domain2"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#bpmnTask2"/>
+                <Variable IRI="urn:swrl#domain2"/>
+            </ObjectPropertyAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Pool"/>
+                <Variable IRI="urn:swrl#pool1"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Pool"/>
+                <Variable IRI="urn:swrl#pool2"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Lane"/>
+                <Variable IRI="urn:swrl#lane"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#MessageFlow"/>
+                <Variable IRI="urn:swrl#smsflow"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#pool1"/>
+                <Variable IRI="urn:swrl#domain1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#pool2"/>
+                <Variable IRI="urn:swrl#domain2"/>
+            </ObjectPropertyAtom>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Task"/>
+                <Variable IRI="urn:swrl#bpmntask"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/bpmn#isLocatedWithin"/>
+                <Variable IRI="urn:swrl#bpmntask"/>
+                <Variable IRI="urn:swrl#lane"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/bpmn#hasLane"/>
+                <Variable IRI="urn:swrl#pool1"/>
+                <Variable IRI="urn:swrl#lane"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#hasSource"/>
+                <Variable IRI="urn:swrl#smsflow"/>
+                <Variable IRI="urn:swrl#bpmnTask"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#hasTarget"/>
+                <Variable IRI="urn:swrl#smsFlow"/>
+                <Variable IRI="urn:swrl#pool2"/>
+            </ObjectPropertyAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:Dependency"/>
+                <Variable IRI="urn:swrl#dep1"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:Actor"/>
+                <Variable IRI="urn:swrl#actor1"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:Actor"/>
+                <Variable IRI="urn:swrl#actor2"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:IntentionalElement"/>
+                <Variable IRI="urn:swrl#element"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty abbreviatedIRI="istar:dependee"/>
+                <Variable IRI="urn:swrl#dep1"/>
+                <Variable IRI="urn:swrl#actor1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty abbreviatedIRI="istar:depender"/>
+                <Variable IRI="urn:swrl#dep1"/>
+                <Variable IRI="urn:swrl#actor2"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty abbreviatedIRI="istar:dependum"/>
+                <Variable IRI="urn:swrl#dep1"/>
+                <Variable IRI="urn:swrl#element"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#actor1"/>
+                <Variable IRI="urn:swrl#domain1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#actor2"/>
+                <Variable IRI="urn:swrl#domain2"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#element"/>
+                <Variable IRI="urn:swrl#domain3"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#smsFlow"/>
+                <Variable IRI="urn:swrl#domain3"/>
+            </ObjectPropertyAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Pool"/>
+                <Variable IRI="urn:swrl#pool1"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Pool"/>
+                <Variable IRI="urn:swrl#pool2"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#MessageFlow"/>
+                <Variable IRI="urn:swrl#smsflow1"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#pool1"/>
+                <Variable IRI="urn:swrl#domain1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#pool2"/>
+                <Variable IRI="urn:swrl#domain2"/>
+            </ObjectPropertyAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:Dependency"/>
+                <Variable IRI="urn:swrl#dep1"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:Actor"/>
+                <Variable IRI="urn:swrl#actor1"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:Actor"/>
+                <Variable IRI="urn:swrl#actor2"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:IntentionalElement"/>
+                <Variable IRI="urn:swrl#element"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty abbreviatedIRI="istar:dependee"/>
+                <Variable IRI="urn:swrl#dep1"/>
+                <Variable IRI="urn:swrl#actor1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty abbreviatedIRI="istar:depender"/>
+                <Variable IRI="urn:swrl#dep1"/>
+                <Variable IRI="urn:swrl#actor2"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty abbreviatedIRI="istar:dependum"/>
+                <Variable IRI="urn:swrl#dep1"/>
+                <Variable IRI="urn:swrl#element"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#actor1"/>
+                <Variable IRI="urn:swrl#domain1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#actor2"/>
+                <Variable IRI="urn:swrl#domain2"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#element"/>
+                <Variable IRI="urn:swrl#domain3"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#smsFlow1"/>
+                <Variable IRI="urn:swrl#domain3"/>
+            </ObjectPropertyAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Task"/>
+                <Variable IRI="urn:swrl#bpmntask1"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Task"/>
+                <Variable IRI="urn:swrl#bpmntask2"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Sequenceflow"/>
+                <Variable IRI="urn:swrl#flow1"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Sequenceflow"/>
+                <Variable IRI="urn:swrl#flow2"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#bpmntask1"/>
+                <Variable IRI="urn:swrl#domain"/>
+            </ObjectPropertyAtom>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#ParaellelGateway"/>
+                <Variable IRI="urn:swrl#gateway"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#hasTarget"/>
+                <Variable IRI="urn:swrl#flow1"/>
+                <Variable IRI="urn:swrl#bpmntask1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#hasSource"/>
+                <Variable IRI="urn:swrl#flow1"/>
+                <Variable IRI="urn:swrl#gateway"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#hasTarget"/>
+                <Variable IRI="urn:swrl#flow2"/>
+                <Variable IRI="urn:swrl#bpmntask2"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#hasSource"/>
+                <Variable IRI="urn:swrl#flow2"/>
+                <Variable IRI="urn:swrl#gateway"/>
+            </ObjectPropertyAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:ANDrefinement"/>
+                <Variable IRI="urn:swrl#and1"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:ANDrefinement"/>
+                <Variable IRI="urn:swrl#and2"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:Task"/>
+                <Variable IRI="urn:swrl#task"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:IntentionalElement"/>
+                <Variable IRI="urn:swrl#element1"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:IntentionalElement"/>
+                <Variable IRI="urn:swrl#element2"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty abbreviatedIRI="istar:hasSourceRefinement"/>
+                <Variable IRI="urn:swrl#and1"/>
+                <Variable IRI="urn:swrl#element1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#element1"/>
+                <Variable IRI="urn:swrl#domain"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty abbreviatedIRI="istar:hasSourceRefinement"/>
+                <Variable IRI="urn:swrl#and2"/>
+                <Variable IRI="urn:swrl#element2"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty abbreviatedIRI="istar:hasTargetRefinement"/>
+                <Variable IRI="urn:swrl#and1"/>
+                <Variable IRI="urn:swrl#task"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty abbreviatedIRI="istar:hasTargetRefinement"/>
+                <Variable IRI="urn:swrl#and2"/>
+                <Variable IRI="urn:swrl#task"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#element2"/>
+                <Variable IRI="urn:swrl#domain2"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#bpmnTask2"/>
+                <Variable IRI="urn:swrl#domain2"/>
+            </ObjectPropertyAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:Actor"/>
+                <Variable IRI="urn:swrl#actor"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Pool"/>
+                <Variable IRI="urn:swrl#pool"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#actor"/>
+                <Variable IRI="urn:swrl#domain"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#pool"/>
+                <Variable IRI="urn:swrl#domain"/>
+            </ObjectPropertyAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Pool"/>
+                <Variable IRI="urn:swrl#pool1"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Pool"/>
+                <Variable IRI="urn:swrl#pool2"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#pool1"/>
+                <Variable IRI="urn:swrl#domain1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#hasLane"/>
+                <Variable IRI="urn:swrl#pool1"/>
+                <Variable IRI="urn:swrl#pool2"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/ufo.owl#mediates"/>
+                <Variable IRI="urn:swrl#relator"/>
+                <Variable IRI="urn:swrl#domain1"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/ufo.owl#mediates"/>
+                <Variable IRI="urn:swrl#relator"/>
+                <Variable IRI="urn:swrl#domain2"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#pool2"/>
+                <Variable IRI="urn:swrl#domain2"/>
+            </ObjectPropertyAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Task"/>
+                <Variable IRI="urn:swrl#task"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:Goal"/>
+                <Variable IRI="urn:swrl#goal"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#goal"/>
+                <Variable IRI="urn:swrl#domain"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#task"/>
+                <Variable IRI="urn:swrl#domain"/>
+            </ObjectPropertyAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class IRI="http://www.mis.ugent.be/ontologies/bpmn.owl#Task"/>
+                <Variable IRI="urn:swrl#task1"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="istar:Task"/>
+                <Variable IRI="urn:swrl#task2"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#task2"/>
+                <Variable IRI="urn:swrl#domain"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#representationClassIsAnnotedByDomainClass"/>
+                <Variable IRI="urn:swrl#task1"/>
+                <Variable IRI="urn:swrl#domain"/>
+            </ObjectPropertyAtom>
+        </Head>
+    </DLSafeRule>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+

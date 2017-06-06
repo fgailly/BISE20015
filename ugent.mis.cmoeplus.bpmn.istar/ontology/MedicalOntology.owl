@@ -1,0 +1,1313 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.mis.ugent.be/ontologies/MedicalOntology#"
+     xml:base="http://www.mis.ugent.be/ontologies/MedicalOntology"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:ufo="http://www.mis.ugent.be/ontologies/ufo.owl#">
+    <owl:Ontology rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology">
+        <owl:imports rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Administrative -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Administrative">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Apply_Treatment -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Apply_Treatment"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Apply_Treatment_Locally -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Apply_Treatment_Locally"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#BloodPressure -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#BloodPressure">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#VitalSigns"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#BodyTemperature -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#BodyTemperature">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#VitalSigns"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Clinic -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Clinic"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#ClinicalInitiativeNurse -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#ClinicalInitiativeNurse">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#ClinicalStaff"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#ClinicalStaff -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#ClinicalStaff">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Coordinate_Followup -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Coordinate_Followup"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Cough -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Cough">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Symptoms"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Data -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Data"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Device -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Device"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Diagnosis -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Diagnosis"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#DifferentialDiagnosis -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#DifferentialDiagnosis">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Diagnosis"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Document -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Document">
+        <rdfs:comment>Record in written, electronic, or any other form</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#EmergencyDepartment -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#EmergencyDepartment"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Examination -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Examination"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Examine_MedicalHistory -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Examine_MedicalHistory"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Examine_Symptoms -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Examine_Symptoms"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Fever -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Fever">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Symptoms"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#FollowUp -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#FollowUp">
+        <rdfs:comment>Further examination or observation of a patient in order to monitor the success of earlier treatment</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#GeneralPracticioner -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#GeneralPracticioner">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Physician"/>
+        <rdfs:comment>A doctor who treats patients with minor or chronic illnesses and refers those with serious conditions to specialists.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Headache -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Headache">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Symptoms"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#HealthCare -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#HealthCare"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#HeartBeat -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#HeartBeat">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#VitalSigns"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#HearthAttack -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#HearthAttack">
+        <rdfs:comment>The death of heart muscle due to the loss of blood supply.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Hospital -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Hospital"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#IDCard -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#IDCard">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Document"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Insurance -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Insurance"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#InsuranceDetails -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#InsuranceDetails">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Document"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Measure_Heartbeat -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Measure_Heartbeat"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Measure_Pressure -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Measure_Pressure"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Measure_Temperature -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Measure_Temperature"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalFacility -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalFacility"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalHistory -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalHistory">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Data"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalInstitution -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalInstitution"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalInvoice -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalInvoice">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Document"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Medication -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Medication"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Obtain_VitalSigns -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Obtain_VitalSigns"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Order_Scan -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Order_Scan"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Paramedics -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Paramedics">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Passport -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Passport">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Document"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Patient -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Patient">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#PatientDetails -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#PatientDetails">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Data"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#PediatricServices -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#PediatricServices"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Perform_Diagnosis -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Perform_Diagnosis"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Perform_PhysicalExamination -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Perform_PhysicalExamination"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Perform_SurgicalExamination -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Perform_SurgicalExamination"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Person -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Person"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Pharmacy -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Pharmacy"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#PhysicalExamination -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#PhysicalExamination">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Examination"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#PhysicalTherapy -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#PhysicalTherapy">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Therapy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Physician -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Physician">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Prescription -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Prescription"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Prioritize_Condition -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Prioritize_Condition"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Radiation -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Radiation">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Therapy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Redirect_Patient -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Redirect_Patient"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Register_Patient -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Register_Patient"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Registration -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Registration"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Reimbursement -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Reimbursement"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Request_InsuranceDetails -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Request_InsuranceDetails"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Scan -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Scan">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Data"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#SpeachTherapy -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#SpeachTherapy">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Therapy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Status -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Status"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Surgeon -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Surgeon">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Physician"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Surgery -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Surgery">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Therapy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Symptoms -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Symptoms"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Therapy -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Therapy"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Trauma -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Trauma">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Symptoms"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Treatment -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Treatment"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#TriageNurse -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#TriageNurse">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#ClinicalStaff"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#VitalSigns -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#VitalSigns">
+        <rdfs:subClassOf rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Data"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Administrative -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Administrative">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RoleType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Apply_Treatment -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Apply_Treatment">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#EventType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Apply_Treatment_Locally -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Apply_Treatment_Locally">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#EventType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#BloodPressure -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#BloodPressure">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#QualityUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#BodyTemperature -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#BodyTemperature">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#QualityUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Clinic -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Clinic">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#BaseType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#ClinicalInitiativeNurse -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#ClinicalInitiativeNurse">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RoleType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#ClinicalStaff -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#ClinicalStaff">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RoleType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Condition -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Condition"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Coordinate_Followup -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Coordinate_Followup">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#EventType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Cough -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Cough">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#QualityUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Data -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Data">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#MixinType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Device -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Device">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#MixinType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Diagnosis -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Diagnosis">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#QualityUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#DifferentialDiagnosis -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#DifferentialDiagnosis">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#QualityUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#EmergencyDepartment -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#EmergencyDepartment">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#BaseType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Examination -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Examination">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RelatorUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Examine_MedicalHistory -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Examine_MedicalHistory">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#EventType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Examine_Symptoms -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Examine_Symptoms">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#EventType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Fever -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Fever">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#QualityUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Followup -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Followup">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RelatorUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#GeneralPractitioner -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#GeneralPractitioner">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RoleType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Headache -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Headache">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#QualityUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#HealthCare -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#HealthCare">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RelatorUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#HeartAttack -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#HeartAttack">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#QualityUniversal"/>
+        <rdfs:comment>Is the death of or damage to part of the 
+heart muscle because the supply of blood 
+to the heart muscle is severely reduced or stopped</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#HeartBeat -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#HeartBeat">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#QualityUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Hospital -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Hospital">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#BaseType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#IDCard -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#IDCard">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#QualityUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Insurance -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Insurance">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#BaseType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#InsuranceDetails -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#InsuranceDetails">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#QualityUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Measure_Heartbeat -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Measure_Heartbeat">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#EventType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Measure_Pressure -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Measure_Pressure">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#EventType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Measure_Temperature -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Measure_Temperature">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#EventType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalFacility -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalFacility">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#BaseType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalHistory -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalHistory">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#QualityUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalInstitution -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalInstitution">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#MixinType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalInvoice -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalInvoice">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RelatorUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Medication -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Medication">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#BaseType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Obtain_VitalSigns -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Obtain_VitalSigns">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#EventType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Order_Scan -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Order_Scan">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#EventType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Paramedics -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Paramedics">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RoleType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Passport -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Passport">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#QualityUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Patient -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Patient">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RoleType"/>
+        <ufo:isMediatedBy rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Treatment"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#PatientDetails -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#PatientDetails">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#QualityUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#PediatricServices -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#PediatricServices">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RelatorUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Perform_Diagnosis -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Perform_Diagnosis">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#EventType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Perform_PhysicalExamination -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Perform_PhysicalExamination">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#EventType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Perform_SurgicalExamination -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Perform_SurgicalExamination">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#EventType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Person -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Person">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#BaseType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Pharmacy -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Pharmacy">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#BaseType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#PhysicalExamination -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#PhysicalExamination">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RelatorUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#PhysicalTherapy -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#PhysicalTherapy">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RelatorUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Physician -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Physician">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RoleType"/>
+        <ufo:isMediatedBy rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Treatment"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Prescription -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Prescription">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#BaseType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Prioritize_Condition -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Prioritize_Condition">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#EventType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Radiation -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Radiation">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RelatorUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Redirect_Patient -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Redirect_Patient">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#EventType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Register_Patient -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Register_Patient">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#EventType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Registration -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Registration">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RelatorUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Reimbursement -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Reimbursement">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RelatorUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Request_InsuranceDetails -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Request_InsuranceDetails">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#EventType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Scan -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Scan">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#QualityUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#SpeachTherapy -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#SpeachTherapy">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RelatorUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Status -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Status">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#QualityUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Surgeon -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Surgeon">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RoleType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Surgery -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Surgery">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RelatorUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Symptoms -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Symptoms">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#QualityUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Therapy -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Therapy">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RelatorUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Trauma -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Trauma">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#QualityUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#Treatment -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Treatment">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RelatorUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#TriageNurse -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#TriageNurse">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#RoleType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/MedicalOntology#VitalSigns -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#VitalSigns">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/ufo.owl#QualityUniversal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Administrative">
+        <rdfs:comment>An employee responsible for administrative tasks</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Apply_Treatment">
+        <rdfs:comment>An action of applying treatment</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#BloodPressure">
+        <rdfs:comment>The pressure of the blood in the circulatory system, often measured for diagnosis  as it is closely related 
+to the force and rate of the heartbeat and the diameter and elasticity of the arteria walls.</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#BodyTemperature">
+        <rdfs:comment>Measure of the body&apos;s ebility to generate and get rid of heat</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Clinic">
+        <rdfs:comment>An establishment where patients are admitted for special study and treatment by a group of health care professionals practicing together</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#ClinicalInitiativeNurse">
+        <rdfs:comment>A nurse who is providing nursing care to patients in emergency department&apos;s waiting room</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#ClinicalStaff">
+        <rdfs:comment>A person who works under the supervision of a physician or other qualified health care professional and who is allowed by law, regulations and facility policy to perform or assist in performance of a specified  professional service.</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Coordinate_Followup">
+        <rdfs:comment>An action of coordinating patient&apos;s followup</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Cough">
+        <rdfs:comment>Cough is a natural reflex that protects the lungs.  Coughing helps to clear the airways of lung irritants such as smoke and mucus.  This helps to prevent infections. A cough is also a symptom of a medical problem</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Data">
+        <rdfs:comment>Piece of information which is a part of a collection to be used in an analyses of a problem, such as diagnosis of a health problem.</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Device">
+        <rdfs:comment>An appliance, usually mechanical, designed to perform a specific function.</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Diagnosis">
+        <rdfs:comment>Determination of the nature of the cause of a disease.</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#DifferentialDiagnosis">
+        <rdfs:comment>The determination which one of the several diseases may be producing the symptoms</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#EmergencyDepartment">
+        <rdfs:comment>A section of an institution that is staffed and equipped to provide rapid and varied emergency care, specially for those who are stricken with sudden and acute illness or who are victims of severe trauma.</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Examination">
+        <rdfs:comment>Examination of body state, made for the purpose of diagnosis.</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Examine_MedicalHistory">
+        <rdfs:comment>An action of examining medical history of a patient</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Examine_Symptoms">
+        <rdfs:comment>An action of examining patient&apos;s symptoms</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Fever">
+        <rdfs:comment>Is body temperature elivation over 37.8 degree Celsuis</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Headache">
+        <rdfs:comment>A headache involves pain in the head which can arise from many disorders or may be a disorder of itself</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#HealthCare">
+        <rdfs:comment>Health care provided by a medical facility to a patient</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#HeartBeat">
+        <rdfs:comment>A complete cardiac cycle, including spread of the electrical impulse and a consequent mechanical contraction</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Hospital">
+        <rdfs:comment>An institution for the care and treatment of the acutely sick and injured</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#IDCard">
+        <rdfs:comment>A card giving identifying data about the person</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Insurance">
+        <rdfs:comment>A business that provides coverage in the form of compensation resulting from loss, damage, injury, treatment, or hardship in exchange for premium payment.</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#InsuranceDetails">
+        <rdfs:comment>Information regarding the insurance of a patient</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalFacility">
+        <rdfs:comment>Health care institution which have accommodation facilities, and which engage in providing short -term and long - term medical treatment of a general or specialized nature</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalHistory">
+        <rdfs:comment>Information about the medical history of a patient</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalInstitution">
+        <rdfs:comment>Any public or private, medical or dental facility where clinical trials are conducted.</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalInvoice">
+        <rdfs:comment>Statement of charges for medical services</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Medication">
+        <rdfs:comment>Any Chemical compound used in diagnosis, treatment or prevention of desease or other abnormal condition</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Obtain_VitalSigns">
+        <rdfs:comment>An action of obtaining vital signs</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Paramedics">
+        <rdfs:comment>A person who is trained to do medical work, specially emergency first aid, but is not a full qualified doctor</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Passport">
+        <rdfs:comment>An official document issued by a government, certifying holder&apos;s identity and citizenship, and entiteling them to travel under its protection to and from foreign countries.</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Patient">
+        <rdfs:comment>A person receiving (or registered to receive) medical treatment</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#PatientDetails">
+        <rdfs:comment>Any information relevant for the patient, such as name, age, etc</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#PediatricServices">
+        <rdfs:comment>Medical services offered to infants, children and adolescents</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Perform_Diagnosis">
+        <rdfs:comment>An action of performing diagnosis</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Perform_PhysicalExamination">
+        <rdfs:comment>An action of performing physical examination</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Perform_SurgicalExamination">
+        <rdfs:comment>An action of performing surgical examination</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Person">
+        <rdfs:comment>A living human</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Pharmacy">
+        <rdfs:comment>A place where drugs are compounded or dispensed</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#PhysicalExamination">
+        <rdfs:comment>Examination of body state, made for the purpose of diagnosis.</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#PhysicalTherapy">
+        <rdfs:comment>Treatment in order to prevent, correct, and limit physical disability and bodily malfuntioning</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Physician">
+        <rdfs:comment>An authorized practitioner of medicine, as one graduated from a college of medicine and licensed by the appropriate board</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Prescription">
+        <rdfs:comment>A written formula for preparation and edministration of any remedy</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Radiation">
+        <rdfs:comment>Application of x-ray or radioactive substances for treatment of various illnesses</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Redirect_Patient">
+        <rdfs:comment>An action of redirecting a patient to another medical facility</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Register_Patient">
+        <rdfs:comment>An action of registering a patient</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Registration">
+        <rdfs:comment>An act of entering information about something in a system of public record</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Reimbursement">
+        <rdfs:comment>Repaymeny of money you have already spent.</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Scan">
+        <rdfs:comment>Data or image obtained from an examination of organs or regions of the body by gathering infoormation with a sensing device.</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#SpeachTherapy">
+        <rdfs:comment>Training to help people with speech and language problems.</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Status">
+        <rdfs:comment>Situation of a pacient at a particular time</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Surgeon">
+        <rdfs:comment>A doctor specialized in surgery</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Surgery">
+        <rdfs:comment>Operation performed by a qualified surgeon for removal or replacement of a diseased tissue by cutting</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Symptoms">
+        <rdfs:comment>Subjective indication of a disease or a change in condition as perceived by the patient</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Therapy">
+        <rdfs:comment>Treatment of disease or disorder by any method</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Trauma">
+        <rdfs:comment>Injury, psychological or emotional damage</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#Treatment">
+        <rdfs:comment>Management and care of the patient</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#TriageNurse">
+        <rdfs:comment>A nurse whose responsibility is sorting patients arriving to the emergency department into groups based on their need for immediate medical treatment</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.mis.ugent.be/ontologies/MedicalOntology#VitalSigns">
+        <rdfs:comment>Measurement of pulse rate, body temperature, and blood pressure to assess health or disfunction</rdfs:comment>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+

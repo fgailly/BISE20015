@@ -1,0 +1,382 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#"
+     xml:base="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:istar="http://www.mis.ugent.be/ontologies/istar#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:SemanticAnnotation="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model">
+        <owl:imports rdf:resource="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl"/>
+        <owl:imports rdf:resource="http://www.mis.ugent.be/ontologies/istar"/>
+        <owl:imports rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Coordinate_Followup -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Coordinate_Followup"/>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Describe_Symptoms -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Describe_Symptoms"/>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment"/>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#IDCard -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#IDCard"/>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Insurance -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Insurance"/>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#InsuranceInformation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#InsuranceInformation"/>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#MedicalHistory -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#MedicalHistory"/>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#MedicalInvoice -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#MedicalInvoice"/>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Patient -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Patient"/>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PatientDiagnosis -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PatientDiagnosis"/>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PatientStatus -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PatientStatus"/>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Perform_Diagnosis -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Perform_Diagnosis"/>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PrimaryCareProvider -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PrimaryCareProvider"/>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Reimbursement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Reimbursement"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Accurate_Description -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Accurate_Description">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Quality"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Coordinate_Followup -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Coordinate_Followup">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Goal"/>
+        <SemanticAnnotation:domainClassAnnotatesRepresentationClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Coordinate_Followup"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Describe_Symptoms -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Describe_Symptoms">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Task"/>
+        <SemanticAnnotation:domainClassAnnotatesRepresentationClass rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Describe_Symptoms"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Agent"/>
+        <SemanticAnnotation:domainClassAnnotatesRepresentationClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#EmergencyDepartment"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment_AccurateDescription_Patient -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment_AccurateDescription_Patient">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Dependency"/>
+        <istar:dependee rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Patient"/>
+        <istar:depender rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment"/>
+        <istar:dependum rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Accurate_Description"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment_DescribeSymptoms_Patient -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment_DescribeSymptoms_Patient">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Dependency"/>
+        <istar:dependee rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Patient"/>
+        <istar:depender rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment"/>
+        <istar:dependum rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Describe_Symptoms"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment_IDCard_Patient -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment_IDCard_Patient">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Dependency"/>
+        <istar:dependee rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Patient"/>
+        <istar:depender rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment"/>
+        <istar:dependum rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#IDCard"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment_InsuranceInformation_Patient -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment_InsuranceInformation_Patient">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Dependency"/>
+        <istar:dependee rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Patient"/>
+        <istar:depender rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment"/>
+        <istar:dependum rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#InsuranceInformation"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment_MedicalHistory_PrimaryCareProvider -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment_MedicalHistory_PrimaryCareProvider">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Dependency"/>
+        <istar:dependee rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PrimaryCareProvider"/>
+        <istar:depender rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment"/>
+        <istar:dependum rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#MedicalHistory"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#IDCard -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#IDCard">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Resource"/>
+        <SemanticAnnotation:domainClassAnnotatesRepresentationClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#IDCard"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Insurance -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Insurance">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Agent"/>
+        <SemanticAnnotation:domainClassAnnotatesRepresentationClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Insurance"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#InsuranceInformation -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#InsuranceInformation">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Resource"/>
+        <SemanticAnnotation:domainClassAnnotatesRepresentationClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#InsuranceDetails"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Insurance_MedicalInvoice_Patient -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Insurance_MedicalInvoice_Patient">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Dependency"/>
+        <istar:dependee rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Patient"/>
+        <istar:depender rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Insurance"/>
+        <istar:dependum rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#MedicalInvoice"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#MedicalHistory -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#MedicalHistory">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Resource"/>
+        <SemanticAnnotation:domainClassAnnotatesRepresentationClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalHistory"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#MedicalInvoice -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#MedicalInvoice">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Resource"/>
+        <SemanticAnnotation:domainClassAnnotatesRepresentationClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalInvoice"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Patient -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Patient">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Agent"/>
+        <SemanticAnnotation:domainClassAnnotatesRepresentationClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Patient"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PatientDiagnosis -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PatientDiagnosis">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Resource"/>
+        <SemanticAnnotation:domainClassAnnotatesRepresentationClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Diagnosis"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PatientStatus -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PatientStatus">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Resource"/>
+        <SemanticAnnotation:domainClassAnnotatesRepresentationClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Status"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Patient_CoordinateFollowup_PrimaryCareProvider -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Patient_CoordinateFollowup_PrimaryCareProvider">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Dependency"/>
+        <istar:dependee rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PrimaryCareProvider"/>
+        <istar:depender rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Patient"/>
+        <istar:dependum rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Coordinate_Followup"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Patient_PerformDiagnosis_EmergencyDepartment -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Patient_PerformDiagnosis_EmergencyDepartment">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Dependency"/>
+        <istar:dependee rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment"/>
+        <istar:depender rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Patient"/>
+        <istar:dependum rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Perform_Diagnosis"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Patient_Reimbursement_Insurance -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Patient_Reimbursement_Insurance">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Dependency"/>
+        <istar:dependee rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Insurance"/>
+        <istar:depender rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Patient"/>
+        <istar:dependum rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Reimbursement"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Perform_Diagnosis -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Perform_Diagnosis">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Goal"/>
+        <SemanticAnnotation:domainClassAnnotatesRepresentationClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Perform_Diagnosis"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PrimaryCareProvider -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PrimaryCareProvider">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Agent"/>
+        <SemanticAnnotation:domainClassAnnotatesRepresentationClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#GeneralPractitioner"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PrimaryCareProvider_PatientDiagnosis_EmergencyDepartment -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PrimaryCareProvider_PatientDiagnosis_EmergencyDepartment">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Dependency"/>
+        <istar:dependee rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment"/>
+        <istar:depender rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PrimaryCareProvider"/>
+        <istar:dependum rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PatientDiagnosis"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PrimaryCareProvider_PatientStatus_EmergencyDepartment -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PrimaryCareProvider_PatientStatus_EmergencyDepartment">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Dependency"/>
+        <istar:dependee rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#EmergencyDepartment"/>
+        <istar:depender rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PrimaryCareProvider"/>
+        <istar:dependum rdf:resource="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#PatientStatus"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Reimbursement -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model#Reimbursement">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar#Goal"/>
+        <SemanticAnnotation:domainClassAnnotatesRepresentationClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Reimbursement"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.1.20160306-0033) https://github.com/owlcs/owlapi -->
+

@@ -1,0 +1,798 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/nalkhald/ontologies/2016/10/untitled-ontology-7#"
+     xml:base="http://www.semanticweb.org/nalkhald/ontologies/2016/10/untitled-ontology-7"
+     xmlns:eso="http://www.mis.ugent.be/ontologies/MedicalOntology#"
+     xmlns:istarmodel="http://www.mis.ugent.be/ontologies/istarmodel.owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:istar="http://www.mis.ugent.be/ontologies/istar.owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:sa="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl#"
+     xmlns:ufo="http://www.mis.ugent.be/ontologies/ufo.owl#">
+    <owl:Ontology rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl">
+        <owl:imports rdf:resource="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl"/>
+        <owl:imports rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology"/>
+        <owl:imports rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istar.owl#dependee -->
+
+    <owl:AnnotationProperty rdf:about="http://www.mis.ugent.be/ontologies/istar.owl#dependee"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istar.owl#depender -->
+
+    <owl:AnnotationProperty rdf:about="http://www.mis.ugent.be/ontologies/istar.owl#depender"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istar.owl#dependum -->
+
+    <owl:AnnotationProperty rdf:about="http://www.mis.ugent.be/ontologies/istar.owl#dependum"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istar.owl#hasSourceRefinement -->
+
+    <owl:AnnotationProperty rdf:about="http://www.mis.ugent.be/ontologies/istar.owl#hasSourceRefinement"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istar.owl#hasTargetRefinement -->
+
+    <owl:AnnotationProperty rdf:about="http://www.mis.ugent.be/ontologies/istar.owl#hasTargetRefinement"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istar.owl#ANDrefinement -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/istar.owl#ANDrefinement"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istar.owl#Actor -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/istar.owl#Actor"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istar.owl#Agent -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/istar.owl#Agent"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istar.owl#Dependency -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/istar.owl#Dependency"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istar.owl#Goal -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/istar.owl#Goal"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istar.owl#ORrefinement -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/istar.owl#ORrefinement"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istar.owl#Resource -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/istar.owl#Resource"/>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istar.owl#Task -->
+
+    <owl:Class rdf:about="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#ApplyTreatment_ApplyTreatmentLocally -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#ApplyTreatment_ApplyTreatmentLocally">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ORrefinement"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#ApplyTreatment_redirectPatient -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#ApplyTreatment_redirectPatient">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ORrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Redirect_Patient"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Apply_Treatment"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Apply_Treatment -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Apply_Treatment">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Goal"/>
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Apply_Treatment"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Apply_TreatmentLocally -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Apply_TreatmentLocally">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Apply_Treatment_Locally"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Avoid_Duplication -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Avoid_Duplication">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Goal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Coordinate_Followup -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Coordinate_Followup">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Goal"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Coordinate_Followup"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Describe_Symptoms -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Describe_Symptoms">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Diagnosis -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Diagnosis">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Resource"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Diagnosis"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#EmergencyDepartment -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#EmergencyDepartment">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Actor"/>
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Agent"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#EmergencyDepartment"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#EmergencyDepartment_InsuranceDetails_Patient -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#EmergencyDepartment_InsuranceDetails_Patient">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Dependency"/>
+        <istar:dependee rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Patient"/>
+        <istar:depender rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#EmergencyDepartment"/>
+        <istar:dependum rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#InsuranceDetails"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#EmergencyDepartment_MedicalHistory_GeneralPractitioner -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#EmergencyDepartment_MedicalHistory_GeneralPractitioner">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Dependency"/>
+        <istar:dependee rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#GeneralPractitioner"/>
+        <istar:depender rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#EmergencyDepartment"/>
+        <istar:dependum rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#MedicalHistory"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#EmergencyDepartment_PerformDiagnosis_Patient -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#EmergencyDepartment_PerformDiagnosis_Patient">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Dependency"/>
+        <istar:dependee rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#EmergencyDepartment"/>
+        <istar:depender rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Patient"/>
+        <istar:dependum rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Perform_Diagnosis"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#EmergyDepartment_IDCard_Patient -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#EmergyDepartment_IDCard_Patient">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Dependency"/>
+        <istar:dependee rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Patient"/>
+        <istar:depender rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#EmergencyDepartment"/>
+        <istar:dependum rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#ID_card"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#EmetrgencyDepartment_DescribeSymptoms_Patient -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#EmetrgencyDepartment_DescribeSymptoms_Patient">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Dependency"/>
+        <istar:dependee rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Patient"/>
+        <istar:depender rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#EmergencyDepartment"/>
+        <istar:dependum rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Describe_Symptoms"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Examine_CurrentSymptoms -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Examine_CurrentSymptoms">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Examine_Symptoms"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Examine_MedicalHistory -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Examine_MedicalHistory">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Examine_MedicalHistory"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#FacilitateCommunicationAmongMedicalUnits_MaintainStrongMobileSignal -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#FacilitateCommunicationAmongMedicalUnits_MaintainStrongMobileSignal">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ANDrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Maintain_StrongMobileSignal"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Facilitate_CommunicationAmongMedicalUnits"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#FacilitateCommunicationAmongMedicalUnits_SupplyDesktopPhones -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#FacilitateCommunicationAmongMedicalUnits_SupplyDesktopPhones">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ANDrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Supply_DesktopPhones"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Facilitate_CommunicationAmongMedicalUnits"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Facilitate_CommunicationAmongMedicalUnits -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Facilitate_CommunicationAmongMedicalUnits">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#GeneralPractitioner -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#GeneralPractitioner">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Agent"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#GeneralPractitioner"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#GeneralPractitioner_Diagnosis_EmergencyDepartment -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#GeneralPractitioner_Diagnosis_EmergencyDepartment">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Dependency"/>
+        <istar:dependee rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#EmergencyDepartment"/>
+        <istar:depender rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#GeneralPractitioner"/>
+        <istar:dependum rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Diagnosis"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#GeneralPractitioner_Status_EmergencyDepartment -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#GeneralPractitioner_Status_EmergencyDepartment">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Dependency"/>
+        <istar:dependee rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#EmergencyDepartment"/>
+        <istar:depender rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#GeneralPractitioner"/>
+        <istar:dependum rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Status"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#ID_card -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#ID_card">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Resource"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#IDCard"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Insurance -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Insurance">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Actor"/>
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Agent"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Insurance"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#InsuranceDetails -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#InsuranceDetails">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Resource"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#InsuranceDetails"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Insurance_MedicalInvoice_Patient -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Insurance_MedicalInvoice_Patient">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Dependency"/>
+        <istar:dependee rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Patient"/>
+        <istar:depender rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Insurance"/>
+        <istar:dependum rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#MedicalInvoice"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Maintain_ContactWithSpecializedMedicalFacilities -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Maintain_ContactWithSpecializedMedicalFacilities">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Maintain_StrongMobileSignal -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Maintain_StrongMobileSignal">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Measure_HeartBeat -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Measure_HeartBeat">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Measure_Heartbeat"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Measure_Pressure -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Measure_Pressure">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Measure_Pressure"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Measure_Temperature -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Measure_Temperature">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Measure_Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#MedicalHistory -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#MedicalHistory">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Resource"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalHistory"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#MedicalInvoice -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#MedicalInvoice">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Resource"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#MedicalInvoice"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#ObtainVitalSigns_MeasureHeartbeat -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#ObtainVitalSigns_MeasureHeartbeat">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ANDrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Measure_HeartBeat"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Obtain_VitalSigns"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#ObtainVitalSigns_MeasurePressure -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#ObtainVitalSigns_MeasurePressure">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ANDrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Measure_Pressure"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Obtain_VitalSigns"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#ObtainVitalSigns_MeasureTemperature -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#ObtainVitalSigns_MeasureTemperature">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ANDrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Measure_Temperature"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Obtain_VitalSigns"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Obtain_VitalSigns -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Obtain_VitalSigns">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Obtain_VitalSigns"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Order_Scan -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Order_Scan">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Order_Scan"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Patient -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Patient">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Agent"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Patient"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Patient_CoordinateFollowup_PrimaryCareProvider -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Patient_CoordinateFollowup_PrimaryCareProvider">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Dependency"/>
+        <istar:dependee rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#GeneralPractitioner"/>
+        <istar:depender rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Patient"/>
+        <istar:dependum rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Coordinate_Followup"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Patient_Reimbursement_Insurance -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Patient_Reimbursement_Insurance">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Dependency"/>
+        <istar:dependee rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Insurance"/>
+        <istar:depender rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Patient"/>
+        <istar:dependum rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Reimbursement"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#PerformDiagnosis_OrderScan -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#PerformDiagnosis_OrderScan">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ANDrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Order_Scan"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Perform_Diagnosis"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#PerformDiagnosis_PerformDifferentialDiagnosis -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#PerformDiagnosis_PerformDifferentialDiagnosis">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ANDrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Perform_DifferentialDiagnosis"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Perform_Diagnosis"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#PerformDiagnosis_PerformPhysicalExamination -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#PerformDiagnosis_PerformPhysicalExamination">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ANDrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Perform_PhysicalExamination"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Perform_Diagnosis"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#PerformDiagnosis_PerformSurgicalExamination -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#PerformDiagnosis_PerformSurgicalExamination">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ANDrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Perform_SurgicalExamination"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Perform_Diagnosis"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#PerformDifferentialDiagnosis_ExamineCurrentSymptoms -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#PerformDifferentialDiagnosis_ExamineCurrentSymptoms">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ANDrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Examine_CurrentSymptoms"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Perform_DifferentialDiagnosis"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#PerformDifferentialDiagnosis_ExamineMedicalHistory -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#PerformDifferentialDiagnosis_ExamineMedicalHistory">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ANDrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Examine_MedicalHistory"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Perform_DifferentialDiagnosis"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Perform_Diagnosis -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Perform_Diagnosis">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Goal"/>
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Perform_Diagnosis"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Perform_DifferentialDiagnosis -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Perform_DifferentialDiagnosis">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Perform_PhysicalExamination -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Perform_PhysicalExamination">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Perform_PhysicalExamination"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Perform_SurgicalExamination -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Perform_SurgicalExamination">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Perform_SurgicalExamination"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#PrioritizeCondition_ObtainVitalSigns -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#PrioritizeCondition_ObtainVitalSigns">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ORrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Obtain_VitalSigns"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Prioritize_Condition"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Prioritize_Condition -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Prioritize_Condition">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Goal"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Prioritize_Condition"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Produce_DifferentialDiagnosis -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Produce_DifferentialDiagnosis">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#ProvideDirectRefferalToAppropriateMedicalFacility_MaintainContactWithSpecializedMedicalFacility -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#ProvideDirectRefferalToAppropriateMedicalFacility_MaintainContactWithSpecializedMedicalFacility">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ORrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Maintain_ContactWithSpecializedMedicalFacilities"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#ProvideDirectRefferalToAppropriateMedicalFacility_MaintainContactWithSpecializedMedicalFacility"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#ProvideTimelyAccessToCare_AvoidDuplication -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#ProvideTimelyAccessToCare_AvoidDuplication">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ANDrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Avoid_Duplication"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Provide_TimelyAccessToCare"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#ProvideTimelyAccessToCare_PrioritizeCondition -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#ProvideTimelyAccessToCare_PrioritizeCondition">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ANDrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Prioritize_Condition"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Provide_TimelyAccessToCare"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#ProvideTimelyAccessToCare_ReduceRegistrationTime -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#ProvideTimelyAccessToCare_ReduceRegistrationTime">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ANDrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Reduce_RegistrationTime"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Provide_TimelyAccessToCare"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Provide_DirectRefferalToAppropriateMedicalFacility -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Provide_DirectRefferalToAppropriateMedicalFacility">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Goal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Provide_TimelyAccessToCare -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Provide_TimelyAccessToCare">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Redirect_Patient -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Redirect_Patient">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Redirect_Patient"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Reduce_RegistrationTime -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Reduce_RegistrationTime">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Goal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Reimbursement -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Reimbursement">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Goal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Status -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Status">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Resource"/>
+        <sa:representationClassIsAnnotedByDomainClass rdf:resource="http://www.mis.ugent.be/ontologies/MedicalOntology#Status"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Supply_DesktopPhones -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Supply_DesktopPhones">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#TreatPatient_ApplyTreatment -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#TreatPatient_ApplyTreatment">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ANDrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Apply_Treatment"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Treat_Patient"/>
+        <rdfs:comment></rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#TreatPatient_PerformDiagnosis -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#TreatPatient_PerformDiagnosis">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ANDrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Perform_Diagnosis"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Treat_Patient"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#TreatPatient_ProvideTimelyAccessToCare -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#TreatPatient_ProvideTimelyAccessToCare">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ANDrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Provide_TimelyAccessToCare"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Treat_Patient"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#TreatPatient_TreatPatient -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#TreatPatient_TreatPatient">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#ORrefinement"/>
+        <istar:hasSourceRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Treat_Patient"/>
+        <istar:hasTargetRefinement rdf:resource="http://www.mis.ugent.be/ontologies/istarmodel.owl#Treat_Patient"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.mis.ugent.be/ontologies/istarmodel.owl#Treat_Patient -->
+
+    <owl:NamedIndividual rdf:about="http://www.mis.ugent.be/ontologies/istarmodel.owl#Treat_Patient">
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Goal"/>
+        <rdf:type rdf:resource="http://www.mis.ugent.be/ontologies/istar.owl#Task"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+

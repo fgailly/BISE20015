@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="lib" path="libs/HermiT.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="libs/cmoeplus.jar"/>
+	<classpathentry kind="lib" path="libs/owlapi-distribution-3.4.5.jar"/>
+	<classpathentry kind="lib" path="libs/lingpipe-4.1.0.jar"/>
+	<classpathentry kind="lib" path="libs/stanford-postagger-3.5.1.jar"/>
+	<classpathentry kind="lib" path="libs/stanford-postagger.jar"/>
+	<classpathentry kind="lib" path="libs/jaws-bin.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

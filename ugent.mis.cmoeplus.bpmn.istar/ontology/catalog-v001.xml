@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="Imports Wizard Entry" name="http://www.mis.ugent.be/ontologies/istarmodel.owl" uri="SR_model.owl"/>
+    <uri id="User Entered Import Resolution" name="http://www.mis.ugent.be/ontologies/istarmodel.owl" uri="istar.owl"/>
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1496157799371" name="http://www.mis.ugent.be/ontologies/MedicalOntology" uri="MedicalOntology.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1496157799371" name="http://www.mis.ugent.be/ontologies/SemanticAnnotation.owl" uri="SemanticAnnotation.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1496157799371" name="http://www.mis.ugent.be/ontologies/bpmn" uri="bpmn.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1496157799371" name="http://www.mis.ugent.be/ontologies/bpmn_ufo.owl" uri="bpmn_ufo.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1496157799371" name="http://www.mis.ugent.be/ontologies/istar.owl" uri="istar.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1496157799371" name="http://www.mis.ugent.be/ontologies/rules" uri="RulesMedical.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1496157799371" name="http://www.mis.ugent.be/ontologies/ufo.owl" uri="ufo.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1496157799371" name="http://www.semanticweb.org/nalkhald/ontologies/2016/10/untitled-ontology-7" uri="SR_model.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1496157799371" name="http://www.semanticweb.org/nalkhald/ontologies/2016/11/SD_Model" uri="SD_Model.owl"/>
+    </group>
+</catalog>
